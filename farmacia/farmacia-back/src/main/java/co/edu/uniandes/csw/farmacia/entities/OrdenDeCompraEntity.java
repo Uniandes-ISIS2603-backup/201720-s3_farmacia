@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.farmacia.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 
+
+
 /**
  *
  * @author a.gracia10
