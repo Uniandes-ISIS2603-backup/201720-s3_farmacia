@@ -1,2 +1,2 @@
 # s3_farmacia
-Repositorio del proyecto de vivienda universitaria del grupo 4 de la sección 3
+Repositorio del proyecto de farmacia del grupo 4 de la sección 3
