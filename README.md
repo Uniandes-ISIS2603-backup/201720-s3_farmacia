@@ -1,2 +1,2 @@
-# s4_vuniversitaria
-Repositorio del proyecto de vivienda universitaria del grupo 1 de la sección 4
+# s3_vuniversitaria
+Repositorio del proyecto de vivienda universitaria del grupo 4 de la sección 3
