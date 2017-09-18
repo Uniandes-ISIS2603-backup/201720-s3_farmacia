@@ -1,6 +1,8 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
-import co.edu.uniandes.farmacia.entities.FarmaciaEntity;
+import co.edu.uniandes.csw.farmacia.entities.FarmaciaEntity;
+
+
 
 
 

@@ -21,9 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package co.edu.uniandes.csw.viviendaUniversitaria.mappers;
+package co.edu.uniandes.csw.farmacia.mappers;
 
-import co.edu.uniandes.csw.viviendaUniversitaria.exceptions.BusinessLogicException;
+
+import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

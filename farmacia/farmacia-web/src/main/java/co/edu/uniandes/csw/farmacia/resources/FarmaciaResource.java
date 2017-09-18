@@ -21,9 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import co.edu.uniandes.farmacia.entities.FarmaciaEntity;
-import co.edu.uniandes.farmacia.exceptions.BusinessLogicException;
-import co.edu.uniandes.farmacia.dtos.FarmaciaDetailDTO;
+
+import co.edu.uniandes.csw.farmacia.dtos.FarmaciaDetailDTO;
+import co.edu.uniandes.csw.farmacia.entities.FarmaciaEntity;
+import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.farmacia.ejb.FarmaciaLogic;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +46,9 @@ import javax.ws.rs.WebApplicationException;
 /**
  * Clase que implementa el recurso REST correspondiente a "Farmacias".
  *
- * Note que la aplicación (definida en RestConfig.java) define la ruta "/api" y
- * este recurso tiene la ruta "Farmacias". Al ejecutar la aplicación, el
- * recurso será accesibe a través de la ruta "/api/Farmacias"
+ * Note que la aplicaciï¿½n (definida en RestConfig.java) define la ruta "/api" y
+ * este recurso tiene la ruta "Farmacias". Al ejecutar la aplicaciï¿½n, el
+ * recurso serï¿½ accesibe a travï¿½s de la ruta "/api/Farmacias"
  *
  * @author ISIS2603
  *
@@ -59,14 +60,14 @@ import javax.ws.rs.WebApplicationException;
 public class FarmaciaResource {
 
     @Inject
-    FarmaciaLogic FarmaciasLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    FarmaciaLogic FarmaciasLogic; // Variable para acceder a la lï¿½gica de la aplicaciï¿½n. Es una inyecciï¿½n de dependencias.
 
     private static final Logger LOGGER = Logger.getLogger(FarmaciaResource.class.getName());
 
     /**
      * POST http://localhost:8080/Farmacias-web/api/Farmaciass
      *
-     * @param Farmacia correponde a la representación java del objeto json
+     * @param Farmacia correponde a la representaciï¿½n java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
@@ -75,9 +76,9 @@ public class FarmaciaResource {
      */
     @POST
     public FarmaciaDetailDTO createFarmacia(FarmaciaDetailDTO Farmacia) throws BusinessLogicException {
-        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
+        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lï¿½gica.
         FarmaciaEntity FarmaciaEntity = Farmacia.toEntity();
-        // Invoca la lógica para crear la Farmacia nueva
+        // Invoca la lï¿½gica para crear la Farmacia nueva
         FarmaciaEntity nuevoFarmacia = FarmaciasLogic.createFarmacia(FarmaciaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new FarmaciaDetailDTO(nuevoFarmacia);
@@ -112,7 +113,7 @@ public class FarmaciaResource {
     @PUT
     @Path("{id: \\d+}")
     public FarmaciaDetailDTO updateFarmacia(@PathParam("id") Long id, FarmaciaDetailDTO Farmacias) throws BusinessLogicException, UnsupportedOperationException {
-          throw new UnsupportedOperationException("Este servicio  no está implementado");
+          throw new UnsupportedOperationException("Este servicio  no estï¿½ implementado");
       
     }
 
@@ -129,14 +130,14 @@ public class FarmaciaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteFarmacia(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no está implementado");
+         throw new UnsupportedOperationException("Este servicio no estï¿½ implementado");
     }
 
     /**
      *
      * lista de entidades a DTO.
      *
-     * Este método convierte una lista de objetos FarmaciaEntity a una lista de
+     * Este mï¿½todo convierte una lista de objetos FarmaciaEntity a una lista de
      * objetos FarmaciaDetailDTO (json)
      *
      * @param entityList corresponde a la lista de Farmaciaes de tipo Entity

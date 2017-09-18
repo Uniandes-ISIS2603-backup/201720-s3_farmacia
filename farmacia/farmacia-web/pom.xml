@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>viviendaUniversitaria-web</artifactId>
-    <name>viviendaUniversitaria-web</name>
+    <artifactId>farmacia-web</artifactId>
+    <name>farmacia-web</name>
     <packaging>war</packaging>
     <parent>
-        <groupId>co.edu.uniandes.csw.viviendaUniversitaria</groupId>
-        <artifactId>viviendaUniversitaria</artifactId>
+        <groupId>co.edu.uniandes.baco</groupId>
+        <artifactId>farmacia</artifactId>
         <version>0.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -59,8 +59,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>co.edu.uniandes.csw.viviendaUniversitaria</groupId>
-            <artifactId>viviendaUniversitaria-back</artifactId>
+            <groupId>co.edu.uniandes.baco</groupId>
+            <artifactId>farmacia-back</artifactId>
             <version>0.1.0</version>
         </dependency>
         <dependency>
