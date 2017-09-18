@@ -1,6 +1,6 @@
 package co.edu.uniandes.csw.farmacia.persistence;
 
-import co.edu.uniandes.farmacia.entities.OrdenDeCompraEntity;
+import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

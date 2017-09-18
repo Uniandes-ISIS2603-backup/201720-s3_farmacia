@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.farmacia.persistence;
 
-import co.edu.uniandes.farmacia.entities.OrdenAprovEntity;
+import co.edu.uniandes.csw.farmacia.entities.OrdenAprovEntity;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

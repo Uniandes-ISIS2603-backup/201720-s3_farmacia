@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.farmacia.persistence;
 
-import co.edu.uniandes.farmacia.entities.ProveedorEntity;
+import co.edu.uniandes.csw.farmacia.entities.ProveedorEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
