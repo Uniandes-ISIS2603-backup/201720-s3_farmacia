@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.farmacia.persistence;
 
-import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
+import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,45 +26,44 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 /**
  *
  * @author hs.hernandez
  */
 @RunWith(Arquillian.class)
-public class ClientePersistenceTest {
-
+public class FacturaPersistenceTest {
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ClienteEntity.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
+                .addPackage(FacturaEntity.class.getPackage())
+                .addPackage(FacturaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-
-    public ClientePersistenceTest() {
+    
+    public FacturaPersistenceTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
-
+    
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos se
-     * van a probar.
+     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * se van a probar.
      */
     @Inject
-    private ClientePersistence persistence;
+    private FacturaPersistence persistence;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -80,107 +79,104 @@ public class ClientePersistenceTest {
     @Inject
     UserTransaction utx;
 
-    /**
+     /**
      *
      */
-    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
-
+    private List<FacturaEntity> data = new ArrayList<FacturaEntity>();
+    
     private void clearData() {
-        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from FacturaEntity").executeUpdate();
     }
-
     private void insertData() {
         PodamFactory factory;
         factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
     }
-
+ 
     @Before
     public void setUp() {
         try {
             utx.begin();
             em.joinTransaction();
-            System.err.println("Hola mundo");
             clearData();
             insertData();
-            System.err.println("Hola mundo");
             utx.commit();
-            System.err.println("Hola mundo");
         } catch (Exception e) {
             e.printStackTrace();
             try {
                 utx.rollback();
-                System.err.println("Hola mundo de error");
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
         }
     }
-
+    
     @Test
-    public void createClienteEntityTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        ClienteEntity result = persistence.create(newEntity);
+    public void createFacturaEntityTest() {
+    PodamFactory factory = new PodamFactoryImpl();
+    FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+    FacturaEntity result = persistence.create(newEntity);
 
-        Assert.assertNotNull(result);
-        ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
-        Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-
+    Assert.assertNotNull(result);
+    FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
+    Assert.assertNotNull(entity);
+    Assert.assertEquals(newEntity.getName(), entity.getName());
+    
     }
-
+    
     @Test
-    public void getClienteEntityTest() {
-        List<ClienteEntity> list = persistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (ClienteEntity ent : list) {
-            boolean found = false;
-            for (ClienteEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
+    public void getFacturaEntityTest() {
+    List<FacturaEntity> list = persistence.findAll();
+    Assert.assertEquals(data.size(), list.size());
+    for (FacturaEntity ent : list) {
+        boolean found = false;
+        for (FacturaEntity entity : data) {
+            if (ent.getId().equals(entity.getId())) {
+                found = true;
             }
-            Assert.assertTrue(found);
+        }
+        Assert.assertTrue(found);
         }
     }
-
+    
     @Test
-    public void getClienteTest() {
-        ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = persistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-
+    public void getFacturaTest() {
+    FacturaEntity entity = data.get(0);
+    FacturaEntity newEntity = persistence.find(entity.getId());
+    Assert.assertNotNull(newEntity);
+    Assert.assertEquals(entity.getName(), newEntity.getName());
+    
     }
-
+    
     @Test
-    public void updateClienteTest() {
-        ClienteEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+    public void updateFacturaTest() {
+    FacturaEntity entity = data.get(0);
+    PodamFactory factory = new PodamFactoryImpl();
+    FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
 
-        newEntity.setId(entity.getId());
+    newEntity.setId(entity.getId());
 
-        persistence.update(newEntity);
+    persistence.update(newEntity);
 
-        ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
+    FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
-
+    Assert.assertEquals(newEntity.getName(), resp.getName());
+    
     }
-
+    
     @Test
-    public void deleteClienteTest() {
-        ClienteEntity entity = data.get(0);
-        persistence.delete(entity.getId());
-        ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+    public void deleteXYZTest() {
+    FacturaEntity entity = data.get(0);
+    persistence.delete(entity.getId());
+    FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
+    Assert.assertNull(deleted);
     }
-
+    
+    
+    
 }
