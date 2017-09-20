@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.farmacia.ejb;
 
 import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
+import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.ClientePersistence;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
 
 /**
  *
@@ -93,6 +95,64 @@ public class ClienteLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un cliente con id={0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un cliente con id={0}", id);
+    }
+    
+    /**
+     *  Lista de facturas asiciadas a ese cliente
+     * @param id del cliente
+     * @return Lista de facturas asiciadas a ese cliente
+     * @throws BusinessLogicException el cliente no existe
+     */
+    public ArrayList<FacturaEntity> listFacturas(Long id)throws BusinessLogicException{
+         LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las facturas del cliente con id = {0}", id);
+        return getCliente(id).getFacturas();
+    }
+    
+    /**
+     * la Factura con el Id dado del cliente con ID dado
+     * @param idCliente cliente que se desea buscar
+     * @param idfactura factura que se desea buscar
+     * @return Cliente con id dado y factura con id dado
+     * @throws BusinessLogicException No existe el cliente
+     */
+    public FacturaEntity getFactura(Long idCliente, Long idfactura)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar una factura del cliente con id = {0}", idCliente);
+        ArrayList<FacturaEntity> list = getCliente(idCliente).getFacturas();
+        FacturaEntity nuevo = new FacturaEntity();
+        nuevo.setId(idfactura);
+        int index = list.indexOf(nuevo);
+        if(index>=0)
+            return list.get(index);
+        return null;
+    }
+    
+    /**
+     * Asocia una nueva factura a un cliente dado
+     * @param idCliente 
+     * @param idFactura 
+     * @return Factura asociada al cliente
+     * @throws BusinessLogicException  no existe el cliente
+     */
+    public FacturaEntity addFactura(Long idCliente, Long idFactura) throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar una factura al cliente con id = {0}", idCliente);
+        ClienteEntity cliente = getCliente(idCliente);
+        FacturaEntity nueva = new FacturaEntity();
+        nueva.setId(idFactura);
+        cliente.getFacturas().add(nueva);
+        return  getFactura(idCliente, idFactura);
+    }
+    /**
+     * Retira una facura de un cliente
+     * @param idCliente 
+     * @param idFactura 
+     * @throws BusinessLogicException no existe el cliente con el ID dado
+     */
+    public void removeFactura(Long idCliente, Long idFactura)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una factura del cliente con id = {0}", idCliente);
+        ClienteEntity cliente = getCliente(idCliente);
+        FacturaEntity factura = new FacturaEntity();
+        factura.setId(idFactura);
+        cliente.getFacturas().remove(factura);
     }
     
 }

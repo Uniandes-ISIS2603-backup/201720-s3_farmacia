@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +18,18 @@ import javax.persistence.Entity;
 public class FacturaEntity extends BaseEntity implements Serializable{
     private int totalFactura ;
 
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity clientes;
+
+    public ClienteEntity getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ClienteEntity clientes) {
+        this.clientes = clientes;
+    }
+    
     public int getTotalFactura() {
         return totalFactura;
     }

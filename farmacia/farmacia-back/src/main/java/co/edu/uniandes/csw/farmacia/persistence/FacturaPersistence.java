@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.farmacia.persistence;
 
 
+import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -83,8 +84,21 @@ public class FacturaPersistence {
      */
     
     public List<FacturaEntity> findAll(){
-        LOGGER.info("Consultando todos las factiras");
+        LOGGER.info("Consultando todas las facturas");
         TypedQuery query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
         return query.getResultList();   
+   }
+   
+    /**
+     * Factura especifica de un cliente especifico
+     * @param idCliente
+     * @param idFactura
+     * @return 
+     */
+    public FacturaEntity find(Long idCliente, Long idFactura){
+        ClienteEntity cliente = find(idFactura).getClientes();
+        if(cliente.getId().equals(idCliente))
+           return find(idFactura);
+        return null;
     }
 }

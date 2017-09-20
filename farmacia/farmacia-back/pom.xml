@@ -47,7 +47,6 @@
              <groupId>uk.co.jemos.podam</groupId>
              <artifactId>podam</artifactId>
              <version>6.0.2.RELEASE</version>
-             <scope>test</scope>
              <type>jar</type>
          </dependency>
          <dependency>
