@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: co.edu.uniandes.csw.farmacia.persistence.OrdenDeRotacionDeInventarioPersistenceTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.926 sec
