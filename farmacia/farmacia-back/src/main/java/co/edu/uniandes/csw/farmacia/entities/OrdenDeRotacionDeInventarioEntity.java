@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class OrdenDeRotacionDeInventarioEntity extends BaseEntity implements Serializable {
     String justificacion;
-    String encargado; //que verga es esto?
+    String encargado; 
     
     public String getJustificacion()
     {

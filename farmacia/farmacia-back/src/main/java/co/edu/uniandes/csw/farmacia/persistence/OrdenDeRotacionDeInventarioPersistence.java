@@ -27,12 +27,12 @@ public class OrdenDeRotacionDeInventarioPersistence  {
     protected EntityManager em;
 
     public OrdenDeRotacionDeInventarioEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando OrdenDe Rotacion De Inventario con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando Orden De Rotacion De Inventario con id={0}", id);
         return em.find(OrdenDeRotacionDeInventarioEntity.class, id);
     }
 
     public OrdenDeRotacionDeInventarioEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando OrdenDeRotacionDeInventario con name= ", name);
+        LOGGER.log(Level.INFO, "Consultando Orden De Rotacion De Inventario con name= ", name);
         TypedQuery<OrdenDeRotacionDeInventarioEntity> q
                 = em.createQuery("select u from OrdenDeRotacionDeInventarioEntity u where u.name = :name", OrdenDeRotacionDeInventarioEntity.class);
         q = q.setParameter("name", name);

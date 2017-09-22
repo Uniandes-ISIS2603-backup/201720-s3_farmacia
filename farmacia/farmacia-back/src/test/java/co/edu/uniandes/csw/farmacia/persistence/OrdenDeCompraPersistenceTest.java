@@ -28,10 +28,6 @@ import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author hs.hernandez
- */
 @RunWith(Arquillian.class)
 public class OrdenDeCompraPersistenceTest {
    
@@ -124,17 +120,17 @@ public class OrdenDeCompraPersistenceTest {
     private List<OrdenDeCompraEntity> data = new ArrayList<OrdenDeCompraEntity>();
     
     private void clearData() {
-        em.createQuery("delete from orden de compra Entity").executeUpdate();
+        em.createQuery("delete from OrdenDeCompraEntity").executeUpdate();
     }
     private void insertData() {
-        PodamFactory factory;
-        factory = new PodamFactoryImpl();
+       PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             OrdenDeCompraEntity entity = factory.manufacturePojo(OrdenDeCompraEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
+        
     }
  
     @Before
@@ -192,6 +188,7 @@ public class OrdenDeCompraPersistenceTest {
     
     }
     
+    
     @Test
     public void updateordendecompraTest() {
     OrdenDeCompraEntity entity = data.get(0);
@@ -203,8 +200,8 @@ public class OrdenDeCompraPersistenceTest {
     persistence.update(newEntity);
 
     OrdenDeCompraEntity resp = em.find(OrdenDeCompraEntity.class, entity.getId());
-
-    Assert.assertEquals(newEntity.getName(), resp.getName());
+    
+    Assert.assertEquals(newEntity.getName(), resp.getName());   
     
     }
     
