@@ -36,7 +36,7 @@ public class FacturaLogic {
      * @return Lista de facturas
      * @throws BusinessLogicException  no existe el cliente
      */
-   public ArrayList<FacturaEntity> getFacturas(Long id) throws BusinessLogicException{
+   public List<FacturaEntity> getFacturas(Long id) throws BusinessLogicException{
        LOGGER.info("Inicia proceso de consultar todas las facturas");
        ClienteEntity cliente = clientelogic.getCliente(id);
        if(cliente.getFacturas() == null) throw new BusinessLogicException("El cliente no tiene facturas");

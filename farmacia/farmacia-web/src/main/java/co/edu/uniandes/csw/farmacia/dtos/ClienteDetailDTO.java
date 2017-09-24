@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.farmacia.dtos;
 import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ public class ClienteDetailDTO extends ClienteDTO{
     /**
      * Relacion a cero o muchas facturas
     */
-    private ArrayList<FacturaDTO> facturas;
+    private List<FacturaDTO> facturas;
 
     
     
@@ -48,7 +49,7 @@ public class ClienteDetailDTO extends ClienteDTO{
         return enti;
     }
     
-    public ArrayList<FacturaDTO> getFacturas() {
+    public List<FacturaDTO> getFacturas() {
         return facturas;
     }
 

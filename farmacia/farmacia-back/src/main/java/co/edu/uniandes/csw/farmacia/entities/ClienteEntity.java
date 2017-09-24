@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -17,22 +18,28 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable{
-    
-    
-    private int edad;
+    private String nombre;
+    private Integer edad;
     
     @PodamExclude
     @OneToMany(mappedBy = "clientes")
-    private ArrayList<FacturaEntity> facturas;
+    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
 
-    public ArrayList<FacturaEntity> getFacturas() {
+    public List<FacturaEntity> getFacturas() {
         return facturas;
     }
 
-    public void setFacturas(ArrayList<FacturaEntity> facturas) {
+    public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getEdad() {
         return edad;
