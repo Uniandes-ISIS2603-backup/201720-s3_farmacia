@@ -30,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author hs.hernandez
  */
-@Path("cliente")
+@Path("clientes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -52,6 +52,7 @@ public class ClienteResource {
          if(en == null) {
              throw new WebApplicationException("El recurso /clientes/" + id + "no existe", 404);
          }
+         //revisar si DETAILDTO o solo DTO por el tema de las facturas
         return  new ClienteDetailDTO(en);
      }
      

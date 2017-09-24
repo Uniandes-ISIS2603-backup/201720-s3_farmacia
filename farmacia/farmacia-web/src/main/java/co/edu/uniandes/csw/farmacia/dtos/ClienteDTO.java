@@ -12,9 +12,9 @@ import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
  * @author hs.hernandez
  */
 public class ClienteDTO{
-    String nombre;
-    int edad;
-    Long id;
+    private String nombre;
+    private int edad;
+    private Long id;
 
     /**
      * Constructor por defecto
@@ -38,6 +38,7 @@ public class ClienteDTO{
          en.setEdad(this.edad);
          en.setId(this.id);
          en.setName(this.nombre);
+         
          return en;
      }
      

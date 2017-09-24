@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ClienteDetailDTO extends ClienteDTO{
     
     /**
-     * Relacion a muchas facturas
+     * Relacion a cero o muchas facturas
     */
     private ArrayList<FacturaDTO> facturas;
 
@@ -45,10 +45,6 @@ public class ClienteDetailDTO extends ClienteDTO{
             }
             enti.setFacturas(facEnti);
         }
-       else{
-          enti.setFacturas(null);
-       }
-        
         return enti;
     }
     

@@ -60,14 +60,14 @@ public class FacturaLogic {
    
    /**
     * Actualiza la informacion de una factura
-    * @param id
+    * @param id del cliente
     * @param entity
     * @return la factura actualizada
-    * @throws BusinessLogicException 
+    * 
     */
-   public FacturaEntity updateFactura(Long id , FacturaEntity entity)throws BusinessLogicException{
+   public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity){
         LOGGER.info("Inicia proceso de actualizar una factura");
-        ClienteEntity cliente = clientelogic.getCliente(id);
+        ClienteEntity cliente = clientelogic.getCliente(idCliente);
         entity.setClientes(cliente);
         return persistence.update(entity);
    }
@@ -78,18 +78,19 @@ public class FacturaLogic {
     * @param idFactura
     * @return factura asociada
     */
-   public FacturaEntity getFacturas(Long idCliente, Long idFactura)throws BusinessLogicException{
-       if(persistence.find(idCliente, idFactura) != null) return persistence.find(idCliente, idFactura);
-       throw new BusinessLogicException("No existe el cliente con el ID dado");
+   public FacturaEntity getFacturas(Long idCliente, Long idFactura){
+       return persistence.find(idCliente, idFactura);
    }
    
    /**
     * Elimina una factura de un cliente dado
     * @param idCliente
     * @param idFactura
-    * @throws BusinessLogicException no existe el cliente con el ID dado
     */
-   public void deleteFactura(Long idCliente, Long idFactura)throws BusinessLogicException{
-       persistence.delete(getFacturas(idCliente, idFactura).getId());
+   public void deleteFactura(Long idCliente, Long idFactura){
+       LOGGER.info("Inicia proceso de borrar una factua");
+       FacturaEntity old = getFacturas(idCliente, idFactura);
+       persistence.delete(old.getId());
+       
    }
 }

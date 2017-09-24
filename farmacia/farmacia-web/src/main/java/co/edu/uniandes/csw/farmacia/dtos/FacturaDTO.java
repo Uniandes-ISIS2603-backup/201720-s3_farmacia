@@ -14,6 +14,7 @@ import java.util.Date;
  * @author hs.hernandez
  */
 public class FacturaDTO {
+   
     private Long id;
     private Date fecha;
     private int totalfactura;
@@ -23,12 +24,15 @@ public class FacturaDTO {
     public FacturaDTO(FacturaEntity en){
         this.id = en.getId();
         this.totalfactura = en.getTotalFactura();
+        this.fecha = en.getFecha();
     }
     
     public FacturaEntity toEntity(){
         FacturaEntity en = new FacturaEntity();
         en.setId(this.getId());
         en.setTotalFactura(this.totalfactura);
+        en.setFecha(this.fecha);
+        
         return en;
     }
     
@@ -45,8 +49,6 @@ public class FacturaDTO {
     }
 
     public void setFecha(Date fecha) {
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        date.format(fecha);
         this.fecha = fecha;
     }
 

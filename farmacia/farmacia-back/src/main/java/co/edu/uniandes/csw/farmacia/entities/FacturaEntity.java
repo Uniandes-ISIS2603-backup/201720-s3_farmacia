@@ -51,8 +51,6 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     }
 
     public void setFecha(Date fecha) {
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        date.format(fecha);
         this.fecha = fecha;
     } 
 }
