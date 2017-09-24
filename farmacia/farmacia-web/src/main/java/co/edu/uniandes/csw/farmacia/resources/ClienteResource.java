@@ -57,8 +57,8 @@ public class ClienteResource {
      }
      
      @POST
-     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException{
-         return new ClienteDTO(clientelogic.createCliente(cliente.toEntity()));
+     public ClienteDetailDTO createCliente(ClienteDetailDTO cliente) throws BusinessLogicException{
+         return new ClienteDetailDTO(clientelogic.createCliente(cliente.toEntity()));
      }
      
      @PUT
@@ -78,7 +78,7 @@ public class ClienteResource {
          clientelogic.deleteBook(id);
      }
      
-     @Path("{idCliente: \\d+}/facturas")
+    @Path("{idCliente: \\d+}/facturas")
     public Class<FacturaResource> getFacturaResource(@PathParam("idCliente") Long clienteID) throws BusinessLogicException{
         ClienteEntity entity = clientelogic.getCliente(clienteID);
         if (entity == null) {

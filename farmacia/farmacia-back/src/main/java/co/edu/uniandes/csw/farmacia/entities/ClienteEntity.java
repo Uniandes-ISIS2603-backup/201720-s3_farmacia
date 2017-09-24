@@ -18,7 +18,6 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable{
-    private String nombre;
     private Integer edad;
     
     @PodamExclude
@@ -33,13 +32,6 @@ public class ClienteEntity extends BaseEntity implements Serializable{
         this.facturas = facturas;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public int getEdad() {
         return edad;

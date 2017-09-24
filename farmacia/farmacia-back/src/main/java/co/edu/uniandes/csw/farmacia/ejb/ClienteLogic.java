@@ -61,7 +61,8 @@ public class ClienteLogic {
      * @return entidad cread
      * @throws BusinessLogicException ya existe un cliente con el id dado
      */
-    public ClienteEntity createCliente(ClienteEntity entity){
+    public ClienteEntity createCliente(ClienteEntity entity)throws BusinessLogicException{
+        verificarEdad(entity);
         LOGGER.info("Inicia proceso de creación de cliente en la clase ClienteLogic");
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de cliente");
@@ -76,7 +77,8 @@ public class ClienteLogic {
      * @return datos actualizados del cliente
      * @throws BusinessLogicException no existe el cliente con el ID dado 
      */
-    public ClienteEntity updateCliente(Long id, ClienteEntity cliente)throws WebApplicationException{
+    public ClienteEntity updateCliente(Long id, ClienteEntity cliente)throws BusinessLogicException{
+        verificarEdad(cliente);
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un cliente con id={0}", id);
         ClienteEntity newEntity = persistence.update(cliente);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id={0}", cliente.getId());
@@ -91,5 +93,9 @@ public class ClienteLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un cliente con id={0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un cliente con id={0}", id);
+    }
+    
+    private void verificarEdad(ClienteEntity entity)throws BusinessLogicException{
+        if(entity.getEdad() < 0 || entity.getEdad() > 200) throw new BusinessLogicException("Edad no valida, debe ser mayor a 0 y menor a 200");
     }
 }

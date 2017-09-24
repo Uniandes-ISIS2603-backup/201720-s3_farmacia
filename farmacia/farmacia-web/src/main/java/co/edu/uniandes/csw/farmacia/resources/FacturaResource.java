@@ -28,6 +28,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author hs.hernandez
  */
+//@Path("facturas")
 @Produces("application/json")
 @Consumes("application/json")
 public class FacturaResource {
