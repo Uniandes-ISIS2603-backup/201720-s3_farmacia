@@ -56,8 +56,8 @@ public class ClienteResource {
      }
      
      @POST
-     public ClienteDetailDTO createCliente(ClienteDTO cliente) throws BusinessLogicException{
-         return new ClienteDetailDTO(clientelogic.createCliente(cliente.toEntity()));
+     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException{
+         return new ClienteDTO(clientelogic.createCliente(cliente.toEntity()));
      }
      
      @PUT
