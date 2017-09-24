@@ -52,6 +52,7 @@ public class FacturaLogic {
     * @throws BusinessLogicException 
     */
    public FacturaEntity createFactura(Long idCliente, FacturaEntity entity) throws BusinessLogicException{
+       verificarDatos(entity);
        LOGGER.info("Inicia proceso de crear una factura");
        ClienteEntity cliente = clientelogic.getCliente(idCliente);
        entity.setClientes(cliente);
@@ -65,7 +66,8 @@ public class FacturaLogic {
     * @return la factura actualizada
     * 
     */
-   public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity){
+   public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity)throws BusinessLogicException{
+        verificarDatos(entity);
         LOGGER.info("Inicia proceso de actualizar una factura");
         ClienteEntity cliente = clientelogic.getCliente(idCliente);
         entity.setClientes(cliente);
@@ -92,5 +94,9 @@ public class FacturaLogic {
        FacturaEntity old = getFacturas(idCliente, idFactura);
        persistence.delete(old.getId());
        
+   }
+   
+   private void verificarDatos(FacturaEntity entity)throws BusinessLogicException{
+       if(entity.getTotalFactura()<0 || entity.getFecha().getYear() < 1970) throw new BusinessLogicException("El valor de la factura debe ser mayor a cero");
    }
 }
