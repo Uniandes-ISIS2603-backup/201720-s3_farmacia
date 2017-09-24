@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -44,6 +45,8 @@ public class FacturaDTO {
     }
 
     public void setFecha(Date fecha) {
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        date.format(fecha);
         this.fecha = fecha;
     }
 

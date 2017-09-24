@@ -5,14 +5,11 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
+import co.edu.uniandes.csw.farmacia.dtos.ClienteDTO;
 import co.edu.uniandes.csw.farmacia.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.farmacia.ejb.ClienteLogic;
 import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -58,12 +55,37 @@ public class ClienteResource {
         return  new ClienteDetailDTO(en);
      }
      
+     @POST
+     public ClienteDetailDTO createCliente(ClienteDTO cliente) throws BusinessLogicException{
+         return new ClienteDetailDTO(clientelogic.createCliente(cliente.toEntity()));
+     }
      
+     @PUT
+     @Path("{id: \\d+}")
+     public ClienteDetailDTO updateCliente(@PathParam("id") Long id , ClienteDetailDTO cliente) throws BusinessLogicException{
+        cliente.setId(id);
+        ClienteEntity enti = clientelogic.getCliente(id);
+        if(enti == null)    throw new WebApplicationException("El recurso /cliente/" + id + "o existe",404);
+        return new ClienteDetailDTO(clientelogic.updateCliente(id, cliente.toEntity()));
+     }
      
+     @DELETE
+     @Path("{id: \\d+}")
+     public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException{
+         ClienteEntity enti = clientelogic.getCliente(id);
+         if(enti == null) throw new WebApplicationException("El recurso /cliente/" + id + "o existe",404);
+         clientelogic.deleteBook(id);
+     }
      
-     
-     
-     
+     @Path("{idCliente: \\d+}/facturas")
+    public Class<FacturaResource> getFacturaResource(@PathParam("idCliente") Long clienteID) throws BusinessLogicException{
+        ClienteEntity entity = clientelogic.getCliente(clienteID);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /cliente/" + clienteID + "/facturas no existe.", 404);
+        }
+        return FacturaResource.class;
+    }
+    
      private List<ClienteDetailDTO> listClienteentity2DetailDTO(List<ClienteEntity> entityLis){
          List<ClienteDetailDTO> list = new ArrayList<>();
          for(ClienteEntity en : entityLis)

@@ -9,12 +9,15 @@ import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.ClientePersistence;
+import com.sun.xml.internal.rngom.ast.builder.BuildException;
+import java.time.Clock;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -49,7 +52,7 @@ public class ClienteLogic {
         ClienteEntity cliente = persistence.find(id);
         if (cliente == null) {
             LOGGER.log(Level.SEVERE, "El cliente con el id {0} no existe", id);
-            throw new BusinessLogicException("El cliente no existe cpn el id dado");
+            throw new BusinessLogicException("El cliente no existe con el id dado");
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar cliente con id={0}", id);
         return cliente;
@@ -61,15 +64,18 @@ public class ClienteLogic {
      * @return entidad cread
      * @throws BusinessLogicException ya existe un cliente con el id dado
      */
-    public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException {
+    public ClienteEntity createCliente(ClienteEntity entity) throws WebApplicationException {
         LOGGER.info("Inicia proceso de creación de cliente");
-        if(getCliente(entity.getId())!= null){
-            throw new BusinessLogicException("Ya existe un cliente con el id dado");
+        try {
+            ClienteEntity enti = getCliente(entity.getId());
+            throw new WebApplicationException("Ya existe un cliente con el id dado EN EL METODO CREATE",404);
+        } catch(BusinessLogicException ble){
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de cliente");
+            return entity;
         }
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de cliente");
-        return entity;
     }
+        
     
     /**
      * Actualiza la informacion del cliente con el ID dado
@@ -77,15 +83,16 @@ public class ClienteLogic {
      * @return datos actualizados del cliente
      * @throws BusinessLogicException no existe el cliente con el ID dado 
      */
-    public ClienteEntity updateCliente(Long id)throws BusinessLogicException{
+    public ClienteEntity updateCliente(Long id, ClienteEntity cliente)throws WebApplicationException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un cliente con id={0}", id);
-        ClienteEntity entity = getCliente(id);
-        if (entity !=null) {
-            throw new BusinessLogicException("El ISBN es inválido");
-        }
-        ClienteEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id={0}", entity.getId());
+        try {
+            ClienteEntity entity = getCliente(id);
+            throw new WebApplicationException("Ya existe un cliente con el id dado EN EL METODO CREATE",404);
+        } catch (BusinessLogicException e) {
+            ClienteEntity newEntity = persistence.update(cliente);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id={0}", cliente.getId());
         return newEntity;
+        }
     }
     /**
      * Elimina el cliente con el id dado
@@ -105,7 +112,8 @@ public class ClienteLogic {
      */
     public ArrayList<FacturaEntity> listFacturas(Long id)throws BusinessLogicException{
          LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las facturas del cliente con id = {0}", id);
-        return getCliente(id).getFacturas();
+         return getCliente(id).getFacturas();
+        
     }
     
     /**

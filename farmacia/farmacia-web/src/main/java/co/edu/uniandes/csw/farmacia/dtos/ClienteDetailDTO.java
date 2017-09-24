@@ -20,13 +20,7 @@ public class ClienteDetailDTO extends ClienteDTO{
     */
     private ArrayList<FacturaDTO> facturas;
 
-    public ArrayList<FacturaDTO> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(ArrayList<FacturaDTO> facturas) {
-        this.facturas = facturas;
-    }
+    
     
     public ClienteDetailDTO(){
         super();
@@ -43,12 +37,26 @@ public class ClienteDetailDTO extends ClienteDTO{
     @Override
     public ClienteEntity toEntity(){
         ClienteEntity enti = super.toEntity();
-        if(getFacturas() != null){
+       if(getFacturas() != null){
+             
             ArrayList<FacturaEntity> facEnti = new ArrayList<>();
             for (FacturaDTO dtofac : getFacturas()) {
                 facEnti.add(dtofac.toEntity());
             }
+            enti.setFacturas(facEnti);
         }
+       else{
+          enti.setFacturas(null);
+       }
+        
         return enti;
+    }
+    
+    public ArrayList<FacturaDTO> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(ArrayList<FacturaDTO> facturas) {
+        this.facturas = facturas;
     }
 }

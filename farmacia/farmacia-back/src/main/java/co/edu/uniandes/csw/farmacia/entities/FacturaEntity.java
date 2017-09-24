@@ -6,8 +6,11 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -17,6 +20,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class FacturaEntity extends BaseEntity implements Serializable{
     private int totalFactura ;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha;
+
+    
     
     @PodamExclude
     @ManyToOne
@@ -38,6 +46,13 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public void setTotalFactura(int totalFactura) {
         this.totalFactura = totalFactura;
     }
-    
-    
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        date.format(fecha);
+        this.fecha = fecha;
+    } 
 }

@@ -32,8 +32,6 @@ public class ClienteEntity extends BaseEntity implements Serializable{
         this.facturas = facturas;
     }
 
-    
-    
     public String getNombre() {
         return nombre;
     }

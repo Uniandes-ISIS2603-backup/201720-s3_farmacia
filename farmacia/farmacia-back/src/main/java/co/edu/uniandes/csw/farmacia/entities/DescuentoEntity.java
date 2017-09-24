@@ -7,8 +7,11 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -21,8 +24,10 @@ public class DescuentoEntity extends BaseEntity implements Serializable{
     
     private String condiciones;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaIn;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaFin;
     
     public Double getPorcentaje(){
@@ -46,6 +51,8 @@ public class DescuentoEntity extends BaseEntity implements Serializable{
     }
     
     public void setFechaIn(Date fechaIn){
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        date.format(fechaIn);
         this.fechaIn = fechaIn;
     }
     
@@ -54,8 +61,9 @@ public class DescuentoEntity extends BaseEntity implements Serializable{
     }
     
     public void setFechaFin(Date fechaFin){
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        date.format(fechaFin);
         this.fechaFin = fechaFin;
     }
-    
     
 }
