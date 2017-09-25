@@ -38,6 +38,8 @@ SOFTWARE.
 public class ProductoDTO {
 
     private Long id;
+    private String name;
+    private String informacion;
 
     /**
      * Constructor por defecto
@@ -53,6 +55,8 @@ public class ProductoDTO {
      */
     public ProductoDTO(ProductoEntity Producto) {
         this.id = Producto.getId();
+        this.name = Producto.getName();
+        this.informacion = Producto.getInfo();
     }
 
     /**
@@ -68,6 +72,27 @@ public class ProductoDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
+    public String getName()
+    {
+        return this.name;
+    }
+    
+    public void setName(String nuevo)
+    {
+        this.name = nuevo;
+    }
+    
+    public String getInfo()
+    {
+        return this.informacion;          
+    }
+    
+    public void setInfo(String info)
+    {
+        this.informacion = info;
+    }
 
     /**
      * Convertir DTO a Entity
@@ -77,6 +102,8 @@ public class ProductoDTO {
     public ProductoEntity toEntity() {
         ProductoEntity entity = new ProductoEntity();
         entity.setId(this.id);
+        entity.setName(this.name);
+        entity.setInfo(this.informacion);
         return entity;
     }
     

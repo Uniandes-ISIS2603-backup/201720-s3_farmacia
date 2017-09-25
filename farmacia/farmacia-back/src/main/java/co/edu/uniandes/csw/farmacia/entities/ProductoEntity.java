@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -18,8 +21,25 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     private String nombre;
     private String informacion;
     
+    @OneToMany()
+    private List<MultimediaEntity> listaMultimedia = new ArrayList<MultimediaEntity>();
+    
+    
+    
+    
+    public List<MultimediaEntity> getMultimedia()
+    {
+        return this.listaMultimedia;
+    }
+    
+    public void setMultimedia(List<MultimediaEntity> listanueva)
+    {
+        this.listaMultimedia = listanueva;
+    }
+    
 
-    public String getNombre()
+
+    public String getName()
     {
         return nombre;
     }
@@ -29,7 +49,7 @@ public class ProductoEntity extends BaseEntity implements Serializable{
         return informacion;
     }
     
-    public void setNombre(String nombrexd)
+    public void setName(String nombrexd)
     {
         this.nombre = nombrexd;
     }
@@ -38,4 +58,5 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     {
         this.informacion = infoxd;
     }
+    
 }

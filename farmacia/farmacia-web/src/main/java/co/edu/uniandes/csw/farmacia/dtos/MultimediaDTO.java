@@ -38,6 +38,10 @@ SOFTWARE.
 public class MultimediaDTO {
 
     private Long id;
+    
+    private String nombre;
+    
+    private String tipo;
 
     /**
      * Constructor por defecto
@@ -53,6 +57,8 @@ public class MultimediaDTO {
      */
     public MultimediaDTO(MultimediaEntity Multimedia) {
         this.id = Multimedia.getId();
+        this.nombre = Multimedia.getName();
+        this.tipo = Multimedia.getTipo();
     }
 
     /**
@@ -68,6 +74,26 @@ public class MultimediaDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getName()
+    {
+        return this.nombre;
+    }
+    
+    public void setName(String name)
+    {
+        this.nombre = name;
+    }
+    
+    public String getTipo()
+    {
+        return this.tipo;
+    }
+    
+    public void setTipo(String tipo)
+    {
+        this.tipo = tipo;
+    }
 
     /**
      * Convertir DTO a Entity
@@ -77,6 +103,8 @@ public class MultimediaDTO {
     public MultimediaEntity toEntity() {
         MultimediaEntity entity = new MultimediaEntity();
         entity.setId(this.id);
+        entity.setName(this.nombre);
+        entity.setTipo(tipo);
         return entity;
     }
     

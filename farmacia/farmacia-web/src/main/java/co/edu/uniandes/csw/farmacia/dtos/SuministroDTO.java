@@ -39,6 +39,10 @@ SOFTWARE.
 public class SuministroDTO {
 
     private Long id;
+    
+    private String name;
+    
+    private String info;
 
     /**
      * Constructor por defecto
@@ -54,6 +58,8 @@ public class SuministroDTO {
      */
     public SuministroDTO(SuministroEntity Suministro) {
         this.id = Suministro.getId();
+        this.name = Suministro.getName();
+        this.info = Suministro.getInfo();
     }
 
     /**
@@ -69,7 +75,26 @@ public class SuministroDTO {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
+    public String getName()
+    {
+        return this.name;
+    }
+    
+    public void setName(String nuevo)
+    {
+        this.name = nuevo;
+    }
+    
+    public String getInfo()
+    {
+        return this.info;          
+    }
+    
+    public void setInfo(String info)
+    {
+        this.info = info;
+    }
     /**
      * Convertir DTO a Entity
      *
@@ -78,6 +103,8 @@ public class SuministroDTO {
     public SuministroEntity toEntity() {
         SuministroEntity entity = new SuministroEntity();
         entity.setId(this.id);
+        entity.setName(this.name);
+        entity.setInfo(this.info);
         return entity;
     }
     

@@ -24,10 +24,10 @@ SOFTWARE.
  */
 
 import co.edu.uniandes.csw.farmacia.entities.MultimediaEntity;
+import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.MultimediaPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -43,33 +43,83 @@ public class MultimediaLogic {
 
     @Inject
     private MultimediaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
+    @Inject
+    private ProductoLogic productoLogic;
 
     /**
+     * Obtiene la lista de los registros de Multimedia que pertenecen a un Producto.
      *
-     * @param entity
-     * @return
-     * @throws BusinessLogicException
+     * @param productoid id del Producto el cual es padre de los Multimedia.
+     * @return Colección de objetos de MultimediaEntity.
+     * @throws co.edu.uniandes.csw.productostore.exceptions.BusinessLogicException
      */
-    public MultimediaEntity createMultimedia(MultimediaEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Multimedia");
-        // Invoca la persistencia para crear la MultimediaLogic
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Multimedia");
-        return entity;
+    public List<MultimediaEntity> getMultimedia(Long productoid) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todos los multimedias");
+        ProductoEntity producto = productoLogic.getProducto(productoid);
+        if (producto.getMultimedia() == null) {
+            throw new BusinessLogicException("El producto que consulta aún no tiene multimedias");
+        }
+        if (producto.getMultimedia().isEmpty()) {
+            throw new BusinessLogicException("El libro que consulta aún no tiene multimedias");
+        }
+        return producto.getMultimedia();
     }
 
     /**
-     * 
-     * Obtener todas las Multimediaes existentes en la base de datos.
+     * Obtiene los datos de una instancia de Multimedia a partir de su ID.
      *
-     * @return una lista de Multimediaes.
+     * @param productoid
+     * @pre La existencia del elemento padre Book se debe garantizar.
+     * @param reviewid) Identificador del Multimedia a consultar
+     * @return Instancia de MultimediaEntity con los datos del Multimedia consultado.
+     * 
      */
-    public List<MultimediaEntity> getMultimedias() {
-        LOGGER.info("Inicia proceso de consultar todas las Multimediaes");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<MultimediaEntity> Multimedias = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las Multimediaes");
-        return Multimedias;
+    public MultimediaEntity getMultimedia(Long productoid, Long reviewid) {
+        return persistence.find(productoid, reviewid);
+    }
+
+    /**
+     * Se encarga de crear un Multimedia en la base de datos.
+     *
+     * @param entity Objeto de MultimediaEntity con los datos nuevos
+     * @param productoid id del Book el cual sera padre del nuevo Multimedia.
+     * @return Objeto de MultimediaEntity con los datos nuevos y su ID.
+     * 
+     */
+    public MultimediaEntity createMultimedia(Long productoid, MultimediaEntity entity) {
+        LOGGER.info("Inicia proceso de crear review");
+        ProductoEntity producto = productoLogic.getProducto(productoid);
+        entity.setProducto(producto);
+        return persistence.create(entity);
+    }
+
+    /**
+     * Actualiza la información de una instancia de Multimedia.
+     *
+     * @param entity Instancia de MultimediaEntity con los nuevos datos.
+     * @param productoid id del Book el cual sera padre del Multimedia actualizado.
+     * @return Instancia de MultimediaEntity con los datos actualizados.
+     * 
+     */
+    public MultimediaEntity updateMultimedia(Long productoid, MultimediaEntity entity) {
+        LOGGER.info("Inicia proceso de actualizar review");
+        ProductoEntity producto = productoLogic.getProducto(productoid);
+        entity.setProducto(producto);
+        return persistence.update(entity);
+    }
+
+    /**
+     * Elimina una instancia de Multimedia de la base de datos.
+     *
+     * @param id Identificador de la instancia a eliminar.
+     * @param productoid id del Book el cual es padre del Multimedia.
+     * 
+     */
+    public void deleteMultimedia(Long productoid, Long id) {
+        LOGGER.info("Inicia proceso de borrar review");
+        MultimediaEntity old = getMultimedia(productoid, id);
+        persistence.delete(old.getId());
     }
 
 

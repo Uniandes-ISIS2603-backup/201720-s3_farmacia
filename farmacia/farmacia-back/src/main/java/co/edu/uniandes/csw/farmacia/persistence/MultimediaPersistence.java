@@ -61,11 +61,28 @@ public class MultimediaPersistence {
          em.remove(entity);
     }
     
+    public MultimediaEntity find(Long productoId, Long multimediaId) {
+        TypedQuery<MultimediaEntity> q = em.createQuery("select p from MultimediaEntity p where (p.producto.id = :productoId) and (p.id = :multimediaId)", MultimediaEntity.class);
+        q.setParameter("productoId", productoId);
+        q.setParameter("multimediaId", multimediaId);
+        List<MultimediaEntity> results = q.getResultList();
+        MultimediaEntity review = null;
+        if (results == null) {
+            review = null;
+        } else if (results.isEmpty()) {
+            review = null;
+        } else if (results.size() >= 1) {
+            review = results.get(0);
+        }
+
+        return review;
+    }
+    
     /**
-     * Busca si hay algun multimedia con el id que se envía de argumento
+     * Busca si hay algun producto con el id que se envía de argumento
      *
-     * @param id: id correspondiente al multimedia buscada.
-     * @return un multimedia.
+     * @param id: id correspondiente al producto buscada.
+     * @return un producto.
      */
     public MultimediaEntity find(Long id){
          LOGGER.log(Level.INFO, "Consultando multimedia con id={0}", id);
@@ -85,4 +102,21 @@ public class MultimediaPersistence {
         TypedQuery query = em.createQuery("select u from MultimediaEntity u", MultimediaEntity.class);
         return query.getResultList();   
     }
+    
+    public MultimediaEntity findByName(String name) {
+    LOGGER.log(Level.INFO, "Consultando producto por nombre ", name);
+
+
+    // Se crea un query para buscar editoriales con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+    TypedQuery query = em.createQuery("Select e From MultimediaEntity e where e.name = :name", MultimediaEntity.class);
+    // Se remplaza el placeholder ":name" con el valor del argumento
+    query = query.setParameter("name", name);
+    // Se invoca el query se obtiene la lista resultado
+    List<MultimediaEntity> sameName = query.getResultList();
+    if (sameName.isEmpty()) {
+        return null;
+    } else {
+        return sameName.get(0);
+    }
+}
 }
