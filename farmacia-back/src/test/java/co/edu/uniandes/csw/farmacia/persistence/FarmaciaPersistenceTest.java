@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author hs.hernandez
+ * @author jp.carreno
  */
 @RunWith(Arquillian.class)
 public class FarmaciaPersistenceTest {
@@ -39,7 +39,7 @@ public class FarmaciaPersistenceTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(FarmaciaEntity.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
+                .addPackage(FarmaciaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -60,28 +60,28 @@ public class FarmaciaPersistenceTest {
     }
 
     /**
-     * Test of create method, of class ClientePersistence.
+     * Test of create method, of class FarmaciaPersistence.
      */
     @Test
     public void testCreate() throws Exception {
     }
 
     /**
-     * Test of update method, of class ClientePersistence.
+     * Test of update method, of class FarmaciaPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
     }
 
     /**
-     * Test of delete method, of class ClientePersistence.
+     * Test of delete method, of class FarmaciaPersistence.
      */
     @Test
     public void testDelete() throws Exception {
     }
 
     /**
-     * Test of find method, of class ClientePersistence.
+     * Test of find method, of class FarmaciaPersistence.
      */
     @Test
     public void testFind() throws Exception {
@@ -183,7 +183,7 @@ public class FarmaciaPersistenceTest {
     }
     
     @Test
-    public void getClienteTest() {
+    public void getFarmaciaTest() {
     FarmaciaEntity entity = data.get(0);
     FarmaciaEntity newEntity = persistence.find(entity.getId());
     Assert.assertNotNull(newEntity);
@@ -192,7 +192,7 @@ public class FarmaciaPersistenceTest {
     }
     
     @Test
-    public void updateClienteTest() {
+    public void updateFarmaciaTest() {
     FarmaciaEntity entity = data.get(0);
     PodamFactory factory = new PodamFactoryImpl();
     FarmaciaEntity newEntity = factory.manufacturePojo(FarmaciaEntity.class);
@@ -208,7 +208,7 @@ public class FarmaciaPersistenceTest {
     }
     
     @Test
-    public void deleteClienteTest() {
+    public void deleteFarmaciaTest() {
     FarmaciaEntity entity = data.get(0);
     persistence.delete(entity.getId());
     FarmaciaEntity deleted = em.find(FarmaciaEntity.class, entity.getId());

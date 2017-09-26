@@ -22,7 +22,10 @@ SOFTWARE.
 
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -30,5 +33,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class FarmaciaEntity extends BaseEntity implements Serializable {
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "farmacia")
+    private List<OrdenEntity> ordenes;
    
 }

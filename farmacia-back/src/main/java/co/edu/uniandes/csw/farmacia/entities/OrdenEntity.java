@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -16,6 +17,9 @@ import javax.persistence.Entity;
 public class OrdenEntity extends BaseEntity implements Serializable{
     
     private String tipo;
+    
+    @ManyToOne
+    private FarmaciaEntity farmacia;
     
     public void setTipo(String tipo)
     {

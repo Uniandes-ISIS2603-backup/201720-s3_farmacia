@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,7 +36,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author hs.hernandez
+ * @author jp.carreno
  */
 @RunWith(Arquillian.class)
 public class OrdenPersistenceTest {
@@ -45,7 +46,7 @@ public class OrdenPersistenceTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(OrdenEntity.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
+                .addPackage(OrdenPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -66,35 +67,35 @@ public class OrdenPersistenceTest {
     }
 
     /**
-     * Test of create method, of class ClientePersistence.
+     * Test of create method, of class OrdenPersistence.
      */
     @Test
     public void testCreate() throws Exception {
     }
 
     /**
-     * Test of update method, of class ClientePersistence.
+     * Test of update method, of class OrdenPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
     }
 
     /**
-     * Test of delete method, of class ClientePersistence.
+     * Test of delete method, of class OrdenPersistence.
      */
     @Test
     public void testDelete() throws Exception {
     }
 
     /**
-     * Test of find method, of class ClientePersistence.
+     * Test of find method, of class OrdenPersistence.
      */
     @Test
     public void testFind() throws Exception {
     }
 
     /**
-     * Test of findAll method, of class ClientePersistence.
+     * Test of findAll method, of class OrdenPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
@@ -189,7 +190,7 @@ public class OrdenPersistenceTest {
     }
     
     @Test
-    public void getClienteTest() {
+    public void getOrdenTest() {
     OrdenEntity entity = data.get(0);
     OrdenEntity newEntity = persistence.find(entity.getId());
     Assert.assertNotNull(newEntity);
@@ -198,7 +199,7 @@ public class OrdenPersistenceTest {
     }
     
     @Test
-    public void updateClienteTest() {
+    public void updateOrdenTest() {
     OrdenEntity entity = data.get(0);
     PodamFactory factory = new PodamFactoryImpl();
     OrdenEntity newEntity = factory.manufacturePojo(OrdenEntity.class);
@@ -214,7 +215,7 @@ public class OrdenPersistenceTest {
     }
     
     @Test
-    public void deleteClienteTest() {
+    public void deleteOrdenTest() {
     OrdenEntity entity = data.get(0);
     persistence.delete(entity.getId());
     OrdenEntity deleted = em.find(OrdenEntity.class, entity.getId());
