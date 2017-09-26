@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -16,7 +17,9 @@ import javax.persistence.Entity;
 @Entity
 public class MultimediaEntity extends BaseEntity implements Serializable{
     private String nombre;
-    private String productoAsociado;
+    
+    @ManyToOne()
+    private ProductoEntity productoAsociado;
     private String tipo;
     
 
@@ -25,7 +28,7 @@ public class MultimediaEntity extends BaseEntity implements Serializable{
         return nombre;
     }
     
-    public String getProductoAsoc()
+    public ProductoEntity getProducto()
     {
         return productoAsociado;
     }
@@ -40,7 +43,7 @@ public class MultimediaEntity extends BaseEntity implements Serializable{
         this.nombre = nombrexd;
     }
     
-    public void setProductoAsociado(String productoxd)
+    public void setProducto(ProductoEntity productoxd)
     {
         this.productoAsociado = productoxd;
     }

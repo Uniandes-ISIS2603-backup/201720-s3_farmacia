@@ -71,7 +71,52 @@ public class SuministroLogic {
         LOGGER.info("Termina proceso de consultar todas las Suministroes");
         return Suministros;
     }
+    
+    /**
+     *
+     * Obtener un producto por medio de su id.
+     *
+     * @param id: id de el producto para ser buscada.
+     * @return el producto solicitada por medio de su id.
+     */
+    public SuministroEntity getSuministro(Long id) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar suministro con id={0}", id);
+        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
+        SuministroEntity suministrp = persistence.find(id);
+        if (suministrp == null) {
+            LOGGER.log(Level.SEVERE, "El suministro con el id {0} no existe", id);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar suministro con id={0}", id);
+        return suministrp;
+    }
+    
+    /**
+     *
+     * Actualizar una producto.
+     *
+     * @param id: id de la producto para buscarla en la base de datos.
+     * @param entity: producto con los cambios para ser actualizada, por
+     * ejemplo el nombre.
+     * @return la producto con los cambios actualizados en la base de datos.
+     */
+    public SuministroEntity updateSuministro(Long id, SuministroEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar suministro con id={0}", id);
+        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        SuministroEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar suministro con id={0}", entity.getId());
+        return newEntity;
+    }
 
+    /**
+     * Borrar un producto
+     *
+     * @param id: id de la producto a borrar
+     */
+    public void deleteSuministro(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar suministro con id={0}", id);
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar suministro con id={0}", id);
+    }
 
 }
 

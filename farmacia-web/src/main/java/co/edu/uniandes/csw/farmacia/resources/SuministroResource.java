@@ -117,7 +117,12 @@ public class SuministroResource {
     @PUT
     @Path("{id: \\d+}")
     public SuministroDetailDTO updateSuministro(@PathParam("id") Long id, SuministroDetailDTO Suministros) throws BusinessLogicException, UnsupportedOperationException {
-          throw new UnsupportedOperationException("Este servicio  no está implementado");
+         Suministros.setId(id);
+        SuministroEntity entity = SuministrosLogic.getSuministro(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /productos/" + id + " no existe.", 404);
+        }
+        return new SuministroDetailDTO(SuministrosLogic.updateSuministro(id, Suministros.toEntity()));
       
     }
 
@@ -134,7 +139,12 @@ public class SuministroResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteSuministro(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no está implementado");
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una Suministro con id {0}", id);
+        SuministroEntity entity = SuministrosLogic.getSuministro(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /Productos/" + id + " no existe.", 404);
+        }
+        SuministrosLogic.deleteSuministro(id);
     }
 
     /**

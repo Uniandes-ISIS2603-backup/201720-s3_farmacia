@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sat Sep 23 10:32:57 COT 2017:
- Iniciando instancia a816c00e-015e-af5e-c7b0-00000d6497d8 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\hs.hernandez\AppData\Local\Temp\gfembed6211033191881988282tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
-Cargado desde file:/C:/Users/hs.hernandez/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
+Tue Sep 26 10:56:48 COT 2017:
+ Iniciando instancia a816c00e-015e-bee7-b0cf-00000f23c000 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\lm.gonzalezf\AppData\Local\Temp\gfembed6249528318392784396tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@18b4aac2
+Cargado desde file:/C:/Users/lm.gonzalezf/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_144-b01
-user.dir=C:\Users\hs.hernandez\Desktop\s3_farmacia\farmacia\farmacia-back
+user.dir=C:\Users\lm.gonzalezf\Documents\AFinalDeMaster\s3_farmacia\farmacia-back
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1

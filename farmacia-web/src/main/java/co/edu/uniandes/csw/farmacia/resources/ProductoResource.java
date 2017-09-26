@@ -97,44 +97,88 @@ public class ProductoResource {
      */
     @GET
     public List<ProductoDetailDTO> getProductos() throws BusinessLogicException {
-        return listEntity2DetailDTO(ProductosLogic.getProductos());
+        return listEntity2DetailDTO(ProductosLogic.getProducto());
     }
-
+    
+    
+    /**
+     * GET para una editorial
+     * http://localhost:8080/Productos-web/api/Productos/1
+     *
+     * @param id corresponde al id de la editorial buscada.
+     * @return La editorial encontrada. Ejemplo: { "type": "editorialDetailDTO",
+     * "id": 1, "name": "Norma" }
+     * @throws BusinessLogicException
+     *
+     * En caso de no existir el id de la editorial buscada se retorna un 404 con
+     * el mensaje.
+     */
+    @GET
+    @Path("{id: \\d+}")
+    public ProductoDetailDTO getProducto(@PathParam("id") Long id) throws BusinessLogicException {
+        ProductoEntity entity = ProductosLogic.getProducto(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /productos/" + id + " no existe.", 404);
+        }
+        return new ProductoDetailDTO(ProductosLogic.getProducto(id));
+    }
    
     /**
      * PUT http://localhost:8080/Productos-web/api/Productos/1 Ejemplo
-     * json { "id": 1, "atirbuto1": "Valor nuevo" }
+     * json { "id": 1, "name": "cambio de nombre" }
      *
-     * @param id corresponde a la Producto a actualizar.
-     * @param Productos corresponde  al objeto con los cambios que se van a
+     * @param id corresponde al producto a actualizar.
+     * @param producto corresponde a al objeto con los cambios que se van a
      * realizar.
-     * @return La Producto actualizada.
+     * @return La editorial actualizada.
      * @throws BusinessLogicException
      *
-     * En caso de no existir el id de la Producto a actualizar se retorna un
+     * En caso de no existir el id de la editorial a actualizar se retorna un
      * 404 con el mensaje.
      */
     @PUT
     @Path("{id: \\d+}")
-    public ProductoDetailDTO updateProducto(@PathParam("id") Long id, ProductoDetailDTO Productos) throws BusinessLogicException, UnsupportedOperationException {
-          throw new UnsupportedOperationException("Este servicio  no está implementado");
-      
+    public ProductoDetailDTO updateProducto(@PathParam("id") Long id, ProductoDetailDTO producto) throws BusinessLogicException {
+        producto.setId(id);
+        ProductoEntity entity = ProductosLogic.getProducto(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /productos/" + id + " no existe.", 404);
+        }
+        return new ProductoDetailDTO(ProductosLogic.updateproducto(id, producto.toEntity()));
     }
 
     /**
-     * DELETE http://localhost:8080/Productos-web/api/Productos/{id}
+     * DELETE http://localhost:8080/backstepbystep-web/api/editorials/1
      *
-     * @param id corresponde a la Producto a borrar.
+     * @param id corresponde a la editorial a borrar.
      * @throws BusinessLogicException
      *
-     * En caso de no existir el id de la Producto a actualizar se retorna un
+     * En caso de no existir el id de la editorial a actualizar se retorna un
      * 404 con el mensaje.
+     * @throws java.sql.SQLException
      *
      */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteProducto(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no está implementado");
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una Producto con id {0}", id);
+        ProductoEntity entity = ProductosLogic.getProducto(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /Productos/" + id + " no existe.", 404);
+        }
+        ProductosLogic.deleteproducto(id);
+
+    }
+    
+    
+    
+    @Path("{ProductosId: \\d+}/Multimedias")
+    public Class<ProductoMultimediaResource> getMultimediasProducto(@PathParam("editorialsId") Long productoId) {
+        ProductoEntity entity = ProductosLogic.getProducto(productoId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /productos/" + productoId + " no existe.", 404);
+        }
+        return ProductoMultimediaResource.class;
     }
 
     /**

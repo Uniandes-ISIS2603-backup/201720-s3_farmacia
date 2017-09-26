@@ -86,4 +86,21 @@ public class ProductoPersistence {
         TypedQuery query = em.createQuery("select u from ProductoEntity u", ProductoEntity.class);
         return query.getResultList();   
     }
+    
+    public ProductoEntity findByName(String name) {
+    LOGGER.log(Level.INFO, "Consultando producto por nombre ", name);
+
+
+    // Se crea un query para buscar editoriales con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+    TypedQuery query = em.createQuery("Select e From ProductoEntity e where e.name = :name", ProductoEntity.class);
+    // Se remplaza el placeholder ":name" con el valor del argumento
+    query = query.setParameter("name", name);
+    // Se invoca el query se obtiene la lista resultado
+    List<ProductoEntity> sameName = query.getResultList();
+    if (sameName.isEmpty()) {
+        return null;
+    } else {
+        return sameName.get(0);
+    }
+}
 }
