@@ -52,7 +52,7 @@ public class FacturaLogic {
     * @throws BusinessLogicException 
     */
    public FacturaEntity createFactura(Long idCliente, FacturaEntity entity) throws BusinessLogicException{
-       verificarDatos(entity);
+       //verificarDatos(entity);
        LOGGER.info("Inicia proceso de crear una factura");
        ClienteEntity cliente = clientelogic.getCliente(idCliente);
        entity.setClientes(cliente);
@@ -67,7 +67,7 @@ public class FacturaLogic {
     * 
     */
    public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity)throws BusinessLogicException{
-        verificarDatos(entity);
+        //verificarDatos(entity);
         LOGGER.info("Inicia proceso de actualizar una factura");
         ClienteEntity cliente = clientelogic.getCliente(idCliente);
         entity.setClientes(cliente);
@@ -97,6 +97,7 @@ public class FacturaLogic {
    }
    
    private void verificarDatos(FacturaEntity entity)throws BusinessLogicException{
-       if(entity.getTotalFactura()<0 || entity.getFecha().getYear() < 1970) throw new BusinessLogicException("El valor de la factura debe ser mayor a cero");
+       if(entity == null || entity.getTotalFactura()<0 ) throw new BusinessLogicException("El valor de la factura debe ser mayor a cero"); 
+       if(entity == null || entity.getFecha().getYear() < 1950 || entity.getFecha().getYear() > 2018)  throw new BusinessLogicException("El año de la factura no debe ser antes de 1950 o despues de 2018");
    }
 }

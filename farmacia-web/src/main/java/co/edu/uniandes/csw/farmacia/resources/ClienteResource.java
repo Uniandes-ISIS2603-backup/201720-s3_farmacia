@@ -79,7 +79,7 @@ public class ClienteResource {
      }
      
     @Path("{idCliente: \\d+}/facturas")
-    public Class<FacturaResource> getFacturaResource(@PathParam("idCliente") Long clienteID) throws BusinessLogicException{
+    public Class<FacturaResource> accesoFacturaResource(@PathParam("idCliente") Long clienteID) throws BusinessLogicException{
         ClienteEntity entity = clientelogic.getCliente(clienteID);
         if (entity == null) {
             throw new WebApplicationException("El recurso /cliente/" + clienteID + "/facturas no existe.", 404);

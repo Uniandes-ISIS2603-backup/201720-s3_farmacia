@@ -19,7 +19,7 @@ public class ClienteDetailDTO extends ClienteDTO{
     /**
      * Relacion a cero o muchas facturas
     */
-    private List<FacturaDTO> facturas;
+    private ArrayList<FacturaDTO> facturas;
 
     
     
@@ -34,6 +34,7 @@ public class ClienteDetailDTO extends ClienteDTO{
             for(FacturaEntity em : en.getFacturas())
                 facturas.add(new FacturaDTO(em));
         }
+
     }
     @Override
     public ClienteEntity toEntity(){

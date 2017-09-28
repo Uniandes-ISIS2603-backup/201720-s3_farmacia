@@ -1,0 +1,157 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas POSTMAN Servicion Cliente-Factura",
+		"_postman_id": "ee6a9dc9-9ead-5588-d349-9e9923343703",
+		"description": "Pruebas de la relacion entre cliente y sus factura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturaas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "El path esta mal definido"
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas/1qwe",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\":\"2020-12-12T00:00:00-05:00\",\n\t\"totalfactura\": \"20000\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\":\"2020-12-12T00:00:00-05:00\",\n\t\"totalfactura\": \"-85000\"\n}"
+				},
+				"description": "El total es menor a cero"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\":\"2020-12-12T00:00:00-05:00\",\n\t\"totalfactura\": \"30000\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas/1q",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\":\"1900-12-12T00:00:00-05:00\",\n\t\"totalfactura\": \"-30000\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1/facturas/1qwee",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

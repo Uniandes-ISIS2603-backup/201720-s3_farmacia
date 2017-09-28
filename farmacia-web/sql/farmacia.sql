@@ -16,8 +16,8 @@ insert into ClienteEntity (id,name,edad) values (2,'Prueba2',13);
 insert into ClienteEntity (id,name,edad) values (3,'Prueba3',14);
 insert into ClienteEntity (id,name,edad) values (4,'Prueba4',15);
 
-insert into FacturaEntity (id, fecha ,totalfactura) values (1,'2000-12-13',20000);
-insert into FacturaEntity (id, fecha ,totalfactura) values (2,'2000-12-01',20000);
-insert into FacturaEntity (id, fecha ,totalfactura) values (3,'2000-12-02',20000);
-insert into FacturaEntity (id, fecha ,totalfactura) values (4,'2000-12-24',20000); 
+insert into FacturaEntity (id, fecha ,totalfactura) values (1,'2000-12-13T00:00:00-05:00',20000);
+insert into FacturaEntity (id, fecha ,totalfactura) values (2,'2000-12-13T00:00:00-05:00',20000);
+insert into FacturaEntity (id, fecha ,totalfactura) values (3,'2000-12-13T00:00:00-05:00',20000);
+insert into FacturaEntity (id, fecha ,totalfactura) values (4,'2000-12-13T00:00:00-05:00',20000); 
 

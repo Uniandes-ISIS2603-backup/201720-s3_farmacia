@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author hs.hernandez
  */
-//@Path("facturas")
+
 @Produces("application/json")
 @Consumes("application/json")
 public class FacturaResource {
@@ -53,7 +53,7 @@ public class FacturaResource {
     
     @POST
     public FacturaDTO createFactura(@PathParam("idCliente") Long id, FacturaDTO facura)throws BusinessLogicException{
-    return new FacturaDTO(facturalogic.createFactura(id, facura.toEntity()));
+        return new FacturaDTO(facturalogic.createFactura(id, facura.toEntity()));
     }
     
     @PUT
@@ -62,7 +62,7 @@ public class FacturaResource {
         factura.setId(id);
         FacturaEntity entity = facturalogic.getFacturas(idCliente, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /factura/" + idCliente + "/factura/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /clientes/" + idCliente + "/facturas/" + id + " no existe.", 404);
         }
         return new FacturaDTO(facturalogic.updateFactura(idCliente, factura.toEntity()));
     }
@@ -72,7 +72,7 @@ public class FacturaResource {
     public void deleteFactura(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id) throws BusinessLogicException {
         FacturaEntity entity = facturalogic.getFacturas(idCliente, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /cliente/" + idCliente + "/facturas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /clientes/" + idCliente + "/facturas/" + id + " no existe.", 404);
         }
         facturalogic.deleteFactura(idCliente, id);
     }
