@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
-import co.edu.uniandes.csw.farmacia.dtos.OrdenDeRotacionDeInventarioDetailDTO;
+import co.edu.uniandes.csw.farmacia.dtos.OrdenDeRotacionDeInventarioDTO;
 import co.edu.uniandes.csw.farmacia.ejb.OrdenDeRotacionDeInventarioLogic;
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeRotacionDeInventarioEntity;
 import java.util.ArrayList;
@@ -34,37 +34,37 @@ public class OrdenDeRotacionDeInventarioResource {
     OrdenDeRotacionDeInventarioLogic logic;
     
     @POST
-    public OrdenDeRotacionDeInventarioDetailDTO createOrdenDeRotacionDeInventario(OrdenDeRotacionDeInventarioDetailDTO dto)
+    public OrdenDeRotacionDeInventarioDTO createOrdenDeRotacionDeInventario(OrdenDeRotacionDeInventarioDTO dto)
     {
         OrdenDeRotacionDeInventarioEntity ent = dto.toEntity();
         OrdenDeRotacionDeInventarioEntity nuevoent = logic.createOrdenDeRotacionDeInventario(ent);
-        return new OrdenDeRotacionDeInventarioDetailDTO(nuevoent);
+        return new OrdenDeRotacionDeInventarioDTO(nuevoent);
     }
     
     @GET
-    public List<OrdenDeRotacionDeInventarioDetailDTO> getAll()
+    public List<OrdenDeRotacionDeInventarioDTO> getAll()
     {
         System.out.println("este picherio se llama :)");
         List<OrdenDeRotacionDeInventarioEntity> data = logic.getAllOrdenDeRotacionDeInventario();
-        List<OrdenDeRotacionDeInventarioDetailDTO> resp = new ArrayList<> ();
+        List<OrdenDeRotacionDeInventarioDTO> resp = new ArrayList<> ();
         for(OrdenDeRotacionDeInventarioEntity ent:data)
         {
-            resp.add(new OrdenDeRotacionDeInventarioDetailDTO(ent));
+            resp.add(new OrdenDeRotacionDeInventarioDTO(ent));
         }
         return resp;
     }
     
     @GET
     @Path("{id}")
-    public OrdenDeRotacionDeInventarioDetailDTO getOrdenDeCompraByID(@PathParam("id") long id)
+    public OrdenDeRotacionDeInventarioDTO getOrdenDeCompraByID(@PathParam("id") long id)
     {
-        return new OrdenDeRotacionDeInventarioDetailDTO(logic.getOrdenDeRotacionDeInventarioById(id));
+        return new OrdenDeRotacionDeInventarioDTO(logic.getOrdenDeRotacionDeInventarioById(id));
     }
     
     @PUT
     @Path("{id}")
     //NO ESTA FUNCIONANDO BIEN, DA FUQ
-    public OrdenDeRotacionDeInventarioDetailDTO updateOrdenDeCompra(@PathParam("id") long id, OrdenDeRotacionDeInventarioDetailDTO dto)
+    public OrdenDeRotacionDeInventarioDTO updateOrdenDeCompra(@PathParam("id") long id, OrdenDeRotacionDeInventarioDTO dto)
     {
         dto.setId(id);
         //miro que si exista una orden con ese id
@@ -74,7 +74,7 @@ public class OrdenDeRotacionDeInventarioResource {
             throw new WebApplicationException("no existe una orden con el id dado", 404);
         }
         
-        return new OrdenDeRotacionDeInventarioDetailDTO(logic.updateOrdenDeRotacionDeInventario(ent));
+        return new OrdenDeRotacionDeInventarioDTO(logic.updateOrdenDeRotacionDeInventario(dto.toEntity()));
     }
     
     @DELETE

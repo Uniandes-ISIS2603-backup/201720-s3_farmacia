@@ -1,0 +1,82 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ItemInventarioResourceTest",
+		"_postman_id": "84ffee62-0402-df50-b625-14d1f39dc46c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DAR LA LISTA VACIA DE ITEMS",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/ItemInventario",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "DAR LA LISTA ORIGINAL DE VACIA DE ITEMS"
+			},
+			"response": []
+		},
+		{
+			"name": "MONTAR UNA ITEM DE INVENTARIO",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/ItemInventario",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"codigo\":\"abc\"}"
+				},
+				"description": "crear un nuevo item"
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE ITEM",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/ItemInventario/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"codigo\":\"123\"}"
+				},
+				"description": "actualiza la informacion de un item ya existente"
+			},
+			"response": []
+		},
+		{
+			"name": "BORRAR UN ITEM ",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/ItemInventario/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "elimina un item existente."
+			},
+			"response": []
+		}
+	]
+}

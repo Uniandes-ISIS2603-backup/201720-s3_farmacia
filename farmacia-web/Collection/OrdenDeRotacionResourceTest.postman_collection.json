@@ -1,0 +1,224 @@
+{
+	"variables": [],
+	"info": {
+		"name": "OrdenDeRotacionResourceTest",
+		"_postman_id": "793804ff-fc1c-947a-1916-d9ec3169e249",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST NEW ORDEN",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/farmacia-web/api/OrdenDeRotacionDeInventario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"farmacia-web",
+						"api",
+						"OrdenDeRotacionDeInventario"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"codigo\":\"123\", \"nombre\":\"ORI\", \"encargado\":\"abc\", \"justificacion\":\"vencimiento\"}"
+				},
+				"description": "MONTA UNA ORDEN NUEVA"
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUALIZAR UNA ORDEN",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/farmacia-web/api/OrdenDeRotacionDeInventario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"farmacia-web",
+						"api",
+						"OrdenDeRotacionDeInventario",
+						"1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"codigo\":\"123\", \"nombre\":\"ORI\", \"encargado\":\"stan\", \"justificacion\":\"vencimiento\"}"
+				},
+				"description": "ACTUALIZA UNA NUEVA ORDEN."
+			},
+			"response": []
+		},
+		{
+			"name": "DEVOLVER UNA ORDEN",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/farmacia-web/api/OrdenDeRotacionDeInventario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"farmacia-web",
+						"api",
+						"OrdenDeRotacionDeInventario",
+						"1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"codigo\":\"123\", \"nombre\":\"ORI\", \"encargado\":\"stan\", \"justificacion\":\"vencimiento\"}"
+				},
+				"description": "DEVOLVER UNA ORDEN DADO SU ID EN EL PATH"
+			},
+			"response": []
+		},
+		{
+			"name": "BORRAR UNA ORDEN",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/farmacia-web/api/OrdenDeRotacionDeInventario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"farmacia-web",
+						"api",
+						"OrdenDeRotacionDeInventario",
+						"1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "DEVUELVE UN JSON VACIO QUE NO CONTIENE NINGUN DTO"
+			},
+			"response": []
+		},
+		{
+			"name": "DAR UNA LISTA DE ORDENES VACIAS",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/farmacia-web/api/OrdenDeRotacionDeInventario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"farmacia-web",
+						"api",
+						"OrdenDeRotacionDeInventario"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "DEVUELVE LA LISTA DE ORDENES VACIA."
+			},
+			"response": []
+		}
+	]
+}
