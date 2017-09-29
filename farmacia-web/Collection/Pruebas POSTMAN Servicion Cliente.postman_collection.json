@@ -1,0 +1,157 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas POSTMAN Servicion Cliente",
+		"_postman_id": "51ea67ec-7d7e-1660-27b0-efa235c35e30",
+		"description": "Pruebas de los servicios de cliente \nGET --exitoso-- y --erroneo--\nPOST --exitoso-- y --erroneo--\nPUT --exitoso-- y --erroneo--\nDELETE --exitoso-- y --erroneo--\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Prueba get exitosa"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Con Error",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/cliente",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "prueba GET erronea, el path esta mal"
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Prueba GET con ID en el path correcto"
+			},
+			"response": []
+		},
+		{
+			"name": "GET ID erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/123qwe",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Prueba GET erronea.\nEl path esta mal escrito (solo recibe numeros)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"prueba12\",\n    \"edad\":\"12\"\n}"
+				},
+				"description": "Prueba POST correcta "
+			},
+			"response": []
+		},
+		{
+			"name": "POST erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/cliente",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"prueba12\",\n    \"edad\":\"12\",\n    \"id\":\"13\",\n    \"facturas\":[{}]\n}"
+				},
+				"description": "POST erronea, no se asocian facturas al cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"c37\",\n    \"edad\":\"12\",\n    \"id\":\"1\"\n}"
+				},
+				"description": "Prueba PUT erronea, el id pasado por path no existe y viola las reglas de negocio"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1wer",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"prueba36\",\n    \"edad\":\"136\",\n    \"id\":\"1\"\n}"
+				},
+				"description": "Prueba PUT correcta"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE exitoso",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Prueba DELETE correcta"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE erroneo",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/clientes/123qwe",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Prueba DELETE erronea, el ID viola las reglas de negocio"
+			},
+			"response": []
+		}
+	]
+}
