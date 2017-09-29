@@ -1,4 +1,4 @@
-package co.edu.uniandes.farmacia.ejb;
+package co.edu.uniandes.csw.farmacia.ejb;
 /*
 MIT License
 Copyright (c) 2017 Universidad de los Andes - ISIS2603
@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -54,6 +55,50 @@ public class FarmaciaLogic {
         return entity;
     }
 
+    /**
+     * Farmacia con ID dado
+     * @param id de la farmacia
+     * @return Farmacia
+     * @throws BusinessLogicException no existe la farmacia con el id dado
+     */
+    public FarmaciaEntity getFarmacia(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia el proceso de consultar la farmacia con id=(0)", id);
+        FarmaciaEntity farmacia = persistence.find(id);
+        if(farmacia == null)
+        {
+            LOGGER.log(Level.SEVERE, "La farmacia con id (0) no existe", id);
+        }
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar farmacia con id=(0)", id);
+        return farmacia;
+    }
+    
+    /**
+     * Actualiza la informaciòn de la farmacia con el ID dado
+     * @param id de la farmacia
+     * @param farmacia Orden con la nueva informacion
+     * @return datos actuallizados de la farmacia
+     * @throws BusinessLogicException no existe la farmacia con el ID dado
+     */
+    public FarmaciaEntity updateFarmacia(Long id, FarmaciaEntity farmacia)throws WebApplicationException
+    {
+        LOGGER.log(Level.INFO, "Inicia el proceso de actualizar la farmacia con id=(0)", id);
+        FarmaciaEntity nEntity = persistence.update(farmacia);
+        LOGGER.log(Level.INFO, "Termina el proceso de actualizar la farmacia con id=(0)", farmacia.getId());
+        return nEntity;
+    }
+    
+    /**
+     * Elimina la farmacia con el id dado
+     * @param id de la farmacia que se desea eliminar
+     */
+    public void deleteFarmacia(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia el proceso de borrar una farmacia con id=(0)", id);
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina el proceso de borrar una farmacia con id=(0)", id);
+    }
+    
     /**
      * 
      * Obtener todas las Farmaciaes existentes en la base de datos.

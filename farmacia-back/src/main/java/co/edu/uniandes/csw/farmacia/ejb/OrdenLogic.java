@@ -54,7 +54,7 @@ public class OrdenLogic
         {
             LOGGER.log(Level.SEVERE, "La orden con id (0) no existe", id);
         }
-        LOGGER.log(Level.INFO, "Termina el proceso de consultar clienten con id=(0)", id);
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar orden con id=(0)", id);
         return orden;
     }
     
@@ -87,6 +87,10 @@ public class OrdenLogic
         return nEntity;
     }
     
+    /**
+     * Elimina la orden con el id dado
+     * @param id de la orden que se desea eliminar
+     */
     public void deleteOrden(Long id)
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de borrar una orden con id=(0)", id);

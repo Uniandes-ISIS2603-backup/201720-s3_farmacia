@@ -25,7 +25,7 @@ SOFTWARE.
 import co.edu.uniandes.csw.farmacia.dtos.FarmaciaDetailDTO;
 import co.edu.uniandes.csw.farmacia.entities.FarmaciaEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
-import co.edu.uniandes.farmacia.ejb.FarmaciaLogic;
+import co.edu.uniandes.csw.farmacia.ejb.FarmaciaLogic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -96,6 +96,27 @@ public class FarmaciaResource {
         return listEntity2DetailDTO(FarmaciasLogic.getFarmacias());
     }
 
+    /**
+     * GET para una editorial
+     * http://localhost:8080/Productos-web/api/Productos/1
+     *
+     * @param id corresponde al id de la editorial buscada.
+     * @return La editorial encontrada. Ejemplo: { "type": "editorialDetailDTO",
+     * "id": 1, "name": "Norma" }
+     * @throws BusinessLogicException
+     *
+     * En caso de no existir el id de la editorial buscada se retorna un 404 con
+     * el mensaje.
+     */
+    @GET
+    @Path("{id: \\d+}")
+    public FarmaciaDetailDTO getFarmacia(@PathParam("id") Long id) throws BusinessLogicException {
+        FarmaciaEntity entity = FarmaciasLogic.getFarmacia(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /farmacias/" + id + " no existe.", 404);
+        }
+        return new FarmaciaDetailDTO(FarmaciasLogic.getFarmacia(id));
+    }
    
     /**
      * PUT http://localhost:8080/Farmacias-web/api/Farmaciass/1 Ejemplo
@@ -113,8 +134,12 @@ public class FarmaciaResource {
     @PUT
     @Path("{id: \\d+}")
     public FarmaciaDetailDTO updateFarmacia(@PathParam("id") Long id, FarmaciaDetailDTO Farmacias) throws BusinessLogicException, UnsupportedOperationException {
-          throw new UnsupportedOperationException("Este servicio  no est� implementado");
-      
+        Farmacias.setId(id);
+        FarmaciaEntity entity = FarmaciasLogic.getFarmacia(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /farmacias/" + id + " no existe.", 404);
+        }
+        return new FarmaciaDetailDTO(FarmaciasLogic.updateFarmacia(id, Farmacias.toEntity()));
     }
 
     /**
@@ -130,7 +155,12 @@ public class FarmaciaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteFarmacia(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no est� implementado");
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una farmacia con id {0}", id);
+        FarmaciaEntity entity = FarmaciasLogic.getFarmacia(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /farmacias/" + id + " no existe.", 404);
+        }
+        FarmaciasLogic.deleteFarmacia(id);
     }
 
     /**
