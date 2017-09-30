@@ -1,0 +1,162 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Iteración 1",
+		"_postman_id": "993b1016-ee0b-6883-86f2-398f8867ee33",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Suministros",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Suministros",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Prueba2\",\n\t\"info\":\"Testeando\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Suministros",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Suministros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Prueba2\",\n\t\"info\":\"Testeando\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Suministros",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Suministros/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"PruebaCambiando\",\n\t\"info\":\"Testeando el cambio\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Suministros",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Suministros",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Productos",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Productos",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Productos",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Productos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Prueba2\",\n\t\"info\":\"Testeando 2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Productos",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Productos/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Prueba2 Cambiando\",\n\t\"info\":\"Testeando 2 Cambiando\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/farmacia-web/api/Productos",
+			"request": {
+				"url": "http://localhost:8080/farmacia-web/api/Productos",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
