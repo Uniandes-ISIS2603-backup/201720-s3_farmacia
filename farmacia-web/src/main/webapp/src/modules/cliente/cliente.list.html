@@ -2,18 +2,21 @@
     <table class="table table-striped" class="col-md-6">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Actions</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>ID</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}-name">{{record.name}}</td>
+                <td id="{{$index}}-name">{{record.nombre}}</td>
+                <td id="{{$index}}-name">{{record.id}}</td>
+                <td id="{{$index}}-name">{{record.edad}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="clienteEdit({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-create-btn" class="btn btn-default btn-sm" ng-click="ctrl.createRecord(record)"><span class="glyphicon glyphicon-minus"></span> Crear</button>
-
+                    <button id="{{$index}}-facturas-btn" class="btn btn-default btn-sm" ui-sref="clienteFacturas({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Facturas</button>
                 </td>
             </tr>
         </tbody>
