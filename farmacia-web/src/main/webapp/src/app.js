@@ -2,7 +2,7 @@
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
-        'clienteModules'
+        'clienteModule'
 
     ]);
     // Resuelve problemas de las promesas
