@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>LAS BUENAS DROGAS</title>
+        <title> LAS BUENAS DROGAS</title>
         
         <!-- Dependencias Externas -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -25,7 +25,9 @@
             <h2 class="container-fluid col-md-12">LAS BUENAS DROGAS</h2>
             <ul class="nav nav-tabs">
                 <li><a ui-sref="clienteList">Clientes</a></li>
+                
             </ul>
+            <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
             <div ui-view="mainView">
             </div>
         </div>
