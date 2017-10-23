@@ -5,6 +5,7 @@
                 <th>Nombre</th>
                 <th>Edad</th>
                 <th>ID</th>
+                <th>Facturas</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -14,6 +15,9 @@
                 <td id="{{$index}}-edad">{{record.edad}}</td>
                 <td id="{{$index}}-id">{{record.id}}</td>
                 <td>
+                    <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-duplicate">Facturas</span></button>
+                </td>
+                <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="clienteEdit({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
                     <button id="{{$index}}-facturas-btn" class="btn btn-default btn-sm" ui-sref="clienteFacturas({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Facturas</button>
@@ -21,4 +25,5 @@
             </tr>
         </tbody>
     </table>
+    <button ui-sref="clienteCreate">Registrar Cliente</button>
 </div>
