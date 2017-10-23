@@ -6,9 +6,9 @@
             $http.get(context).then(function (response) {
                 $scope.records = response.data;
             });  
-            if ($stateParams.facturaId !== null && $stateParams.facturaId !== undefined) {
-                id = $stateParams.facturaId;
-                $http.get(context + "/clientes/" + id + "/facturas")
+            if ($stateParams.clienteId !== null) {
+                id = $stateParams.clienteId;
+                $http.get(context + "/" + id + "/facturas")
                         .then(function (response) {
                             $scope.currentRecord = response.data;
                         });
@@ -25,7 +25,7 @@
                 currentRecord = $scope.currentRecord;
                 if (id == null) {
 
-                    return $http.post(context, currentRecord)
+                    return $http.post(context + id + "/facturas", currentRecord)
                             .then(function () {
                                 $state.go('facturaList');
                             });
@@ -40,7 +40,7 @@
             };
             
             this.deleteRecord = function(record) {
-                 return $http.delete(context + "/" + 1)
+                 return $http.delete(context + "/" + record.id)
                             .then(function () {
                                 var index = $scope.records.indexOf(record);
                                 if (index > -1) {

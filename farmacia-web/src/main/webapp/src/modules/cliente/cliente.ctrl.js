@@ -34,25 +34,16 @@
             
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
+                    if (id == null) {
 
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
-
-                    // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
                             .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
                                 $state.go('clienteList');
                             });
 
-                    // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
-                    // ejecuta PUT en el recurso REST
                     return $http.put(context + "/" + currentRecord.id, currentRecord)
                             .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
                                 $state.go('clienteList');
                             });
                 }
@@ -60,8 +51,7 @@
             };
             
             this.deleteRecord = function(record) {
-                
-                 return $http.delete(context + "/" + record.id)
+                return $http.delete(context + "/" + record.id)
                             .then(function () {
                                 var index = $scope.records.indexOf(record);
                                 if (index > -1) {
