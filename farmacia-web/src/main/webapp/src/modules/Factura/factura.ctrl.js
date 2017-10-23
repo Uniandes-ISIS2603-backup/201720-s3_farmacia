@@ -8,14 +8,15 @@
             });  
             if ($stateParams.facturaId !== null && $stateParams.facturaId !== undefined) {
                 id = $stateParams.facturaId;
-                $http.get(context + "/clientes/" + id + "/facturas")//revisar URL
+                $http.get(context + "/clientes/" + id + "/facturas")
                         .then(function (response) {
                             $scope.currentRecord = response.data;
                         });
             } else {
                 $scope.currentRecord = {
                     id: undefined,
-                    name: '',
+                    fecha: '',
+                    totalfactura: undefined
                 };
                 $scope.alerts = [];
             }

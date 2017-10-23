@@ -60,13 +60,14 @@
             };
             
             this.deleteRecord = function(record) {
-                 return $http.delete(context + "/" + 2)//el 3 es el id
+                
+                 return $http.delete(context + "/" + record.id)
                             .then(function () {
                                 var index = $scope.records.indexOf(record);
                                 if (index > -1) {
                                     $scope.records.splice(index, 1);
                                 }
-                            });
+                });
             }
     }]);
 })(window.angular);
