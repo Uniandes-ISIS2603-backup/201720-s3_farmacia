@@ -37,15 +37,15 @@ var mod = ng.module("clienteModule", []);
                     }
                 }
             }).state('facturitasKAWAI', {
-                url: '/cliente/:clienteId',
+                url: '/clientes/:clienteId',
                 param: {
                     clienteId: null
                 },
                 views: {
                     'mainView': {
-                        controller: 'clienteCtrl',
+                        controller: 'facturaCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cliente.create.html'
+                        templateUrl: 'src/modules/Factura/factura.list.html'
                     }
                 }
             });

@@ -60,7 +60,7 @@
             };
             
             this.deleteRecord = function(record) {
-                 return $http.delete(context + "/" + 1)
+                 return $http.delete(context + "/" + 2)//el 3 es el id
                             .then(function () {
                                 var index = $scope.records.indexOf(record);
                                 if (index > -1) {
