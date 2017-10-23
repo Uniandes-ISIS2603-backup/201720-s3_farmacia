@@ -36,6 +36,18 @@ var mod = ng.module("clienteModule", []);
                         templateUrl: basePath + 'cliente.create.html'
                     }
                 }
+            }).state('facturitasKAWAI', {
+                url: '/cliente/:clienteId',
+                param: {
+                    clienteId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'clienteCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'cliente.create.html'
+                    }
+                }
             });
         }]);
 })(window.angular);

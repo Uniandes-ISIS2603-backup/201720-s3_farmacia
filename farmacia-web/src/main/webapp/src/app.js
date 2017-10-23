@@ -3,7 +3,8 @@
         // External dependencies
         'ui.router',
         'clienteModule',
-        'ItemModule'
+        'ItemModule',
+        'facturaModule'
 
     ]);
     // Resuelve problemas de las promesas
