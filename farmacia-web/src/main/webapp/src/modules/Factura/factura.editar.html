@@ -1,5 +1,4 @@
 <div class="col-md-6 well">
-
     <form novalidate name="form" id="factura-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         <div ng-messages="form.$error">
             <div ng-message="required">Complete el campo</div>
@@ -7,12 +6,7 @@
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-               
-                <label for="fecha" class="col-md-2 control-label">Fecha</label>
-                <div class="col-md-12">
-                    <input id="fecha" fecha="fecha" class="form-control" type="text" ng-model="currentRecord.fecha" ng-init="currentRecord.fecha" required />
-                </div>
-                <label for="totalfactura" class="col-md-2 control-label">Valor</label>
+               <label for="totalfactura" class="col-md-2 control-label">Valor</label>
                 <div class="col-md-12">
                     <input id="totalfactura" totalfactura="totalfactura" class="form-control" type="text" ng-model="currentRecord.totalfactura" ng-init="currentRecord.totalfactura" required />
                 </div>

@@ -16,7 +16,6 @@
             });
             
             //para crear, no me debe llegar nada
-            
             if($stateParams.itemID === null && $stateParams.itemID === undefined)
             {
                 //construyo un objeto y lo guardo en el current record, es decir, lo que estoy manoseando :v

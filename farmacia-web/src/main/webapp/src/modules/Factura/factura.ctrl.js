@@ -8,11 +8,13 @@
             });  
             if ($stateParams.clienteId !== null) {
                 id = $stateParams.clienteId;
-                $http.get(context + "/" + id + "/facturas")
+                $http.get(context + "/" +id + "/facturas")
                         .then(function (response) {
                             $scope.currentRecord = response.data;
                         });
+                       console.log(id);
             } else {
+                console.log(id);
                 $scope.currentRecord = {
                     id: undefined,
                     fecha: '',
@@ -20,12 +22,12 @@
                 };
                 $scope.alerts = [];
             }
-            
+           
             this.saveRecord = function (id) {
+                idCliente =  $stateParams.clienteId;
                 currentRecord = $scope.currentRecord;
                 if (id == null) {
-
-                    return $http.post(context + id + "/facturas", currentRecord)
+                    return $http.post(context + idCliente + "/facturas", currentRecord)
                             .then(function () {
                                 $state.go('facturaList');
                             });
@@ -38,9 +40,8 @@
                 }
                 ;
             };
-            
-            this.deleteRecord = function(record) {
-                 return $http.delete(context + "/" + record.id)
+            this.deleteRecord = function(currentRecord) {
+                 return $http.delete(context + "/" + currentRecord.id)
                             .then(function () {
                                 var index = $scope.records.indexOf(record);
                                 if (index > -1) {
