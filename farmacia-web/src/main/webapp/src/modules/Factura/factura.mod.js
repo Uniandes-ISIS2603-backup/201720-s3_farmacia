@@ -1,10 +1,13 @@
 (function (ng) {
 var mod = ng.module("facturaModule", []);
-    mod.constant("facturaContext", "api/clientes");
+    
+    mod.constant("clienteContext", "api/clientes");
+    mod.constant("facturaContext", "facturas");
+    
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/Factura/';
             
-            $urlRouterProvider.otherwise("/view/viewFactura");
+            $urlRouterProvider.otherwise("/facturas");
 
             $stateProvider.state('facturaList', {
                 url: '/clientes/:clienteId/facturas',
@@ -15,6 +18,7 @@ var mod = ng.module("facturaModule", []);
                         templateUrl: basePath + 'factura.list.html'
                     }
                 }
+                
             }).state('facturaCreate', {
                 url: '/clientes/:clienteId/facturas/create',
                 views: {
@@ -29,6 +33,7 @@ var mod = ng.module("facturaModule", []);
                 
                 url: '/clientes/:clienteId/facturas/:facturaId',
                 param: {
+                    clienteId:null,
                     facturaId: null
                 },
                 views: {
@@ -41,6 +46,7 @@ var mod = ng.module("facturaModule", []);
             }).state('facturaCrear', {
                 url: '/clientes/:clienteId/facturas',
                 param: {
+                    clienteId:null,
                     facturaId: null
                 },
                 views: {

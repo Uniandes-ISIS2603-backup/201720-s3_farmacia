@@ -12,9 +12,9 @@
                         .then(function (response) {
                             $scope.currentRecord = response.data;
                         });
-                       console.log(id);
+                     console.log(id);
             } else {
-                console.log(id);
+              
                 $scope.currentRecord = {
                     id: undefined,
                     fecha: '',
@@ -27,23 +27,23 @@
                 idCliente =  $stateParams.clienteId;
                 currentRecord = $scope.currentRecord;
                 if (id == null) {
-                    return $http.post(context + idCliente + "/facturas", currentRecord)
+                    return $http.post(context + "/"+ idCliente + "/facturas" + id.id, currentRecord)
                             .then(function () {
                                 $state.go('facturaList');
                             });
 
                    } else {
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(context + "/me pcago en la puta madre" + currentRecord.id, currentRecord)
                             .then(function () {
                                 $state.go('facturaList');
                             });
                 }
                 ;
             };
-            this.deleteRecord = function(currentRecord) {
-                 return $http.delete(context + "/" + currentRecord.id)
+            this.deleteRecord = function(factura) {
+                return $http.delete(context + "/" +factura.id)
                             .then(function () {
-                                var index = $scope.records.indexOf(record);
+                                var index = $scope.records.indexOf(factura);
                                 if (index > -1) {
                                     $scope.records.splice(index, 1);
                                 }
