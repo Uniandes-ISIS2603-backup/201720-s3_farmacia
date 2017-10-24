@@ -39,7 +39,7 @@ public class ProductoDTO {
 
     private Long id;
     private String name;
-    private String informacion;
+    private String descripcion;
 
     /**
      * Constructor por defecto
@@ -56,7 +56,7 @@ public class ProductoDTO {
     public ProductoDTO(ProductoEntity Producto) {
         this.id = Producto.getId();
         this.name = Producto.getName();
-        this.informacion = Producto.getInfo();
+        this.descripcion = Producto.getDescripcion();
     }
 
     /**
@@ -84,14 +84,14 @@ public class ProductoDTO {
         this.name = nuevo;
     }
     
-    public String getInfo()
+    public String getDescripcion()
     {
-        return this.informacion;          
+        return this.descripcion;          
     }
     
-    public void setInfo(String info)
+    public void setDescripcion(String info)
     {
-        this.informacion = info;
+        this.descripcion = info;
     }
 
     /**
@@ -103,7 +103,7 @@ public class ProductoDTO {
         ProductoEntity entity = new ProductoEntity();
         entity.setId(this.id);
         entity.setName(this.name);
-        entity.setInfo(this.informacion);
+        entity.setDescripcion(this.descripcion);
         return entity;
     }
     

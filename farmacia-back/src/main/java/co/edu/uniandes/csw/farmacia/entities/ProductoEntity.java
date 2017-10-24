@@ -18,45 +18,38 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class ProductoEntity extends BaseEntity implements Serializable{
-    private String nombre;
-    private String informacion;
-    
-    @OneToMany()
-    private List<MultimediaEntity> listaMultimedia = new ArrayList<MultimediaEntity>();
-    
-    
-    
-    
-    public List<MultimediaEntity> getMultimedia()
-    {
-        return this.listaMultimedia;
-    }
-    
-    public void setMultimedia(List<MultimediaEntity> listanueva)
-    {
-        this.listaMultimedia = listanueva;
-    }
+    private String name;
+    private String descripcion;
+    private String proveedor;
     
 
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
 
     public String getName()
     {
-        return nombre;
+        return name;
     }
     
-    public String getInfo()
+    public String getDescripcion()
     {
-        return informacion;
+        return descripcion;
     }
     
     public void setName(String nombrexd)
     {
-        this.nombre = nombrexd;
+        this.name = nombrexd;
     }
     
-    public void setInfo(String infoxd)
+    public void setDescripcion(String infoxd)
     {
-        this.informacion = infoxd;
+        this.descripcion = infoxd;
     }
     
 }

@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import co.edu.uniandes.csw.farmacia.dtos.ProductoDetailDTO;
+import co.edu.uniandes.csw.farmacia.dtos.ProductoDTO;
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.ejb.ProductoLogic;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
@@ -79,13 +79,13 @@ public class ProductoResource {
      * @throws BusinessLogicException
      */
     @POST
-    public ProductoDetailDTO createProducto(ProductoDetailDTO Producto) throws BusinessLogicException {
+    public ProductoDTO createProducto(ProductoDTO Producto) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ProductoEntity ProductoEntity = Producto.toEntity();
         // Invoca la lógica para crear la Producto nueva
         ProductoEntity nuevoProducto = ProductosLogic.createProducto(ProductoEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new ProductoDetailDTO(nuevoProducto);
+        return new ProductoDTO(nuevoProducto);
     }
 
     /**
@@ -96,8 +96,8 @@ public class ProductoResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<ProductoDetailDTO> getProductos() throws BusinessLogicException {
-        return listEntity2DetailDTO(ProductosLogic.getProducto());
+    public List<ProductoDTO> getProductos() throws BusinessLogicException {
+        return listEntity2DTO(ProductosLogic.getProducto());
     }
     
     
@@ -115,12 +115,12 @@ public class ProductoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ProductoDetailDTO getProducto(@PathParam("id") Long id) throws BusinessLogicException {
+    public ProductoDTO getProducto(@PathParam("id") Long id) throws BusinessLogicException {
         ProductoEntity entity = ProductosLogic.getProducto(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /productos/" + id + " no existe.", 404);
         }
-        return new ProductoDetailDTO(ProductosLogic.getProducto(id));
+        return new ProductoDTO(ProductosLogic.getProducto(id));
     }
    
     /**
@@ -138,13 +138,13 @@ public class ProductoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ProductoDetailDTO updateProducto(@PathParam("id") Long id, ProductoDetailDTO producto) throws BusinessLogicException {
+    public ProductoDTO updateProducto(@PathParam("id") Long id, ProductoDTO producto) throws BusinessLogicException {
         producto.setId(id);
         ProductoEntity entity = ProductosLogic.getProducto(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /productos/" + id + " no existe.", 404);
         }
-        return new ProductoDetailDTO(ProductosLogic.updateproducto(id, producto.toEntity()));
+        return new ProductoDTO(ProductosLogic.updateproducto(id, producto.toEntity()));
     }
 
     /**
@@ -170,16 +170,6 @@ public class ProductoResource {
 
     }
     
-    
-    
-    @Path("{ProductosId: \\d+}/Multimedias")
-    public Class<ProductoMultimediaResource> getMultimediasProducto(@PathParam("editorialsId") Long productoId) {
-        ProductoEntity entity = ProductosLogic.getProducto(productoId);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /productos/" + productoId + " no existe.", 404);
-        }
-        return ProductoMultimediaResource.class;
-    }
 
     /**
      *
@@ -192,10 +182,10 @@ public class ProductoResource {
      * que vamos a convertir a DTO.
      * @return la lista de Productoes en forma DTO (json)
      */
-    private List<ProductoDetailDTO> listEntity2DetailDTO(List<ProductoEntity> entityList) {
-        List<ProductoDetailDTO> list = new ArrayList<>();
+    private List<ProductoDTO> listEntity2DTO(List<ProductoEntity> entityList) {
+        List<ProductoDTO> list = new ArrayList<>();
         for (ProductoEntity entity : entityList) {
-            list.add(new ProductoDetailDTO(entity));
+            list.add(new ProductoDTO(entity));
         }
         return list;
     }

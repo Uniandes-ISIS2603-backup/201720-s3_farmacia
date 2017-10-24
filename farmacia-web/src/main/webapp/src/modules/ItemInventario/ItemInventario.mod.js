@@ -6,7 +6,7 @@
     
 
   var mod = ng.module("ItemModule",[]);
-      mod.constants("ItemInventarioContext","api/ItemInventario");
+      mod.constant("ItemInventarioContext","api/ItemInventario");
       mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
           var basePath = 'src/modules/ItemInventario/';
           $urlRouterProvider.otherwise('/ItemList');
@@ -37,5 +37,3 @@
         
         
 })(window.angular);
-
-
