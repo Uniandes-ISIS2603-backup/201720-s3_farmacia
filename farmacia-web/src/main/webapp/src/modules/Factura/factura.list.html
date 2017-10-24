@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-6">
+        <thead>
+            <tr>
+                <th>ID Factura</th>
+                <th>Fecha</th>
+                <th>Total Factura</th>
+                <th>Orden de compra</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in currentRecord">
+                <td id="{{$index}}">{{record.id}}</td>
+                <td id="{{$index}}">{{record.fecha}}</td>
+                <td id="{{$index}}">{{record.totalfactura}}</td>
+                <td>
+                    <button>Orden de compra</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

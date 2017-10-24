@@ -4,7 +4,10 @@
         'ui.router',
         'clienteModule',
         'ItemModule',
-        'productoModule'
+        'productoModule',
+
+        'facturaModule'
+
 
     ]);
     // Resuelve problemas de las promesas

@@ -51,7 +51,7 @@ public class ClienteResource {
      public ClienteDetailDTO getCliente(@PathParam("id") long id) throws BusinessLogicException{
          ClienteEntity en = clientelogic.getCliente(id);
          if(en == null) {
-             throw new WebApplicationException("El recurso /clientes/" + id + "no existe", 404);
+             throw new WebApplicationException("El recurso /clientes/ " + id + "no existe", 404);
          }
          //revisar si DETAILDTO o solo DTO por el tema de las facturas
         return  new ClienteDetailDTO(en);

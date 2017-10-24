@@ -19,7 +19,7 @@ public class ClienteDetailDTO extends ClienteDTO{
     /**
      * Relacion a cero o muchas facturas
     */
-    private ArrayList<FacturaDTO> facturas;
+    private List<FacturaDTO> facturas;
 
     
     

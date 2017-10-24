@@ -3,7 +3,7 @@ var mod = ng.module("clienteModule", []);
     mod.constant("clienteContext", "api/clientes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/cliente/';
-            $urlRouterProvider.otherwise("/clienteList");
+            $urlRouterProvider.otherwise("/view");
 
             $stateProvider.state('clienteList', {
                 url: '/clientes',
@@ -15,7 +15,7 @@ var mod = ng.module("clienteModule", []);
                     }
                 }
             }).state('clienteCreate', {
-                url: '/clientes/create',//revisar la url
+                url: '/clientes/create',
                 views: {
                     'mainView': {
                         controller: 'clienteCtrl',
@@ -34,6 +34,18 @@ var mod = ng.module("clienteModule", []);
                         controller: 'clienteCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'cliente.create.html'
+                    }
+                }
+            }).state('facturitasKAWAI', {
+                url: '/clientes/:clienteId',
+                param: {
+                    clienteId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'facturaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: 'src/modules/Factura/factura.list.html'
                     }
                 }
             });

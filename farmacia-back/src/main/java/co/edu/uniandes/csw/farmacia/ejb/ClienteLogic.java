@@ -97,5 +97,6 @@ public class ClienteLogic {
     
     private void verificarEdad(ClienteEntity entity)throws BusinessLogicException{
         if(entity.getEdad() < 0 || entity.getEdad() > 200) throw new BusinessLogicException("Edad no valida, debe ser mayor a 0 y menor a 200");
+        if(entity.getCedula() <= 0) throw new BusinessLogicException("Ingrese una celula valida");
     }
 }
