@@ -27,6 +27,7 @@
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
+                    cedula : undefined,
                 };
 
                 $scope.alerts = [];

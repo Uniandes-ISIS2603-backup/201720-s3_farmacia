@@ -35,7 +35,7 @@
                 <li><a ui-sref="clienteList">Clientes</a></li>
                 <li><a ui-sref = "itemList">Item De Rotacion</a></li>
             </ul>
-            <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+            <alert class="alert alert-warning" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
             <div ui-view="mainView">
             </div>
         </div>

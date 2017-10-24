@@ -15,6 +15,15 @@ public class ClienteDTO{
     private String nombre;
     private int edad;
     private Long id;
+    private Integer cedula;
+
+    public Integer getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(Integer cedula) {
+        this.cedula = cedula;
+    }
 
     /**
      * Constructor por defecto
@@ -30,6 +39,7 @@ public class ClienteDTO{
              this.nombre = entity.getName();
              this.id = entity.getId();
              this.edad = entity.getEdad();
+             this.cedula = entity.getCedula();
          }
      }
      
@@ -38,6 +48,7 @@ public class ClienteDTO{
          en.setEdad(this.edad);
          en.setId(this.id);
          en.setName(this.nombre);
+         en.setCedula(this.cedula);
          
          return en;
      }

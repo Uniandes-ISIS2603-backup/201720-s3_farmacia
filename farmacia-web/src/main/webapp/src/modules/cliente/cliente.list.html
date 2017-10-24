@@ -2,18 +2,21 @@
     <table class="table table-striped" class="col-md-6">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Edad</th>
-                <th>ID</th>
+                <th>Cédula</th>
                 <th>Facturas</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}-name">{{record.nombre}}</td>
-                <td id="{{$index}}-edad">{{record.edad}}</td>
-                <td id="{{$index}}-id">{{record.id}}</td>
+                <td id="{{$index}}-name">{{record.id}}</td>
+                <td id="{{$index}}-edad">{{record.nombre}}</td>
+                <td id="{{$index}}-id">{{record.edad}}</td>
+                <td id="{{$index}}-id">{{record.cedula}}</td>
+                
                 <td>
                     <button id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})"><span class="glyphicon glyphicon-duplicate">Facturas</span></button>
                 </td>
