@@ -5,8 +5,8 @@
         'clienteModule',
         'ItemModule',
         'productoModule',
-
-        'facturaModule'
+        'facturaModule',
+        'itemRawModule'
 
 
     ]);
