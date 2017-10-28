@@ -4,7 +4,7 @@
         'ui.router',
         'clienteModule',
         'ItemModule',
-        'productoModule',
+        
         'facturaModule',
         'itemRawModule'
 
