@@ -29,6 +29,10 @@
         <!--Item-->
         <script src="src/modules/item/item.mod.js" type="text/javascript"></script>
         <script src="src/modules/item/item.ctrl.js" type="text/javascript"></script>
+        
+        <!--Orden-->
+        <script src="src/modules/Orden/orden.mod.js" type="text/javascript"></script>
+        <script src="src/modules/Orden/orden.ctrl.js" type="text/javascript"></script>
 
         <script src="src/app.js" type="text/javascript"></script> 
         <script src="src/http-interceptor.factory.js" type="text/javascript"></script>
@@ -39,7 +43,7 @@
             <ul class="nav nav-tabs">
                 <li><a ui-sref="clienteList">Clientes</a></li>
                 <li><a ui-sref = "itemList">Item De Rotacion</a></li>
-               
+                <li><a ui-sref="ordenList">Orden</a></li>
                 <li><a ui-sref="itemRawLista">Items</a></li>
             </ul>
             <alert class="alert alert-warning" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>

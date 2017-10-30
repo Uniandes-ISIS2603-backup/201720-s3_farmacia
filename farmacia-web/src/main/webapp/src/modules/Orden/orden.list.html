@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-6">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-name">{{record.nombre}}</td>
+                <td id="{{$index}}-name">{{record.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
