@@ -5,13 +5,15 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
-import co.edu.uniandes.csw.farmacia.dtos.OrdenDeCompraDetailDTO;
+import co.edu.uniandes.csw.farmacia.dtos.OrdenDeCompraDTO;
 import co.edu.uniandes.csw.farmacia.ejb.OrdenDeCompraLogic;
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
+import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,69 +25,28 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *clase que representa el recurso de orden de compra, usando REST
- * @author a.gracia10
+ * @author hs.hernandez
  */
-@Path("OrdenDeCompra")
+
 @Produces("application/json")
+@Consumes("application/json")
 @Stateless
 public class OrdenDeCompraResource {
     
     @Inject
     OrdenDeCompraLogic logic;
+   
+    @GET
+    public OrdenDeCompraDTO getFactura(@PathParam("idOrden") Long idOrden) throws BusinessLogicException {
+        OrdenDeCompraEntity entity = logic.getOrdenDeCompraById(idOrden);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /facturas/" + idOrden + "/ordenes/", 404);
+        }
+        return new OrdenDeCompraDTO(entity);
+    }
     
     @POST
-    public OrdenDeCompraDetailDTO createOrdenDeCompra(OrdenDeCompraDetailDTO dto)
-    {
-        OrdenDeCompraEntity ent = dto.toEntity();
-        OrdenDeCompraEntity nuevoent = logic.createOrdenDeCompra(ent);
-        return new OrdenDeCompraDetailDTO(nuevoent);
-    }
-    
-    @GET
-    public List<OrdenDeCompraDetailDTO> getAll()
-    {
-        System.out.println("este picherio se llama :)");
-        List<OrdenDeCompraEntity> data = logic.getAllOrdenDeCompra();
-        List<OrdenDeCompraDetailDTO> resp = new ArrayList<> ();
-        for(OrdenDeCompraEntity ent:data)
-        {
-            resp.add(new OrdenDeCompraDetailDTO(ent));
-        }
-        return resp;
-    }
-    
-    @GET
-    @Path("{id}")
-    public OrdenDeCompraDetailDTO getOrdenDeCompraByID(@PathParam("id") long id)
-    {
-        return new OrdenDeCompraDetailDTO(logic.getOrdenDeCompraById(id));
-    }
-    
-    @PUT
-    @Path("{id}")
-    public OrdenDeCompraDetailDTO updateOrdenDeCompra(@PathParam("id") long id, OrdenDeCompraDetailDTO dto)
-    {
-        dto.setId(id);
-        //miro que si exista una orden con ese id
-        OrdenDeCompraEntity ent = logic.getOrdenDeCompraById(id);
-        if(ent == null)
-        {
-            throw new WebApplicationException("no existe una orden con el id dado", 404);
-        }
-        
-        return new OrdenDeCompraDetailDTO(logic.updateOrdenDeCompra(dto.toEntity()));
-    }
-    
-    @DELETE
-    @Path("{id}")
-    public void deleteOrdenDeCompra(@PathParam("id") long id)
-    {
-        OrdenDeCompraEntity ent = logic.getOrdenDeCompraById(id);
-        if(ent == null)
-        {
-            throw new WebApplicationException("no existe una orden con el id dado", 404);
-        }
-        
-        logic.DeleteOrdenDeCompra(ent);
+    public OrdenDeCompraDTO createFactura(@PathParam("idOrden") Long id, OrdenDeCompraDTO facura)throws BusinessLogicException{
+        return new OrdenDeCompraDTO(logic.createOrdenDeCompra(facura.toEntity()));
     }
 }

@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.farmacia.resources;
 
 import co.edu.uniandes.csw.farmacia.dtos.FacturaDTO;
 import co.edu.uniandes.csw.farmacia.ejb.FacturaLogic;
-import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -36,6 +35,12 @@ public class FacturaResource {
     @Inject
     FacturaLogic facturalogic;
     
+    /**
+     * Get desde cliente
+     * @param id
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<FacturaDTO> getFacturas(@PathParam("idCliente") Long id)throws BusinessLogicException{
         return listEntity2DTO(facturalogic.getFacturas(id));
@@ -51,6 +56,15 @@ public class FacturaResource {
         return new FacturaDTO(entity);
     }
     
+    
+    
+    /**
+     * Crea la factura de un cliente
+     * @param id
+     * @param facura
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     public FacturaDTO createFactura(@PathParam("idCliente") Long id, FacturaDTO facura)throws BusinessLogicException{
         return new FacturaDTO(facturalogic.createFactura(id, facura.toEntity()));
@@ -77,7 +91,10 @@ public class FacturaResource {
         facturalogic.deleteFactura(idCliente, id);
     }
  
-    
+    @Path("{idOrden: \\d+}/ordenes")
+    public Class<OrdenDeCompraResource> accesoOrdenResource(@PathParam("idOrden") Long idOrden) throws BusinessLogicException{
+        return OrdenDeCompraResource.class;
+    }
     
     private List<FacturaDTO> listEntity2DTO(List<FacturaEntity> entityList) {
         List<FacturaDTO> list = new ArrayList<>();

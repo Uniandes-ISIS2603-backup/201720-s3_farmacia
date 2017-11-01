@@ -15,11 +15,12 @@ public class OrdenDeCompraDTO {
     
     private long id;
     private String nombre;
+    private Long costoTotal;
+    private FacturaDTO factura;
+    
     
     public OrdenDeCompraDTO()
-    {
-        
-    }
+    {}
     
     /**
      * constructor de un dto de un entity
@@ -29,8 +30,17 @@ public class OrdenDeCompraDTO {
     {
         this.id = ent.getId();
         this.nombre = ent.getName();
+        this.costoTotal = ent.getCostoTotal();
+        this.factura = new FacturaDTO(ent.getFactura());
     }
     
+    public Long getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(Long costoTotal) {
+        this.costoTotal = costoTotal;
+    }
     /**
      * @return the id
      */
@@ -64,6 +74,8 @@ public class OrdenDeCompraDTO {
         OrdenDeCompraEntity ent = new OrdenDeCompraEntity();
         ent.setId(this.id);
         ent.setName(this.nombre);
+        ent.setCostoTotal(this.costoTotal);
+        ent.setFactura(this.factura.toEntity());
         return ent;
     }
     

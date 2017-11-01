@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author a.gracia10
+ * @author hs.hernandez
  */
 @Stateless
 public class OrdenDeCompraPersistence {
@@ -27,11 +27,21 @@ public class OrdenDeCompraPersistence {
     @PersistenceContext(unitName = "farmaciaPU")
     protected EntityManager em;
 
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public OrdenDeCompraEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando orden de compra con id={0}", id);
         return em.find(OrdenDeCompraEntity.class, id);
     }
 
+    /**
+     * 
+     * @param name
+     * @return 
+     */
     public OrdenDeCompraEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando orden de compra con name= ", name);
         TypedQuery<OrdenDeCompraEntity> q
@@ -40,6 +50,10 @@ public class OrdenDeCompraPersistence {
         return q.getSingleResult();
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<OrdenDeCompraEntity> findAll() {
         LOGGER.info("Consultando todas las ordenes de compra");
         Query q = em.createQuery("select u from OrdenDeCompraEntity u");
@@ -52,12 +66,21 @@ public class OrdenDeCompraPersistence {
         LOGGER.info("Orden De Compra creada");
         return entity;
     }
-
+    
+    /**
+     * 
+     * @param entity
+     * @return 
+     */
     public OrdenDeCompraEntity update(OrdenDeCompraEntity entity) {
         LOGGER.log(Level.INFO, "Actualizando Orden De Compra con id={0}", entity.getId());
         return em.merge(entity);
     }
-
+    
+    /**
+     * 
+     * @param id 
+     */
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando Orden De Compra con id={0}", id);
         OrdenDeCompraEntity entity = em.find(OrdenDeCompraEntity.class, id);

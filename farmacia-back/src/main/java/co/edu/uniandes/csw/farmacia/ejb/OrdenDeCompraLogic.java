@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 /**
  *clase que representa la logica para el recurso de Orden De Compra
- * @author a.gracia10
+ * @author hs.hernandez
  */
 @Stateless
 public class OrdenDeCompraLogic {
@@ -55,7 +55,7 @@ public class OrdenDeCompraLogic {
      * @param entity entidad con el mismo id pero datos cambiados 
      * @return la entidad actualizada
      */
-   public OrdenDeCompraEntity updateOrdenDeCompra (OrdenDeCompraEntity entity)//, long id )
+   public OrdenDeCompraEntity updateOrdenDeCompra (OrdenDeCompraEntity entity)
    {
        return persistence.update(entity);
    }
@@ -68,6 +68,4 @@ public class OrdenDeCompraLogic {
    {
        persistence.delete(ent.getId());
    }
-    
-    
 }

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.farmacia.ejb;
 
 import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
+import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.FacturaPersistence;
 import javax.ejb.Stateless;
@@ -30,6 +31,9 @@ public class FacturaLogic {
     @Inject
     private ClienteLogic clientelogic;
     
+    @Inject
+    private OrdenDeCompraLogic ordenlogic;
+    
     /**
      * Lista de factura de un cliente
      * @param id del cliente
@@ -39,9 +43,33 @@ public class FacturaLogic {
    public List<FacturaEntity> getFacturas(Long id) throws BusinessLogicException{
        LOGGER.info("Inicia proceso de consultar todas las facturas");
        ClienteEntity cliente = clientelogic.getCliente(id);
-       if(cliente.getFacturas() == null) throw new BusinessLogicException("El cliente no tiene facturas");
-       if(cliente.getFacturas().isEmpty()) throw new BusinessLogicException("El cliente no tiene facturas");
+       if(cliente.getFacturas() == null || cliente.getFacturas().isEmpty()) throw new BusinessLogicException("El cliente no tiene facturas");
        return cliente.getFacturas();
+   }
+   
+   /**
+    * Factura de la orden de compra
+    * @param id
+    * @return
+    * @throws BusinessLogicException 
+    */
+   public FacturaEntity getFacturaOrden(Long id) throws BusinessLogicException{
+       OrdenDeCompraEntity en = ordenlogic.getOrdenDeCompraById(id);
+       if(en.getFactura() == null) throw new BusinessLogicException("No hay una factura asociada");
+       return en.getFactura();
+   }
+   
+   /**
+    * 
+    * @param idOrden
+    * @param entity
+    * @return
+    * @throws BusinessLogicException 
+    */
+   public FacturaEntity createFacturaOrden(Long idOrden, FacturaEntity entity)throws BusinessLogicException{
+       OrdenDeCompraEntity en = ordenlogic.getOrdenDeCompraById(idOrden);
+       entity.setOrden(en);
+       return persistence.create(entity);
    }
    
    /**
@@ -52,7 +80,7 @@ public class FacturaLogic {
     * @throws BusinessLogicException 
     */
    public FacturaEntity createFactura(Long idCliente, FacturaEntity entity) throws BusinessLogicException{
-       //verificarDatos(entity);
+      
        LOGGER.info("Inicia proceso de crear una factura");
        ClienteEntity cliente = clientelogic.getCliente(idCliente);
        entity.setClientes(cliente);
@@ -67,7 +95,7 @@ public class FacturaLogic {
     * 
     */
    public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity)throws BusinessLogicException{
-        //verificarDatos(entity);
+        
         LOGGER.info("Inicia proceso de actualizar una factura");
         ClienteEntity cliente = clientelogic.getCliente(idCliente);
         entity.setClientes(cliente);
@@ -90,14 +118,9 @@ public class FacturaLogic {
     * @param idFactura
     */
    public void deleteFactura(Long idCliente, Long idFactura){
-       LOGGER.info("Inicia proceso de borrar una factua");
+       LOGGER.info("Inicia proceso de borrar una factura");
        FacturaEntity old = getFacturas(idCliente, idFactura);
        persistence.delete(old.getId());
        
-   }
-   
-   private void verificarDatos(FacturaEntity entity)throws BusinessLogicException{
-       if(entity == null || entity.getTotalFactura()<0 ) throw new BusinessLogicException("El valor de la factura debe ser mayor a cero"); 
-       if(entity == null || entity.getFecha().getYear() < 1950 || entity.getFecha().getYear() > 2018)  throw new BusinessLogicException("El año de la factura no debe ser antes de 1950 o despues de 2018");
    }
 }
