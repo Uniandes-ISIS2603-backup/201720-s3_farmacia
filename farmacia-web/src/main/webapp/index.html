@@ -39,13 +39,20 @@
     </head>
     <body style="padding-top: 15px;">
         <div class="container-fluid col-md-12">
-            <h2 class="container-fluid col-md-12">LAS BUENAS DROGAS</h2>
-            <ul class="nav nav-tabs">
+            
+            <div class="container center-block">
+                <img src="src/images/banner-poto.png" style="min-height: 100px; max-height: 200px;">
+            </div>
+            
+            
+            <div>
+                <ul class="nav nav-tabs">
                 <li><a ui-sref="clienteList">Clientes</a></li>
                 <li><a ui-sref = "itemList">Item De Rotacion</a></li>
                 <li><a ui-sref="ordenList">Orden</a></li>
                 <li><a ui-sref="itemRawLista">Items</a></li>
             </ul>
+            </div>
             <alert class="alert alert-warning" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
             <div ui-view="mainView">
             </div>
