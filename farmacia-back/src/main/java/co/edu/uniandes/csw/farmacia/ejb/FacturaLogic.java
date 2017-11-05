@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.farmacia.ejb;
 
 import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
-import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.FacturaPersistence;
 import javax.ejb.Stateless;
@@ -46,30 +45,6 @@ public class FacturaLogic {
        return cliente.getFacturas();
    }
    
-   /**
-    * Factura de la orden de compra
-    * @param id
-    * @return
-    * @throws BusinessLogicException 
-    */
-   public FacturaEntity getFacturaOrden(Long id) throws BusinessLogicException{
-       OrdenDeCompraEntity en = ordenlogic.getOrdenDeCompraById(id);
-       if(en.getFactura() == null) throw new BusinessLogicException("No hay una factura asociada");
-       return en.getFactura();
-   }
-   
-   /**
-    * 
-    * @param idOrden
-    * @param entity
-    * @return
-    * @throws BusinessLogicException 
-    */
-   public FacturaEntity createFacturaOrden(Long idOrden, FacturaEntity entity)throws BusinessLogicException{
-       OrdenDeCompraEntity en = ordenlogic.getOrdenDeCompraById(idOrden);
-       entity.setOrden(en);
-       return persistence.create(entity);
-   }
    
    /**
     * Crea una nueva factura

@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -22,7 +23,7 @@ import javax.ws.rs.WebApplicationException;
  *clase que representa el recurso de orden de compra, usando REST
  * @author hs.hernandez
  */
-
+@Path("/ordenesCompra")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
@@ -32,16 +33,18 @@ public class OrdenDeCompraResource {
     OrdenDeCompraLogic logic;
    
     @GET
-    public OrdenDeCompraDTO getFactura(@PathParam("idOrden") Long idOrden) throws BusinessLogicException {
-        OrdenDeCompraEntity entity = logic.getOrdenDeCompraById(idOrden);
+    @Path("{idCliente: \\d+}")
+    public OrdenDeCompraDTO getFactura(@PathParam("idCliente") Long idCliente) throws BusinessLogicException {
+        OrdenDeCompraEntity entity = logic.getOrdenDeCompraById(idCliente);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /facturas/" + idOrden + "/ordenes/", 404);
+            throw new WebApplicationException("El cliente identificado con id " + idCliente +" no tiene ordenes de compra asociadas", 404);
         }
         return new OrdenDeCompraDTO(entity);
     }
     
     @POST
-    public OrdenDeCompraDTO createFactura(@PathParam("idOrden") Long id, OrdenDeCompraDTO facura)throws BusinessLogicException{
+    @Path("{id: \\d+}")
+    public OrdenDeCompraDTO createFactura(@PathParam("id") Long id, OrdenDeCompraDTO facura)throws BusinessLogicException{
         return new OrdenDeCompraDTO(logic.createOrdenDeCompra(facura.toEntity()));
     }
 }

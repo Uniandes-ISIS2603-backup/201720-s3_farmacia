@@ -90,11 +90,6 @@ public class FacturaResource {
         }
         facturalogic.deleteFactura(idCliente, id);
     }
- 
-    @Path("{idOrden: \\d+}/ordenes")
-    public Class<OrdenDeCompraResource> accesoOrdenResource(@PathParam("idOrden") Long idOrden) throws BusinessLogicException{
-        return OrdenDeCompraResource.class;
-    }
     
     private List<FacturaDTO> listEntity2DTO(List<FacturaEntity> entityList) {
         List<FacturaDTO> list = new ArrayList<>();

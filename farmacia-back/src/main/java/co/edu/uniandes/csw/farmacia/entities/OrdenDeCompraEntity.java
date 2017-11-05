@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -22,8 +22,8 @@ public class OrdenDeCompraEntity extends BaseEntity implements Serializable {
        List<ItemEntity> items = new ArrayList<>();
        
        @PodamExclude
-       @OneToOne
-       FacturaEntity factura;
+       @ManyToOne
+       ClienteEntity cliente;
        
        Long costoTotal;
 
@@ -35,13 +35,14 @@ public class OrdenDeCompraEntity extends BaseEntity implements Serializable {
         this.items = items;
     }
 
-    public FacturaEntity getFactura() {
-        return factura;
+    public ClienteEntity getCliente() {
+        return cliente;
     }
 
-    public void setFactura(FacturaEntity factura) {
-        this.factura = factura;
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
+    
 
     public Long getCostoTotal() {
       return costoTotal;

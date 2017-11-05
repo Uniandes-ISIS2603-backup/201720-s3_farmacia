@@ -24,9 +24,6 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
 
-    @OneToOne
-    @PodamExclude
-    private OrdenDeCompraEntity orden;
     
     @PodamExclude
     @ManyToOne
@@ -56,12 +53,4 @@ public class FacturaEntity extends BaseEntity implements Serializable{
         this.fecha = fecha;
     } 
 
-    public OrdenDeCompraEntity getOrden() {
-        return orden;
-    }
-
-    public void setOrden(OrdenDeCompraEntity orden) {
-        this.orden = orden;
-    }
-    
 }

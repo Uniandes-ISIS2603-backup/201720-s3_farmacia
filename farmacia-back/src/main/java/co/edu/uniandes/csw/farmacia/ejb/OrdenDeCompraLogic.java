@@ -28,7 +28,7 @@ public class OrdenDeCompraLogic {
      */
     public OrdenDeCompraEntity createOrdenDeCompra(OrdenDeCompraEntity ent)
     {
-       return persistence.create(ent); //la verdad, no me interesa si tienen el mismo nombre o no
+       return persistence.create(ent); 
     }
     
     /**

@@ -16,7 +16,7 @@ public class OrdenDeCompraDTO {
     private long id;
     private String nombre;
     private Long costoTotal;
-    private FacturaDTO factura;
+   
     
     
     public OrdenDeCompraDTO()
@@ -31,7 +31,7 @@ public class OrdenDeCompraDTO {
         this.id = ent.getId();
         this.nombre = ent.getName();
         this.costoTotal = ent.getCostoTotal();
-        this.factura = new FacturaDTO(ent.getFactura());
+        
     }
     
     public Long getCostoTotal() {
@@ -75,7 +75,7 @@ public class OrdenDeCompraDTO {
         ent.setId(this.id);
         ent.setName(this.nombre);
         ent.setCostoTotal(this.costoTotal);
-        ent.setFactura(this.factura.toEntity());
+        
         return ent;
     }
     
