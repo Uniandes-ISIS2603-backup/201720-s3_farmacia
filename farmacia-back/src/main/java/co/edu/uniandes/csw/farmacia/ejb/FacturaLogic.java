@@ -29,8 +29,6 @@ public class FacturaLogic {
     @Inject
     private ClienteLogic clientelogic;
     
-    @Inject
-    private OrdenDeCompraLogic ordenlogic;
     
     /**
      * Lista de factura de un cliente

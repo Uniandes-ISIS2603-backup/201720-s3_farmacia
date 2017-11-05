@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.farmacia.persistence;
 
+import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -87,4 +88,10 @@ public class OrdenDeCompraPersistence {
         em.remove(entity);
     }
     
+    public OrdenDeCompraEntity findByClient(Long idCliente, Long idOrden){
+        ClienteEntity cliente = find(idOrden).getCliente();
+        if(cliente.getId().equals(idCliente))
+            return find(idOrden);
+    return null;
+    }
 }

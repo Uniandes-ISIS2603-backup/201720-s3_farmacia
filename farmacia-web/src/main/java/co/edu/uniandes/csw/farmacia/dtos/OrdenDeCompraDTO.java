@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
+import java.util.Date;
 
 /**
  *metodo que tiene lo mas basico de una orden de compra(id, nombre)
@@ -16,6 +17,7 @@ public class OrdenDeCompraDTO {
     private long id;
     private String nombre;
     private Long costoTotal;
+    private Date fecha;
    
     
     
@@ -31,6 +33,7 @@ public class OrdenDeCompraDTO {
         this.id = ent.getId();
         this.nombre = ent.getName();
         this.costoTotal = ent.getCostoTotal();
+        this.fecha = ent.getFecha();
         
     }
     
@@ -75,6 +78,7 @@ public class OrdenDeCompraDTO {
         ent.setId(this.id);
         ent.setName(this.nombre);
         ent.setCostoTotal(this.costoTotal);
+        ent.setFecha(this.fecha);
         
         return ent;
     }
