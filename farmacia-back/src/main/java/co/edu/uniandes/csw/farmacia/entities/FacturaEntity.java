@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**

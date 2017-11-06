@@ -23,11 +23,11 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToMany(mappedBy = "clientes")
-    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
+    private List<FacturaEntity> facturas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "cliente")
-    private List<OrdenDeCompraEntity> ordenes = new ArrayList<OrdenDeCompraEntity>();
+    private List<OrdenDeCompraEntity> ordenes = new ArrayList<>();
     
 
     public List<OrdenDeCompraEntity> getOrdenes(){
