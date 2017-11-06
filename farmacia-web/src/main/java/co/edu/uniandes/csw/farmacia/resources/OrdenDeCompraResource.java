@@ -61,9 +61,8 @@ public class OrdenDeCompraResource {
     }
     
     @POST
-    @Path("{idCliente: \\d+}")
-    public OrdenDeCompraDTO createFactura(@PathParam("idCliente") Long idCliente, OrdenDeCompraDTO ent)throws BusinessLogicException{
-       return new OrdenDeCompraDTO(logic.createOrdenDeCompra(ent.toEntity(), idCliente));
+    public OrdenDeCompraDTO createFactura(OrdenDeCompraDTO ent)throws BusinessLogicException{
+       return new OrdenDeCompraDTO(logic.createOrdenDeCompra(ent.toEntity()));
     }
    
 }

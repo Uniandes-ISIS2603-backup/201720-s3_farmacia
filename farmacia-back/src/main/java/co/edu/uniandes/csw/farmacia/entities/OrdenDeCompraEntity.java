@@ -6,12 +6,8 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -27,15 +23,22 @@ public class OrdenDeCompraEntity extends BaseEntity implements Serializable {
        ClienteEntity cliente;
        
        private Long costoTotal;
-       
-       @Temporal(javax.persistence.TemporalType.DATE)
-        private Date fecha;
+       private Long idCliente;
+       private String fecha;
 
-       public Date getFecha() {
+       public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

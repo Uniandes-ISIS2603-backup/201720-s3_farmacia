@@ -37,15 +37,16 @@ public class OrdenDeCompraLogic {
      * @param ent la entidad que se quiere persistir
      * @return la entidad persistida 
      */
-    public OrdenDeCompraEntity createOrdenDeCompra(OrdenDeCompraEntity ent, Long idCliente) throws BusinessLogicException{
+    public OrdenDeCompraEntity createOrdenDeCompra(OrdenDeCompraEntity ent) throws BusinessLogicException{
       
         //Creo la factura asociada a la orden de compra con el cliente
         FacturaEntity entFactura  = new FacturaEntity();
         entFactura.setTotalFactura(ent.getCostoTotal());
         entFactura.setFecha(ent.getFecha());
-        facturalogic.createFactura(idCliente, entFactura);
+        facturalogic.createFactura(ent.getIdCliente(), entFactura);
+        
         //Creo la orden de compra segun el cliente
-        ClienteEntity cliente = clientelogic.getCliente(idCliente);
+        ClienteEntity cliente = clientelogic.getCliente(ent.getIdCliente());
         ent.setCliente(cliente);
         
         return persistence.create(ent); 

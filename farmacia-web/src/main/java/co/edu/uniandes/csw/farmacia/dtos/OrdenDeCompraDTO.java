@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
-import java.util.Date;
+
 
 /**
  *metodo que tiene lo mas basico de una orden de compra(id, nombre)
@@ -17,7 +17,8 @@ public class OrdenDeCompraDTO {
     private long id;
     private String nombre;
     private Long costoTotal;
-    private Date fecha;
+    private String fecha;
+    private Long idCliente;
    
     
     
@@ -30,11 +31,12 @@ public class OrdenDeCompraDTO {
      */
     public OrdenDeCompraDTO( OrdenDeCompraEntity ent)
     {
+        System.out.println("id del cliente "+ent.getIdCliente());
         this.id = ent.getId();
         this.nombre = ent.getName();
         this.costoTotal = ent.getCostoTotal();
         this.fecha = ent.getFecha();
-        
+        this.idCliente = ent.getIdCliente();
     }
     
     public Long getCostoTotal() {
@@ -71,6 +73,18 @@ public class OrdenDeCompraDTO {
     public void setName(String name) {
         this.nombre = name;
     }
+    public String getFecha(){
+        return this.fecha;
+    }
+    public void setFecha(String fecha){
+        this.fecha = fecha;
+    }
+    public Long getIdCliente(){
+        return this.idCliente;
+    }
+    public void setIdCliente(Long idCliente){
+        this.idCliente = idCliente;
+    }
     
     public OrdenDeCompraEntity toEntity()
     {
@@ -79,7 +93,7 @@ public class OrdenDeCompraDTO {
         ent.setName(this.nombre);
         ent.setCostoTotal(this.costoTotal);
         ent.setFecha(this.fecha);
-        
+        ent.setIdCliente(this.idCliente);
         return ent;
     }
     

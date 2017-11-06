@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -21,8 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class FacturaEntity extends BaseEntity implements Serializable{
     private Long totalFactura ;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
 
     
     @PodamExclude
@@ -45,11 +43,11 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public void setTotalFactura(long totalFactura) {
         this.totalFactura = totalFactura;
     }
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     } 
 
