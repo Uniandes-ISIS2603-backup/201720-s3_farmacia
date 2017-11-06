@@ -31,7 +31,6 @@ public class OrdenDeCompraDTO {
      */
     public OrdenDeCompraDTO( OrdenDeCompraEntity ent)
     {
-        System.out.println("id del cliente "+ent.getIdCliente());
         this.id = ent.getId();
         this.nombre = ent.getName();
         this.costoTotal = ent.getCostoTotal();

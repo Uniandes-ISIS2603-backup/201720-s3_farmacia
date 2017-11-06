@@ -1,0 +1,38 @@
+<div class="col-md-6 well">
+
+    <form novalidate name="form" id="ordenC-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Complete los campos</div>
+        </div>
+
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
+               
+                <label for="name" class="col-md-6 control-label">Descripción</label>
+                <div class="col-md-12">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                </div>
+                
+                <label for="fecha" class="col-md-6 control-label">Fecha (aaaa-mm-dd)</label>
+                <div class="col-md-12">
+                    <input id="fecha" fecha="fecha" class="form-control" type="text" ng-model="currentRecord.fecha" ng-init="currentRecord.fecha" required />
+                </div>
+                
+                <label for="idCliente" class="col-md-6 control-label">ID del cliente</label>
+                <div class="col-md-12">
+                    <input id="idCliente" idCliente="idCliente" class="form-control" type="text" ng-model="currentRecord.idCliente" ng-init="currentRecord.idCliente" required />
+                </div>
+                
+                <label for="idCliente" class="col-md-6 control-label">Total de la orden de compra</label>
+                <div class="col-md-12">
+                    <input id="costoTotal" costoTotal="costoTotal" class="form-control" type="text" ng-model="currentRecord.costoTotal" ng-init="currentRecord.costoTotal" required />
+                </div>
+                
+            </div>
+            <button type="button" ui-sref='ordenCList'>Cancelar</button>
+            <button type="submit">Guardar</button>
+        </fieldset>
+    </form>
+</div>
