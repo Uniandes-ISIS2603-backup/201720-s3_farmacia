@@ -18,7 +18,7 @@
                  'mainView' : {
                      controller : 'productoCtrl',
                      controllerAs: 'ctrl',
-                     templateUrl: basePath + 'producto.List.html'
+                     templateUrl: basePath + 'Producto.List.html'
                      
                  }
              }
