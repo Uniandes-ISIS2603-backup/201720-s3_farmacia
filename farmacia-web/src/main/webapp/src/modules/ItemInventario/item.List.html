@@ -2,13 +2,17 @@
     <table class="table table-striped" class="col-md-4">
         <thead>
             <tr>
-                <th>Codigo</th>
+                <th>Codigos</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}-name">{{record.codigo}}</td>
+                <td id="{{$index}}-codigo">{{record.codigo}}</td>
+                <td>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.delete(record)"><span class="glyphicon glyphicon-minus"></span> Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
+    <button id="{{$index}}-create-btn" class="btn btn-default btn-md" ui-sref="itemCreate"><span class="glyphicon glyphicon-edit"></span> Create</button>
 </div>
