@@ -23,7 +23,7 @@
                 $scope.currentRecord = {
                     id : undefined,
                     codigo : '',
-                    //TODO, AGREGAR FECHA, COMO MANEJO ESO?
+                    
                 };
                 
                 $scope.alerts = [];
@@ -34,20 +34,19 @@
             //ahora, crea y elimina
             this.create = function(codigo) {
                 currentRecord = $scope.currentRecord;
-                console.log(currentRecord);
+               
                 return $http.post(context, currentRecord).then(function (){
                     $state.go("itemList");
                 });
             };
             
             this.delete = function(codigo){
-                console.log(codigo);
+                
                 return $http.delete(context + "/" + codigo.id)
                             .then(function () {
                                 // $http.delete es una promesa
                                  //cuando termine bien, cambie de estado
                                 var index = $scope.records.indexOf(codigo); //el problema debe estar aca
-                                console.log(index);
                                 if (index > -1) {
                                     $scope.records.splice(index, 1);
                                 }
