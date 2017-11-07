@@ -35,7 +35,9 @@
             
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                    if (id == null) {
+                console.log(id);
+                console.log(currentRecord.id);
+                    if (id == null || id==undefined) {
 
                     return $http.post(context, currentRecord)
                             .then(function () {

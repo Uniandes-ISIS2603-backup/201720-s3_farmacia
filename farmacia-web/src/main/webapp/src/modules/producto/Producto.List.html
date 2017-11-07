@@ -1,30 +1,23 @@
 <div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label>Productos</label></div>
-            <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                </div>
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr> 
-                                <th>Producto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="producto in productoRecords">
-                                <td id="{{$index}}-name">{{producto.name}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-id">{{record.id}}</td>
+                <td id="{{$index}}-name"> <a id="xdxdxd" ui-sref="productoItem({productoId :record.id})">{{record.name}}</a></td>
+                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
 
 
+                <td>  <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteProducto(record)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="productoEdit({productoId : record.id})"><span class ="glyphicon glyphicon-edit"></span>Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button  class="btn btn-default btn-md" ui-sref="productoCreate"><span class="glyphicon glyphicon-plus"></span> Create</button>
 </div>

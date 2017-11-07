@@ -6,7 +6,8 @@
         'ItemModule',
         'productoModule',
         'facturaModule',
-        'itemRawModule'
+        'itemRawModule',
+        'suministroModule'
 
 
     ]);
