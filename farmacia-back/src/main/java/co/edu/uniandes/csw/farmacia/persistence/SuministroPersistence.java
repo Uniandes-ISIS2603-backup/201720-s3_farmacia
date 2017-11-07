@@ -87,4 +87,20 @@ public class SuministroPersistence {
         return query.getResultList();   
     }
     
+    public SuministroEntity findByName(String name) {
+    LOGGER.log(Level.INFO, "Consultando producto por nombre ", name);
+
+
+    // Se crea un query para buscar editoriales con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+    TypedQuery query = em.createQuery("Select e From SuministroEntity e where e.name = :name", SuministroEntity.class);
+    // Se remplaza el placeholder ":name" con el valor del argumento
+    query = query.setParameter("name", name);
+    // Se invoca el query se obtiene la lista resultado
+    List<SuministroEntity> sameName = query.getResultList();
+    if (sameName.isEmpty()) {
+        return null;
+    } else {
+        return sameName.get(0);
+    }
+}
 }

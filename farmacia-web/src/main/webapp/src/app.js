@@ -3,11 +3,14 @@
         // External dependencies
         'ui.router',
         'clienteModule',
-        'ItemModule',
-        'productoModule',
+        'ItemModule',  
         'facturaModule',
         'itemRawModule',
-        'suministroModule'
+        'suministroModule',
+        'ordenModule',
+        'OrdenCModule',
+        'productoModule'
+
 
 
     ]);

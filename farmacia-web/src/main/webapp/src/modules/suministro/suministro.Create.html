@@ -1,6 +1,6 @@
 <div class="col-md-6 well">
 
-    <form novalidate name="form" id="producto-form" role="form" ng-submit="form.$valid && ctrl.createAndUpdate(currentRecord.id)">
+    <form novalidate name="form" id="suministro-form" role="form" ng-submit="form.$valid && ctrl.createAndUpdate(currentRecord.id)">
     
         <div ng-messages="form.$error">
             <div ng-message="required">Complete los campos</div>
@@ -17,17 +17,12 @@
                     <input id="name" nombre="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
                 </div>
                 
-                <label for="descripcion" class="col-md-2 control-label">Descripción</label>
+                <label for="info" class="col-md-2 control-label">Descripción</label>
                 <div class="col-md-12">
-                    <input id="descripcion" edad="descripcion" class="form-control" type="text" ng-model="currentRecord.descripcion" ng-init="currentRecord.descripcion" required />
-                </div>
-
-                <label for="costo" class="col-md-2 control-label">Costo </label>
-                <div class="col-md-2">
-                    <input id="costo" type="text"  class="form-control" ng-model="currentRecord.costo" ng-init="currentRecord.costo" required>
+                    <input id="descripcion" edad="info" class="form-control" type="text" ng-model="currentRecord.info" ng-init="currentRecord.info" required />
                 </div>
             </div>
-            <button type="button" ui-sref='productoList'>Cancelar</button>
+            <button type="button" ui-sref='suministroList'>Cancelar</button>
             <button type="submit">Guardar</button>
         </fieldset>
     </form>

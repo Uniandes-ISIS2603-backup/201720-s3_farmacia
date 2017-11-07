@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
-import co.edu.uniandes.csw.farmacia.dtos.ClienteDTO;
+
 import co.edu.uniandes.csw.farmacia.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.farmacia.ejb.ClienteLogic;
 import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;

@@ -26,8 +26,11 @@ SOFTWARE.
  */
 
 
-import co.edu.uniandes.csw.farmacia.dtos.SuministroDetailDTO;
+
+import co.edu.uniandes.csw.farmacia.dtos.SuministroDTO;
+import co.edu.uniandes.csw.farmacia.ejb.ItemLogic;
 import co.edu.uniandes.csw.farmacia.ejb.SuministroLogic;
+import co.edu.uniandes.csw.farmacia.entities.ItemEntity;
 import co.edu.uniandes.csw.farmacia.entities.SuministroEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -65,6 +68,9 @@ public class SuministroResource {
 
     @Inject
     SuministroLogic SuministrosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    
+    @Inject
+    ItemLogic ItemsLogic;
 
     private static final Logger LOGGER = Logger.getLogger(SuministroResource.class.getName());
 
@@ -75,17 +81,18 @@ public class SuministroResource {
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
-     * "SuministroDetailDTO", "id": 1, atributo1 : "valor" }
+     * "SuministroDTO", "id": 1, atributo1 : "valor" }
      * @throws BusinessLogicException
      */
     @POST
-    public SuministroDetailDTO createSuministro(SuministroDetailDTO Suministro) throws BusinessLogicException {
+    public SuministroDTO createSuministro(SuministroDTO Suministro) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         SuministroEntity SuministroEntity = Suministro.toEntity();
         // Invoca la lógica para crear la Suministro nueva
         SuministroEntity nuevoSuministro = SuministrosLogic.createSuministro(SuministroEntity);
+        ItemEntity nuevoItem = ItemsLogic.createItemSum(nuevoSuministro);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new SuministroDetailDTO(nuevoSuministro);
+        return new SuministroDTO(nuevoSuministro);
     }
 
     /**
@@ -96,9 +103,33 @@ public class SuministroResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<SuministroDetailDTO> getSuministros() throws BusinessLogicException {
-        return listEntity2DetailDTO(SuministrosLogic.getSuministros());
+    public List<SuministroDTO> getSuministros() throws BusinessLogicException {
+        return listEntity2DTO(SuministrosLogic.getSuministros());
     }
+
+
+    /**
+     * GET para una editorial
+     * http://localhost:8080/Suministros-web/api/Suministros/1
+     *
+     * @param id corresponde al id de la editorial buscada.
+     * @return La editorial encontrada. Ejemplo: { "type": "editorialDetailDTO",
+     * "id": 1, "name": "Norma" }
+     * @throws BusinessLogicException
+     *
+     * En caso de no existir el id de la editorial buscada se retorna un 404 con
+     * el mensaje.
+     */
+    @GET
+    @Path("{id: \\d+}")
+    public SuministroDTO getSuministro(@PathParam("id") Long id) throws BusinessLogicException {
+        SuministroEntity entity = SuministrosLogic.getSuministro(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /suministros/" + id + " no existe.", 404);
+        }
+        return new SuministroDTO(SuministrosLogic.getSuministro(id));
+    }
+   
 
    
     /**
@@ -116,13 +147,13 @@ public class SuministroResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public SuministroDetailDTO updateSuministro(@PathParam("id") Long id, SuministroDetailDTO Suministros) throws BusinessLogicException, UnsupportedOperationException {
+    public SuministroDTO updateSuministro(@PathParam("id") Long id, SuministroDTO Suministros) throws BusinessLogicException, UnsupportedOperationException {
          Suministros.setId(id);
         SuministroEntity entity = SuministrosLogic.getSuministro(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /productos/" + id + " no existe.", 404);
         }
-        return new SuministroDetailDTO(SuministrosLogic.updateSuministro(id, Suministros.toEntity()));
+        return new SuministroDTO(SuministrosLogic.updateSuministro(id, Suministros.toEntity()));
       
     }
 
@@ -152,16 +183,16 @@ public class SuministroResource {
      * lista de entidades a DTO.
      *
      * Este método convierte una lista de objetos SuministroEntity a una lista de
-     * objetos SuministroDetailDTO (json)
+     * objetos SuministroDTO (json)
      *
      * @param entityList corresponde a la lista de Suministroes de tipo Entity
      * que vamos a convertir a DTO.
      * @return la lista de Suministroes en forma DTO (json)
      */
-    private List<SuministroDetailDTO> listEntity2DetailDTO(List<SuministroEntity> entityList) {
-        List<SuministroDetailDTO> list = new ArrayList<>();
+    private List<SuministroDTO> listEntity2DTO(List<SuministroEntity> entityList) {
+        List<SuministroDTO> list = new ArrayList<>();
         for (SuministroEntity entity : entityList) {
-            list.add(new SuministroDetailDTO(entity));
+            list.add(new SuministroDTO(entity));
         }
         return list;
     }

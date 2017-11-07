@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.FacturaEntity;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,8 +15,8 @@ import java.util.Date;
 public class FacturaDTO {
    
     private Long id;
-    private Date fecha;
-    private int totalfactura;
+    private String fecha;
+    private Long totalfactura;
 
     public FacturaDTO(){}
     
@@ -25,6 +24,7 @@ public class FacturaDTO {
         this.id = en.getId();
         this.totalfactura = en.getTotalFactura();
         this.fecha = en.getFecha();
+        
     }
     
     public FacturaEntity toEntity(){
@@ -44,19 +44,19 @@ public class FacturaDTO {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public int getTotalfactura() {
+    public Long getTotalfactura() {
         return totalfactura;
     }
 
-    public void setTotalfactura(int totalfactura) {
+    public void setTotalfactura(Long totalfactura) {
         this.totalfactura = totalfactura;
     }
     

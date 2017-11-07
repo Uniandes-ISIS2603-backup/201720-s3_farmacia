@@ -20,10 +20,23 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity extends BaseEntity implements Serializable{
     private Integer edad;
     private Integer cedula;
+    
     @PodamExclude
     @OneToMany(mappedBy = "clientes")
-    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
+    private List<FacturaEntity> facturas = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<OrdenDeCompraEntity> ordenes = new ArrayList<>();
+    
 
+    public List<OrdenDeCompraEntity> getOrdenes(){
+        return this.ordenes;
+    }
+    
+    public void setOrdenes(List<OrdenDeCompraEntity> list){
+        this.ordenes = list;
+    }
     public List<FacturaEntity> getFacturas() {
         return facturas;
     }
@@ -46,4 +59,6 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     public void setCedula(int cedula){
         this.cedula = cedula;
     }
+    
+    
 }

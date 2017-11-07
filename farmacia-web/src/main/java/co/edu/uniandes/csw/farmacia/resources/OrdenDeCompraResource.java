@@ -5,17 +5,17 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
-import co.edu.uniandes.csw.farmacia.dtos.OrdenDeCompraDetailDTO;
+import co.edu.uniandes.csw.farmacia.dtos.OrdenDeCompraDTO;
 import co.edu.uniandes.csw.farmacia.ejb.OrdenDeCompraLogic;
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
+import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -23,69 +23,46 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *clase que representa el recurso de orden de compra, usando REST
- * @author a.gracia10
+ * @author hs.hernandez
  */
-@Path("OrdenDeCompra")
+@Path("/ordenesCompra")
 @Produces("application/json")
-@Stateless
+@Consumes("application/json")
+@RequestScoped
 public class OrdenDeCompraResource {
     
     @Inject
     OrdenDeCompraLogic logic;
+   
+    /**
+     * Metodo auxiliar
+     * @param entityLis
+     * @return 
+     */
+    private List<OrdenDeCompraDTO> listOrdenEntity2DTO(List<OrdenDeCompraEntity> entityLis){
+         List<OrdenDeCompraDTO> list = new ArrayList<>();
+         for(OrdenDeCompraEntity en : entityLis)
+             list.add(new OrdenDeCompraDTO(en));
+         return list;
+    }
+     
+    @GET
+    public List<OrdenDeCompraDTO> getOrdenes()throws BusinessLogicException{
+        return listOrdenEntity2DTO(logic.getAllOrdenDeCompra());
+    }
+    
+    @GET
+    @Path("{idOrden: \\d+}")
+    public OrdenDeCompraDTO getOrden(@PathParam("idOrden") Long idOrden) throws BusinessLogicException {
+        OrdenDeCompraEntity entity = logic.getOrdenDeCompraById(idOrden);
+        if (entity == null)
+            throw new WebApplicationException("La orden de compra identificada con id " + idOrden +" no existe", 404);
+        return new OrdenDeCompraDTO(entity);
+    }
     
     @POST
-    public OrdenDeCompraDetailDTO createOrdenDeCompra(OrdenDeCompraDetailDTO dto)
-    {
-        OrdenDeCompraEntity ent = dto.toEntity();
-        OrdenDeCompraEntity nuevoent = logic.createOrdenDeCompra(ent);
-        return new OrdenDeCompraDetailDTO(nuevoent);
+    public OrdenDeCompraDTO createFactura(OrdenDeCompraDTO ent)throws BusinessLogicException{
+       return new OrdenDeCompraDTO(logic.createOrdenDeCompra(ent.toEntity()));
     }
-    
-    @GET
-    public List<OrdenDeCompraDetailDTO> getAll()
-    {
-        System.out.println("este picherio se llama :)");
-        List<OrdenDeCompraEntity> data = logic.getAllOrdenDeCompra();
-        List<OrdenDeCompraDetailDTO> resp = new ArrayList<> ();
-        for(OrdenDeCompraEntity ent:data)
-        {
-            resp.add(new OrdenDeCompraDetailDTO(ent));
-        }
-        return resp;
-    }
-    
-    @GET
-    @Path("{id}")
-    public OrdenDeCompraDetailDTO getOrdenDeCompraByID(@PathParam("id") long id)
-    {
-        return new OrdenDeCompraDetailDTO(logic.getOrdenDeCompraById(id));
-    }
-    
-    @PUT
-    @Path("{id}")
-    public OrdenDeCompraDetailDTO updateOrdenDeCompra(@PathParam("id") long id, OrdenDeCompraDetailDTO dto)
-    {
-        dto.setId(id);
-        //miro que si exista una orden con ese id
-        OrdenDeCompraEntity ent = logic.getOrdenDeCompraById(id);
-        if(ent == null)
-        {
-            throw new WebApplicationException("no existe una orden con el id dado", 404);
-        }
-        
-        return new OrdenDeCompraDetailDTO(logic.updateOrdenDeCompra(dto.toEntity()));
-    }
-    
-    @DELETE
-    @Path("{id}")
-    public void deleteOrdenDeCompra(@PathParam("id") long id)
-    {
-        OrdenDeCompraEntity ent = logic.getOrdenDeCompraById(id);
-        if(ent == null)
-        {
-            throw new WebApplicationException("no existe una orden con el id dado", 404);
-        }
-        
-        logic.DeleteOrdenDeCompra(ent);
-    }
+   
 }

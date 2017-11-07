@@ -1,0 +1,20 @@
+<div class="col-md-6 well">
+    
+    <form novalidate name="form" id ="orden-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+        <div ng-messages="form.$error">
+            <div ng-message="required">Complete los campos</div>
+        </div>
+        
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
+                <label for="name" class="col-md-2 control-label">Nombre</label>
+                <div class="col-md-12">
+                    <input id="name" nombre="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
+                </div>
+            </div>
+            <button type="button" ui-sref='ordenList'>Cancelar</button>
+            <button type="submit">Guardar</button>
+        </fieldset>
+    </form>
+</div>

@@ -22,6 +22,39 @@
                      
                  }
              }
+          }).state('suministroCreate',{
+            url : '/suministro/createSuministro',
+            views :{
+              'mainView' : {
+                controller :'suministroCtrl',
+                controllerAs : 'ctrl',
+                templateUrl: basePath + 'suministro.Create.html'
+              }
+            }
+          }).state('suministroEdit',{
+            url : '/suministro/:suministroId',
+            param: {
+              suministroId : null
+            },
+            views :{
+              'mainView':{
+              controller : 'suministroCtrl',
+              controllerAs :'ctrl',
+              templateUrl: basePath + 'suministro.Create.html'
+            }
+            }
+          }).state('suministroItem',{
+            url : '/itemRaw/:suministroId',
+            param :{
+              suministroId : null
+            },
+            views :{
+              'mainView' : {
+                controller : 'itemRawCtrl',
+                controllerAs: 'ctrl',
+                templateUrl : 'src/modules/item/item.List.html'
+              }
+            }
           });
       }]);     
 })(window.angular);

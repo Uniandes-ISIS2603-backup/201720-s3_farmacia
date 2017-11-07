@@ -25,8 +25,11 @@ SOFTWARE.
 
 
 import co.edu.uniandes.csw.farmacia.entities.ItemEntity;
+import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
+import co.edu.uniandes.csw.farmacia.entities.SuministroEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.ItemPersistence;
+import co.edu.uniandes.csw.farmacia.persistence.SuministroPersistence;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -46,6 +49,8 @@ public class ItemLogic {
 
     @Inject
     private ItemPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    @Inject
+    private SuministroPersistence algo;
     
     /**
      *
@@ -63,6 +68,25 @@ public class ItemLogic {
 
         LOGGER.info("Termina proceso de creación de item");
         return persistence.create(entity);
+    }
+    
+    public ItemEntity createItemProd(ProductoEntity entity)
+    {
+        LOGGER.info("Inicia proceso de creacion de item");
+        ItemEntity nuevoItem = new ItemEntity();
+        nuevoItem.setProductoAsociado(entity);
+        
+        nuevoItem.setCosto(entity.getCosto());
+        return persistence.create(nuevoItem);
+    }
+    
+    public ItemEntity createItemSum(SuministroEntity entity)
+    {
+        LOGGER.info("Inicia proceso de creación de item");
+        ItemEntity nuevoItem = new ItemEntity();
+        SuministroEntity variableNueva = algo.findByName(entity.getName());
+        nuevoItem.setSuministroAsociado(entity);
+        return persistence.create(nuevoItem);
     }
 
     /**

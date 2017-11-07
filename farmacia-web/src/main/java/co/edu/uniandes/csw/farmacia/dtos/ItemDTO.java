@@ -1,6 +1,8 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.ItemEntity;
+import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
+import co.edu.uniandes.csw.farmacia.entities.SuministroEntity;
 
 
 /*
@@ -42,6 +44,8 @@ public class ItemDTO {
     private int numItemsProvistos;
     private int numItemsEntregados;
     private int costo;
+    private ProductoEntity productoAsociado;
+    private SuministroEntity suministroAsociado;
 
  
 
@@ -62,6 +66,8 @@ public class ItemDTO {
         this.numItemsEntregados = item.getNumItemsEntregados();
         this.numItemsProvistos = item.getNumItemsProvistos();
         this.costo = item.getCosto();
+        this.productoAsociado = item.getProductoAsociado();
+        this.suministroAsociado = item.getSuministroAsociado();
     }
 
 
@@ -111,8 +117,24 @@ public class ItemDTO {
     public void setCosto(int costo) {
         this.costo = costo;
     }
-    
 
+    public ProductoEntity getProductoAsociado() {
+        return productoAsociado;
+    }
+
+    public void setProductoAsociado(ProductoEntity productoAsociado) {
+        this.productoAsociado = productoAsociado;
+    }
+
+    public SuministroEntity getSuministroAsociado() {
+        return suministroAsociado;
+    }
+
+    public void setSuministroAsociado(SuministroEntity suministroAsociado) {
+        this.suministroAsociado = suministroAsociado;
+    }
+    
+    
 
     /**
      * Convertir DTO a Entity
@@ -126,6 +148,8 @@ public class ItemDTO {
         entity.setNumItemsEntregados(this.numItemsEntregados);
         entity.setNumItemsProvistos(this.numItemsProvistos);
         entity.setNumItemsVendidos(this.numItemVendidos);
+        entity.setProductoAsociado(this.productoAsociado);
+        entity.setSuministroAsociado(this.suministroAsociado);
         return entity;
     }
     

@@ -44,7 +44,7 @@
               }
             }
           }).state('productoItem',{
-            url : 'productoItem/:productoId',
+            url : '/itemInventario/:productoId',
             param : {
               productoId : null
             },

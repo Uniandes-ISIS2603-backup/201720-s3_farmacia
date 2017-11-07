@@ -17,7 +17,7 @@
                 $scope.currentRecord = {
                     id: undefined,
                     name:'',
-                    cedula: undefined
+                    descripcion: undefined
                 };
                 $scope.alerts = [];
             }

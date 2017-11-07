@@ -8,7 +8,10 @@ package co.edu.uniandes.csw.farmacia.entities;
 
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,6 +22,9 @@ public class SuministroEntity extends BaseEntity implements Serializable {
     
     private String nombre;
     private String informacion;
+    
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private ItemEntity itemAsociado;
 
     public String getNombre()
     {

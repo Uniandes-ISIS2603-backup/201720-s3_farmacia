@@ -12,7 +12,7 @@
                         .then(function (response) {
                             $scope.currentRecord = response.data;
                         });
-                     console.log(id);
+                    
             } else {
               
                 $scope.currentRecord = {

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 
+
 /**
  *metodo que tiene lo mas basico de una orden de compra(id, nombre)
  * @author a.gracia10
@@ -15,11 +16,14 @@ public class OrdenDeCompraDTO {
     
     private long id;
     private String nombre;
+    private Long costoTotal;
+    private String fecha;
+    private Long idCliente;
+   
+    
     
     public OrdenDeCompraDTO()
-    {
-        
-    }
+    {}
     
     /**
      * constructor de un dto de un entity
@@ -29,8 +33,18 @@ public class OrdenDeCompraDTO {
     {
         this.id = ent.getId();
         this.nombre = ent.getName();
+        this.costoTotal = ent.getCostoTotal();
+        this.fecha = ent.getFecha();
+        this.idCliente = ent.getIdCliente();
     }
     
+    public Long getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(Long costoTotal) {
+        this.costoTotal = costoTotal;
+    }
     /**
      * @return the id
      */
@@ -58,12 +72,27 @@ public class OrdenDeCompraDTO {
     public void setName(String name) {
         this.nombre = name;
     }
+    public String getFecha(){
+        return this.fecha;
+    }
+    public void setFecha(String fecha){
+        this.fecha = fecha;
+    }
+    public Long getIdCliente(){
+        return this.idCliente;
+    }
+    public void setIdCliente(Long idCliente){
+        this.idCliente = idCliente;
+    }
     
     public OrdenDeCompraEntity toEntity()
     {
         OrdenDeCompraEntity ent = new OrdenDeCompraEntity();
         ent.setId(this.id);
         ent.setName(this.nombre);
+        ent.setCostoTotal(this.costoTotal);
+        ent.setFecha(this.fecha);
+        ent.setIdCliente(this.idCliente);
         return ent;
     }
     

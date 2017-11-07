@@ -2,12 +2,19 @@
     <table class="table table-striped" class="col-md-4">
         <thead>
             <tr>
-                <th>Items</th>
+                <th>Codigo</th>
+                <th>Costo</th>
+                <th>Producto</th>
+                <th>Suministro</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in itemRecords">
                 <td id="{{$index}}-id">{{item.id}}</td>
+                <td id="{{$index}}-id">{{item.costo}}</td>
+                <td id="{{$index}}-id">{{item.productoAsociado.name}}</td>
+                <td id="{{$index}}-id">{{item.suministroAsociado.name}}</td>
+
             </tr>
         </tbody>
     </table>

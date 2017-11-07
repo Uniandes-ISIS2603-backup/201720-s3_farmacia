@@ -23,6 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import co.edu.uniandes.csw.farmacia.entities.ItemEntity;
 import co.edu.uniandes.csw.farmacia.entities.MultimediaEntity;
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
@@ -47,13 +48,16 @@ public class ProductoLogic {
     @Inject
     private ProductoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
+    @Inject
+    private ItemLogic itemsLogic;
+    
     /**
      *
      * @param entity
      * @return
      * @throws BusinessLogicException
      */
-    public ProductoEntity createProducto(ProductoEntity entity) throws BusinessLogicException {
+        public ProductoEntity createProducto(ProductoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de producto");
         // Verifica la regla de negocio que dice que no puede haber dos productos con el mismo nombre
         if (persistence.findByName(entity.getName()) != null) {
@@ -121,6 +125,7 @@ public class ProductoLogic {
      */
     public void deleteproducto(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar producto con id={0}", id);
+        
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar producto con id={0}", id);
     }

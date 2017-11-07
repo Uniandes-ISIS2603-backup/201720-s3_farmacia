@@ -40,6 +40,7 @@ public class ProductoDTO {
     private Long id;
     private String name;
     private String descripcion;
+    private int costo;
 
     /**
      * Constructor por defecto
@@ -57,6 +58,7 @@ public class ProductoDTO {
         this.id = Producto.getId();
         this.name = Producto.getName();
         this.descripcion = Producto.getDescripcion();
+        this.costo = Producto.getCosto();
     }
 
     /**
@@ -93,6 +95,16 @@ public class ProductoDTO {
     {
         this.descripcion = info;
     }
+    
+    public int getCosto()
+    {
+        return this.costo;
+    }
+    
+    public void setCosto(int costo)
+    {
+        this.costo = costo;
+    }
 
     /**
      * Convertir DTO a Entity
@@ -104,6 +116,7 @@ public class ProductoDTO {
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setDescripcion(this.descripcion);
+        entity.setCosto(this.costo);
         return entity;
     }
     

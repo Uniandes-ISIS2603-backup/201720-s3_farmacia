@@ -28,6 +28,8 @@ SOFTWARE.
 import co.edu.uniandes.csw.farmacia.dtos.ProductoDTO;
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.ejb.ProductoLogic;
+import co.edu.uniandes.csw.farmacia.ejb.ItemLogic;
+import co.edu.uniandes.csw.farmacia.entities.ItemEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 
 import java.util.ArrayList;
@@ -65,6 +67,9 @@ public class ProductoResource {
 
     @Inject
     ProductoLogic ProductosLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    
+    @Inject
+    ItemLogic ItemsLogic;
 
     private static final Logger LOGGER = Logger.getLogger(ProductoResource.class.getName());
 
@@ -82,8 +87,9 @@ public class ProductoResource {
     public ProductoDTO createProducto(ProductoDTO Producto) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ProductoEntity ProductoEntity = Producto.toEntity();
-        // Invoca la lógica para crear la Producto nueva
+        // Invoca la lógica para crear la Producto nueva y su respectivo item
         ProductoEntity nuevoProducto = ProductosLogic.createProducto(ProductoEntity);
+        ItemEntity nuevoItem = ItemsLogic.createItemProd(ProductoEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new ProductoDTO(nuevoProducto);
     }
@@ -166,7 +172,9 @@ public class ProductoResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /Productos/" + id + " no existe.", 404);
         }
-        ProductosLogic.deleteproducto(id);
+        
+        ItemsLogic.deleteitem(entity.getItemAsociado().getId());
+        
 
     }
     

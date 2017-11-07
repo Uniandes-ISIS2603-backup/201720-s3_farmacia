@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.farmacia.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
 
@@ -25,8 +27,7 @@ public class ItemEntity extends BaseEntity implements Serializable{
     @OneToOne
     private ProductoEntity productoAsociado;
     
-    @OneToOne
-    private SuministroEntity SuministroEntity;
+    private SuministroEntity suministroAsociado;
     
     private int costo;
 
@@ -63,12 +64,12 @@ public class ItemEntity extends BaseEntity implements Serializable{
         this.productoAsociado = productoAsociado;
     }
 
-    public SuministroEntity getSuministroEntity() {
-        return SuministroEntity;
+    public SuministroEntity getSuministroAsociado() {
+        return suministroAsociado;
     }
 
-    public void setSuministroEntity(SuministroEntity SuministroEntity) {
-        this.SuministroEntity = SuministroEntity;
+    public void setSuministroAsociado(SuministroEntity SuministroEntity) {
+        this.suministroAsociado = SuministroEntity;
     }
 
     public int getCosto() {

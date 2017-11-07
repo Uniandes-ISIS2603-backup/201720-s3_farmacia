@@ -5,16 +5,18 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th>Costo</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
                 <td id="{{$index}}-id">{{record.id}}</td>
-                <td id="{{$index}}-name"> <a id="xdxdxd" ui-sref="productoItem({productoId :record.id})">{{record.name}}</a></td>
+                <td id="{{$index}}-name"> <a id="refe" ui-sref="productoItem({productoId :record.id})">{{record.name}}</a></td>
                 <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
+                <td id="{{$index}}-descripcion">{{record.costo}}</td>
 
 
-                <td>  <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteProducto(record)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                <td>
                 <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="productoEdit({productoId : record.id})"><span class ="glyphicon glyphicon-edit"></span>Edit</button></td>
             </tr>
         </tbody>

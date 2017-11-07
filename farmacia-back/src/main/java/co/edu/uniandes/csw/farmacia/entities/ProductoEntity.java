@@ -8,8 +8,11 @@ package co.edu.uniandes.csw.farmacia.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -21,8 +24,18 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     private String name;
     private String descripcion;
     private String proveedor;
+    private int costo;
     
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER,  orphanRemoval=true)
+    private ItemEntity itemAsociado;
 
+    public ItemEntity getItemAsociado() {
+        return itemAsociado;
+    }
+
+    public void setItemAsociado(ItemEntity itemAsociado) {
+        this.itemAsociado = itemAsociado;
+    }
 
     public String getProveedor() {
         return proveedor;
@@ -50,6 +63,14 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     public void setDescripcion(String infoxd)
     {
         this.descripcion = infoxd;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
     }
     
 }

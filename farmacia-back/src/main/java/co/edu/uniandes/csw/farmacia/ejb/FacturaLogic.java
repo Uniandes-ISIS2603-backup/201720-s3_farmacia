@@ -11,10 +11,9 @@ import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.FacturaPersistence;
 import javax.ejb.Stateless;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
-import java.util.ArrayList;
+
 /**
  *
  * @author hs.hernandez
@@ -30,6 +29,7 @@ public class FacturaLogic {
     @Inject
     private ClienteLogic clientelogic;
     
+    
     /**
      * Lista de factura de un cliente
      * @param id del cliente
@@ -39,10 +39,10 @@ public class FacturaLogic {
    public List<FacturaEntity> getFacturas(Long id) throws BusinessLogicException{
        LOGGER.info("Inicia proceso de consultar todas las facturas");
        ClienteEntity cliente = clientelogic.getCliente(id);
-       if(cliente.getFacturas() == null) throw new BusinessLogicException("El cliente no tiene facturas");
        if(cliente.getFacturas().isEmpty()) throw new BusinessLogicException("El cliente no tiene facturas");
        return cliente.getFacturas();
    }
+   
    
    /**
     * Crea una nueva factura
@@ -52,7 +52,7 @@ public class FacturaLogic {
     * @throws BusinessLogicException 
     */
    public FacturaEntity createFactura(Long idCliente, FacturaEntity entity) throws BusinessLogicException{
-       //verificarDatos(entity);
+      
        LOGGER.info("Inicia proceso de crear una factura");
        ClienteEntity cliente = clientelogic.getCliente(idCliente);
        entity.setClientes(cliente);
@@ -67,7 +67,7 @@ public class FacturaLogic {
     * 
     */
    public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity)throws BusinessLogicException{
-        //verificarDatos(entity);
+        
         LOGGER.info("Inicia proceso de actualizar una factura");
         ClienteEntity cliente = clientelogic.getCliente(idCliente);
         entity.setClientes(cliente);
@@ -90,14 +90,9 @@ public class FacturaLogic {
     * @param idFactura
     */
    public void deleteFactura(Long idCliente, Long idFactura){
-       LOGGER.info("Inicia proceso de borrar una factua");
+       LOGGER.info("Inicia proceso de borrar una factura");
        FacturaEntity old = getFacturas(idCliente, idFactura);
        persistence.delete(old.getId());
        
-   }
-   
-   private void verificarDatos(FacturaEntity entity)throws BusinessLogicException{
-       if(entity == null || entity.getTotalFactura()<0 ) throw new BusinessLogicException("El valor de la factura debe ser mayor a cero"); 
-       if(entity == null || entity.getFecha().getYear() < 1950 || entity.getFecha().getYear() > 2018)  throw new BusinessLogicException("El año de la factura no debe ser antes de 1950 o despues de 2018");
    }
 }
