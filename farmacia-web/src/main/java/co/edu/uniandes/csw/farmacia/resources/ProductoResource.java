@@ -172,10 +172,9 @@ public class ProductoResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /Productos/" + id + " no existe.", 404);
         }
-        
-        ItemsLogic.deleteitem(entity.getItemAsociado().getId());
-        
-
+        Long idx = entity.getItemAsociado().getId();
+        ItemsLogic.deleteitem(idx);
+        ProductosLogic.deleteproducto(id);
     }
     
 

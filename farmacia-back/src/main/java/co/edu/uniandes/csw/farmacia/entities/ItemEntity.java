@@ -11,7 +11,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -19,17 +22,24 @@ import javax.persistence.OneToOne;
  * @author lm.gonzalezf
  */
 @Entity
-public class ItemEntity extends BaseEntity implements Serializable{
+public class ItemEntity implements Serializable{
+
+    @Id
+    private Long id;
     private int numItemsVendidos;
     private int numItemsProvistos;
     private int numItemsEntregados;
     
     @OneToOne
-    private ProductoEntity productoAsociado;
+    @PodamExclude
+    @XmlInverseReference(mappedBy="itemAsociado")
+    private ProductoEntity ProductoEntity;
     
     private SuministroEntity suministroAsociado;
     
     private int costo;
+    
+    
 
     
     public int getNumItemsVendidos() {
@@ -56,12 +66,12 @@ public class ItemEntity extends BaseEntity implements Serializable{
         this.numItemsEntregados = numItemsEntregados;
     }
 
-    public ProductoEntity getProductoAsociado() {
-        return productoAsociado;
+    public ProductoEntity getProductoEntity() {
+        return ProductoEntity;
     }
 
-    public void setProductoAsociado(ProductoEntity productoAsociado) {
-        this.productoAsociado = productoAsociado;
+    public void setProductoEntity(ProductoEntity ProductoEntity) {
+        this.ProductoEntity = ProductoEntity;
     }
 
     public SuministroEntity getSuministroAsociado() {
@@ -78,6 +88,14 @@ public class ItemEntity extends BaseEntity implements Serializable{
 
     public void setCosto(int costo) {
         this.costo = costo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
        
 }

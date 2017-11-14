@@ -29,6 +29,7 @@ import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.entities.SuministroEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.ItemPersistence;
+import co.edu.uniandes.csw.farmacia.persistence.ProductoPersistence;
 import co.edu.uniandes.csw.farmacia.persistence.SuministroPersistence;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class ItemLogic {
     @Inject
     private ItemPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     @Inject
-    private SuministroPersistence algo;
+    private ProductoPersistence algo;
     
     /**
      *
@@ -61,8 +62,8 @@ public class ItemLogic {
     public ItemEntity createitem(ItemEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de item");
         // Verifica la regla de negocio que dice que no puede haber dos items con el mismo nombre
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe una item con el nombre \"" + entity.getName() + "\"");
+        if (persistence.find(entity.getId()) != null) {
+            throw new BusinessLogicException("Ya existe una item con el nombre \"" + entity.getId() + "\"");
         }
         // Invoca la persistencia para crear el item
 
@@ -74,8 +75,9 @@ public class ItemLogic {
     {
         LOGGER.info("Inicia proceso de creacion de item");
         ItemEntity nuevoItem = new ItemEntity();
-        nuevoItem.setProductoAsociado(entity);
-        
+        nuevoItem.setProductoEntity(entity);
+        Long id = algo.findByName(entity.getName()).getId();
+        nuevoItem.setId(id+10000);
         nuevoItem.setCosto(entity.getCosto());
         return persistence.create(nuevoItem);
     }
@@ -84,7 +86,7 @@ public class ItemLogic {
     {
         LOGGER.info("Inicia proceso de creación de item");
         ItemEntity nuevoItem = new ItemEntity();
-        SuministroEntity variableNueva = algo.findByName(entity.getName());
+        
         nuevoItem.setSuministroAsociado(entity);
         return persistence.create(nuevoItem);
     }

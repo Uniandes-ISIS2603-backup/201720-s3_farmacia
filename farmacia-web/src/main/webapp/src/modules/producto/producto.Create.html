@@ -12,6 +12,9 @@
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                
 
+             
+
+
                 <label for="name" class="col-md-2 control-label">Nombre</label>
                 <div class="col-md-12">
                     <input id="name" nombre="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
@@ -24,7 +27,7 @@
 
                 <label for="costo" class="col-md-2 control-label">Costo </label>
                 <div class="col-md-2">
-                    <input id="costo" type="text"  class="form-control" ng-model="currentRecord.costo" ng-init="currentRecord.costo" required>
+                    <input id="costo" type="number"  class="form-control" ng-model="currentRecord.costo" ng-init="currentRecord.costo" required>
                 </div>
             </div>
             <button type="button" ui-sref='productoList'>Cancelar</button>

@@ -66,7 +66,7 @@ public class ItemDTO {
         this.numItemsEntregados = item.getNumItemsEntregados();
         this.numItemsProvistos = item.getNumItemsProvistos();
         this.costo = item.getCosto();
-        this.productoAsociado = item.getProductoAsociado();
+        this.productoAsociado = item.getProductoEntity();
         this.suministroAsociado = item.getSuministroAsociado();
     }
 
@@ -148,7 +148,7 @@ public class ItemDTO {
         entity.setNumItemsEntregados(this.numItemsEntregados);
         entity.setNumItemsProvistos(this.numItemsProvistos);
         entity.setNumItemsVendidos(this.numItemVendidos);
-        entity.setProductoAsociado(this.productoAsociado);
+        entity.setProductoEntity(this.productoAsociado);
         entity.setSuministroAsociado(this.suministroAsociado);
         return entity;
     }

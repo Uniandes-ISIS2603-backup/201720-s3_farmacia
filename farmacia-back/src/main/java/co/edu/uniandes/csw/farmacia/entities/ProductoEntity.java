@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -26,7 +28,10 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     private String proveedor;
     private int costo;
     
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER,  orphanRemoval=true)
+    
+    @PodamExclude
+    @OneToOne(mappedBy="ProductoEntity",cascade = CascadeType.REMOVE,  orphanRemoval=true)
+    @XmlInverseReference(mappedBy="ProductoEntity")
     private ItemEntity itemAsociado;
 
     public ItemEntity getItemAsociado() {
