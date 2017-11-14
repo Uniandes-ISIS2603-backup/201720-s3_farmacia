@@ -1,3 +1,7 @@
 body{
-    background:white;  
+    background:pink;
+    color:turquoise;
+}
+thead{
+    color:red;
 }
