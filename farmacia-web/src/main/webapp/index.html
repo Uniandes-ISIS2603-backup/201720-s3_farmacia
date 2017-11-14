@@ -53,12 +53,10 @@
     </head>
     <body style="padding-top: 15px;">
         <div class="container-fluid col-md-12">
-            
             <div class="container center-block">
                 <img src="src/images/banner.jpg" style="min-height: 100px; max-height: 200px;">
+                
             </div>
-            
-            
             <div>
                 <ul class="nav nav-tabs">
                 <li><a ui-sref="clienteList">Clientes</a></li>
@@ -68,7 +66,6 @@
                 <li><a ui-sref="suministroList">Suministros</a></li>
                 <li><a ui-sref="productoList">Productos</a></li>
                 <li><a ui-sref="ordenCList">Orden de compra</a></li>
-
             </ul>
             </div>
             <alert class="alert alert-warning" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
