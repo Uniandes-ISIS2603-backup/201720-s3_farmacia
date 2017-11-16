@@ -22,7 +22,6 @@
                 $scope.alerts = [];
             }
 
-
             this.createAndUpdate = function (id) {
 
                 currentRecord = $scope.currentRecord;

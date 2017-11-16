@@ -1,32 +1,44 @@
+<center>
 <div class="container-fluid">
     <link rel="stylesheet" href="src/modules/cliente/css/clientes.css" />
-    <table class="table table-striped" class="col-md-6">
-        <thead>
-            <tr>
-                <th class="id">ID</th>
-                <th class="nombre">Nombre</th>
-                <th class="edad">Edad</th>
-                <th class="cedula">Cédula</th>
-                <th class="facturas">Facturas</th>
-                <th class="acciones">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="record in records">
-                <td id="{{$index}}-name">{{record.id}}</td>
-                <td id="{{$index}}-edad">{{record.nombre}}</td>
-                <td id="{{$index}}-id">{{record.edad}}</td>
-                <td id="{{$index}}-id">{{record.cedula}}</td>
-                
-                <td>
+        <div ng-repeat="record in records" style="display: inline-block ; width: 20%;height: 20%;" >
+        <div class ="thumbnail" style=" color: black; background: #E5A05F ;width: 90%;  border-style: double">
+        <div class="thumbnail">
+            <div class="row">
+                <label >ID</label>
+                <p id="{{$index}}-id">{{record.id}}</p>
+            </div>
+            <div class="row">
+                <label  >Nombre</label>
+                <p id="{{$index}}-id">{{record.nombre}}</p>
+            </div>
+            <div class="row">
+                <label >Edad</label>
+                <p id="{{$index}}-id">{{record.edad}}</p>
+            </div>
+            <div class="row">
+                <label  >Cédula</label>
+                <p id="{{$index}}-id">{{record.cedula}}</p>
+            </div>
+            <div class="row">
+                <label >Facturas</label>
+                <p>
                     <button id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})"><span class="glyphicon glyphicon-duplicate">Facturas</span></button>
-                </td>
-                <td>
+                </p>
+            </div>
+            <div class="row">
+                <label >Acciones</label>
+                <p >
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="clienteEdit({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <button ui-sref="clienteCreate">Registrar Cliente</button>
+                </p>
+            </div>
+                        
+        </div>
+        </div>
+    
 </div>
+    <div>
+        <button ui-sref="clienteCreate" style="width: 100%; height: 50px; color: white  ; background: grey ">Registrar Cliente</button>  
+    </div>
+</center>
