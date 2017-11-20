@@ -15,13 +15,13 @@ public class ClienteDTO{
     private String nombre;
     private int edad;
     private Long id;
-    private Integer cedula;
+    private Long cedula;
 
-    public Integer getCedula() {
+    public Long getCedula() {
         return cedula;
     }
 
-    public void setCedula(Integer cedula) {
+    public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
 

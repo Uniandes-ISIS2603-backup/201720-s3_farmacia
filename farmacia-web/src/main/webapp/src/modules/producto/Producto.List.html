@@ -1,27 +1,29 @@
+<center>
 <div class="container-fluid">
-    <table class="table table-striped" class="col-md-4">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Costo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="record in records">
-                <td id="{{$index}}-id">{{record.id}}</td>
-                <td id="{{$index}}-name"> <a id="refe" ui-sref="productoItem({productoId :record.id})">{{record.name}}</a></td>
-                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
-                <td id="{{$index}}-descripcion">{{record.costo}}</td>
-
-
-                <td>
-                <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="productoEdit({productoId : record.id})"><span class ="glyphicon glyphicon-edit"></span>Edit</button>
-                <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteProducto(record)"><span class="glyphicon glyphicon-minus"></span>Delete</button>
-            </td>
-            </tr>
-        </tbody>
-    </table>
-    <button  class="btn btn-default btn-md" ui-sref="productoCreate"><span class="glyphicon glyphicon-plus"></span> Create</button>
+   <div ng-repeat="record in records" style="display: inline-block ; width: 15%;height: 15%; border-radius: 5px;" >
+    <div class ="thumbnail" style=" color: black; background: #2B92C9 ;width: 90%;  border-style: double; border-radius: 5px;">
+        <div class="thumbnail" style="background: whitesmoke">
+             <div class="row">
+                <label  >ID</label>
+                <p id="{{$index}}-id">{{record.id}}</p>
+            </div>
+            <div class="row">
+                <label  >Nombre</label>
+                <p id="{{$index}}-id">{{record.name}}</p>
+            </div>
+            <div class="row">
+                <label >Descripción</label>
+                <p id="{{$index}}-id">{{record.descripcion}}</p>
+            </div>
+            <div class="row">
+                <label  >Costo</label>
+                <p id="{{$index}}-id">{{record.costo}}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div>
+        <button  class="btn btn-default btn-md" ui-sref="productoCreate"><span class="glyphicon glyphicon-plus"></span> Create</button>
+    </div>
 </div>
+</center>

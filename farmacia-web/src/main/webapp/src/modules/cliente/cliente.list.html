@@ -1,13 +1,9 @@
 <center>
 <div class="container-fluid">
     <link rel="stylesheet" href="src/modules/cliente/css/clientes.css" />
-        <div ng-repeat="record in records" style="display: inline-block ; width: 20%;height: 20%;" >
-        <div class ="thumbnail" style=" color: black; background: #2B92C9 ;width: 90%;  border-style: double">
+        <div ng-repeat="record in records" style="display: inline-block ; width: 15%;height: 15%; border-radius: 5px;" >
+        <div class ="thumbnail" style=" color: black; background: #2B92C9 ;width: 90%;  border-style: double; border-radius: 5px;">
         <div class="thumbnail" style="background: #D8DDEE">
-            <div class="row">
-                <label >ID</label>
-                <p id="{{$index}}-id">{{record.id}}</p>
-            </div>
             <div class="row">
                 <label  >Nombre</label>
                 <p id="{{$index}}-id">{{record.nombre}}</p>
@@ -21,24 +17,20 @@
                 <p id="{{$index}}-id">{{record.cedula}}</p>
             </div>
             <div class="row">
-                <label >Facturas</label>
-                <p>
-                    <button id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})"><span class="glyphicon glyphicon-duplicate">Facturas</span></button>
-                </p>
+                <label style="border-radius: 5px;"><a id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})">Facturas</a></label>
             </div>
             <div class="row">
                 <label >Acciones</label>
                 <p >
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="clienteEdit({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="clienteEdit({clienteId: record.id})" style="border-radius: 5px; "><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus" style="border-radius: 5px;"></span> Eliminar</button>
                 </p>
             </div>
-                        
         </div>
         </div>
     
 </div>
     <div>
-        <button ui-sref="clienteCreate" style="width: 100%; height: 50px; color: white  ; background: grey ">Registrar Cliente</button>  
+        <button ui-sref="clienteCreate" style="width: 100%; height: 50px; color: white  ; background: grey; padding-right: 0px !important; padding-left: 0px !important; border-radius: 5px;">Registrar Cliente</button>  
     </div>
 </center>

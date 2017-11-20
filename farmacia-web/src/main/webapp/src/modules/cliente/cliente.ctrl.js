@@ -20,8 +20,6 @@
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
                         });
-
-                // el controlador no recibió un ID
             } else {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
