@@ -1,36 +1,38 @@
 <center>
+   
 <div class="container-fluid">
-    <link rel="stylesheet" href="src/modules/cliente/css/clientes.css" />
-        <div ng-repeat="record in records" style="display: inline-block ; width: 15%;height: 15%; border-radius: 5px;" >
-        <div class ="thumbnail" style=" color: black; background: #2B92C9 ;width: 90%;  border-style: double; border-radius: 5px;">
-        <div class="thumbnail" style="background: #D8DDEE">
-            <div class="row">
-                <label  >Nombre</label>
-                <p id="{{$index}}-id">{{record.nombre}}</p>
-            </div>
-            <div class="row">
-                <label >Edad</label>
-                <p id="{{$index}}-id">{{record.edad}}</p>
-            </div>
-            <div class="row">
-                <label  >Cédula</label>
-                <p id="{{$index}}-id">{{record.cedula}}</p>
-            </div>
-            <div class="row">
-                <label style="border-radius: 5px;"><a id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})">Facturas</a></label>
-            </div>
-            <div class="row">
-                <label >Acciones</label>
-                <p >
+    <table class="table table-striped" class="col-md-6" style="background: lightblue">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Cédula</th>
+                <th>Factura</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}">{{record.id}}</td>
+                <td id="{{$index}}">{{record.nombre}}</td>
+                <td id="{{$index}}">{{record.edad}}</td>
+                <td id="{{$index}}">{{record.cedula}}</td>
+                <td>
+                    <label style="border-radius: 5px;"><a id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})">Facturas</a></label>
+                </td>
+                <td>
+                    <p >
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="clienteEdit({clienteId: record.id})" style="border-radius: 5px; "><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus" style="border-radius: 5px;"></span> Eliminar</button>
                 </p>
-            </div>
-        </div>
-        </div>
-    
-</div>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <link rel="stylesheet" href="src/modules/cliente/css/clientes.css" />
     <div>
-        <button ui-sref="clienteCreate" style="width: 100%; height: 50px; color: white  ; background: grey; padding-right: 0px !important; padding-left: 0px !important; border-radius: 5px;">Registrar Cliente</button>  
+        <button ui-sref="clienteCreate" style="width: 100px ;background: grey; color: whitesmoke; border-radius: 5px;">Registrar Cliente</button>  
     </div>
 </center>
