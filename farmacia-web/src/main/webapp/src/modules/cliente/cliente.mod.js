@@ -36,6 +36,18 @@ var mod = ng.module("clienteModule", []);
                         templateUrl: basePath + 'cliente.create.html'
                     }
                 }
+            }).state('clienteSearch', {
+                url: '/clientes/:clienteId',
+                param: {
+                    clienteId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'clienteCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'cliente.list.html'
+                    }
+                }
             }).state('facturitasKAWAI', {
                 url: '/clientes/:clienteId',
                 param: {

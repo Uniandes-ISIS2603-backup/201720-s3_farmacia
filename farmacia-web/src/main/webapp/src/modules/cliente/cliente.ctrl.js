@@ -3,28 +3,19 @@
     
     mod.controller("clienteCtrl", ['$scope', '$state', '$stateParams', '$http', 'clienteContext', function ($scope, $state, $stateParams, $http, context){
           $scope.records = {};
-            // carga los clientes
             $http.get(context).then(function (response) {
                 $scope.records = response.data;
             });  
-            // el controlador recibió una  cedula de un cliente (un ID)  ??
-            // revisa los parámetros
             if ($stateParams.clienteId !== null && $stateParams.clienteId !== undefined) {
-
-                // toma el id del parámetro
                 id = $stateParams.clienteId;
-                // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {
-                            // $http.get es una promesa
-                            // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
                         });
             } else {
-                // el registro actual debe estar vacio
                 $scope.currentRecord = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
+                    id: undefined,
+                    name: '',
                     cedula : undefined,
                 };
 
@@ -33,8 +24,6 @@
             
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                console.log(id);
-                console.log(currentRecord.id);
                     if (id == null || id==undefined) {
 
                     return $http.post(context, currentRecord)
@@ -59,7 +48,14 @@
                                     $scope.records.splice(index, 1);
                                 }
                 });
-            }
+            };
+            this.findRecord = function(id){
+                $http.get(context+"/"+ id)
+                        .then(function(response) {
+                           $scope.records = [ response.data ];
+                           $state.go('clienteList');
+                });
+            };
     }]);
 })(window.angular);
 

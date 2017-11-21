@@ -1,20 +1,26 @@
 <center>
    
-<div class="container-fluid">
-    <table class="table table-striped" class="col-md-6" style="background: lightblue">
+<div class="field" id="searchform" name="form" id="cliente-form" role="form" ng-submit="form.$valid && ctrl.findRecord(currentRecord.id)">
+  <input type="text" id="searchterm" placeholder="ID de la persona que buscas" class="form-control" type="hidden" ng-model="currentRecord.id" />
+  <button type="button" id="search"  class="btn btn-default btn-sm"  ng-click="ctrl.findRecord(currentRecord.id)" >Buscar</button>
+</div>
+
+<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<div class="container-fluid" id="tabla">
+    <table  class="table table-striped" class="col-md-6" style="background: lightblue; ">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Cédula</th>
-                <th>Factura</th>
-                <th>Acciones</th>
+                <th><b>ID</b></th>
+                <th><b>Nombre</b></th>
+                <th><b>Edad</b></th>
+                <th><b>Cédula</b></th>
+                <th><b>Factura</b></th>
+                <th><b>Acciones</b></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}">{{record.id}}</td>
+                <td id="{{$index}}"><b>{{record.id}}</b></td>
                 <td id="{{$index}}">{{record.nombre}}</td>
                 <td id="{{$index}}">{{record.edad}}</td>
                 <td id="{{$index}}">{{record.cedula}}</td>
@@ -33,6 +39,6 @@
     </table>
     <link rel="stylesheet" href="src/modules/cliente/css/clientes.css" />
     <div>
-        <button ui-sref="clienteCreate" style="width: 100px ;background: grey; color: whitesmoke; border-radius: 5px;">Registrar Cliente</button>  
+        <button ui-sref="clienteCreate" style="width: 150px; height: 40px; background: grey; color: whitesmoke; border-radius: 5px; " ><b>Registrar Cliente</b></button>  
     </div>
 </center>
