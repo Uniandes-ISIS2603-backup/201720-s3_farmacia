@@ -23,8 +23,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import co.edu.uniandes.csw.farmacia.entities.ItemEntity;
-import co.edu.uniandes.csw.farmacia.entities.MultimediaEntity;
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.ProductoPersistence;
@@ -48,8 +46,7 @@ public class ProductoLogic {
     @Inject
     private ProductoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
     
-    @Inject
-    private ItemLogic itemsLogic;
+    
     
     /**
      *

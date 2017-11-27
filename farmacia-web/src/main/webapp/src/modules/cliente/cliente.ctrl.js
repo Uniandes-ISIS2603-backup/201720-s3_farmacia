@@ -53,7 +53,7 @@
                 $http.get(context+"/"+ id)
                         .then(function(response) {
                            $scope.records = [ response.data ];
-                           $state.go('clienteList');
+                           $state.go('clienteList',{reload: true});
                 });
             };
     }]);

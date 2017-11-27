@@ -59,20 +59,6 @@ public class FacturaLogic {
        return persistence.create(entity);
    }
    
-   /**
-    * Actualiza la informacion de una factura
-    * @param id del cliente
-    * @param entity
-    * @return la factura actualizada
-    * 
-    */
-   public FacturaEntity updateFactura(Long idCliente , FacturaEntity entity)throws BusinessLogicException{
-        
-        LOGGER.info("Inicia proceso de actualizar una factura");
-        ClienteEntity cliente = clientelogic.getCliente(idCliente);
-        entity.setClientes(cliente);
-        return persistence.update(entity);
-   }
    
    /**
     * Factura especifica asosicada a un cliente especifico

@@ -75,7 +75,7 @@ public class ClienteResource {
      @Path("{id: \\d+}")
      public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException{
          ClienteEntity enti = clientelogic.getCliente(id);
-         if(enti == null) throw new WebApplicationException("El recurso /cliente/" + id + "o existe",404);
+         if(enti == null) throw new WebApplicationException("El recurso cliente " + id + " no existe",404);
          clientelogic.deleteBook(id);
      }
      

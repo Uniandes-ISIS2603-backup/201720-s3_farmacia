@@ -15,6 +15,7 @@
                 <th><b>Edad</b></th>
                 <th><b>Cédula</b></th>
                 <th><b>Factura</b></th>
+                <th><b>Carrito</b></th>
                 <th><b>Acciones</b></th>
             </tr>
         </thead>
@@ -26,6 +27,9 @@
                 <td id="{{$index}}">{{record.cedula}}</td>
                 <td>
                     <label style="border-radius: 5px;"><a id="{{$index}}-factura-btn" class="btn btn-default btn-sm" ui-sref="facturitasKAWAI({clienteId: record.id})">Facturas</a></label>
+                </td>
+                <td>
+                    <label style="border-radius: 5px;"><a style="border-radius: 5px; color:blue "  >Carrito</a></label>
                 </td>
                 <td>
                     <p >

@@ -26,8 +26,7 @@
 
             this.createAndUpdate = function (id) {
 
-                console.log(id);
-                currentRecord = $scope.currentRecord;
+                 currentRecord = $scope.currentRecord;
 
                     if (id == null || id == undefined) {
 

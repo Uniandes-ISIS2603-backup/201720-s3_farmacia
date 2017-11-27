@@ -27,9 +27,6 @@ public class OrdenDeCompraLogic {
     @Inject
     private ClienteLogic clientelogic;
     
-    @Inject
-    private FacturaLogic facturalogic;
-    
     
     
     /**
@@ -43,7 +40,6 @@ public class OrdenDeCompraLogic {
         FacturaEntity entFactura  = new FacturaEntity();
         entFactura.setTotalFactura(ent.getCostoTotal());
         entFactura.setFecha(ent.getFecha());
-        facturalogic.createFactura(ent.getIdCliente(), entFactura);
         
         //Creo la orden de compra segun el cliente
         ClienteEntity cliente = clientelogic.getCliente(ent.getIdCliente());

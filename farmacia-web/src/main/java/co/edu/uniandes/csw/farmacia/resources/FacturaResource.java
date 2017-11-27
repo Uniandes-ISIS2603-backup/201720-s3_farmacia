@@ -70,16 +70,6 @@ public class FacturaResource {
         return new FacturaDTO(facturalogic.createFactura(id, facura.toEntity()));
     }
     
-    @PUT
-    @Path("{id: \\d+}")
-    public FacturaDTO updateFactura(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id, FacturaDTO factura)throws BusinessLogicException{
-        factura.setId(id);
-        FacturaEntity entity = facturalogic.getFacturas(idCliente, id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /clientes/" + idCliente + "/facturas/" + id + " no existe.", 404);
-        }
-        return new FacturaDTO(facturalogic.updateFactura(idCliente, factura.toEntity()));
-    }
     
     @DELETE
     @Path("{id: \\d+}")

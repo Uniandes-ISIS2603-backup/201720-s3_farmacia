@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
@@ -23,10 +24,15 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ProductoEntity extends BaseEntity implements Serializable{
+    
     private String name;
     private String descripcion;
     private String proveedor;
     private int costo;
+    
+    @PodamExclude
+    @ManyToOne
+    private CarritoEntity carrito;
     
     
     @PodamExclude
@@ -77,5 +83,14 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     public void setCosto(int costo) {
         this.costo = costo;
     }
+
+    public CarritoEntity getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarritoEntity carrito) {
+        this.carrito = carrito;
+    }
+    
     
 }

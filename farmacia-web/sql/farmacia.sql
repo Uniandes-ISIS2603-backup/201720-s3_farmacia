@@ -8,6 +8,8 @@
  * Created: 24/09/2017
  */
 
+select * from productoEntity;
+
 delete from ClienteEntity;
 delete from FacturaEntity;
 
@@ -20,4 +22,6 @@ insert into FacturaEntity (id, fecha ,totalfactura) values (1,'2000-12-13T00:00:
 insert into FacturaEntity (id, fecha ,totalfactura) values (2,'2000-12-13T00:00:00-05:00',20000);
 insert into FacturaEntity (id, fecha ,totalfactura) values (3,'2000-12-13T00:00:00-05:00',20000);
 insert into FacturaEntity (id, fecha ,totalfactura) values (4,'2000-12-13T00:00:00-05:00',20000); 
+
+
 

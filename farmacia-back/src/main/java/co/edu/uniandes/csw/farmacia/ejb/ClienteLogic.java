@@ -44,7 +44,11 @@ public class ClienteLogic {
      */
     public ClienteEntity getCliente (Long id){
          LOGGER.log(Level.INFO, "Inicia proceso de consultar cliente con id={0}", id);
+        if (id == null) {
+            LOGGER.log(Level.SEVERE, "El cliente con el id {0} nulo", id);
+        }
         ClienteEntity cliente = persistence.find(id);
+        
         if (cliente == null) {
             LOGGER.log(Level.SEVERE, "El cliente con el id {0} no existe", id);
         }
