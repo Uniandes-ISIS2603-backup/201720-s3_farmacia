@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.CarritoPersistence;
+import com.sun.tools.extcheck.Main;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,6 +42,16 @@ public class CarritoLogic {
     @Inject
     private ClienteLogic clientelogic;
     
+    
+    
+    public CarritoEntity añadirProducto(Long idProducto, CarritoEntity ent){
+        List<ProductoEntity> prods = ent.getProductos();
+        ProductoEntity prod = productologic.getProducto(idProducto);
+        prods.add(prod);
+        prod.setCarrito(ent);
+        ent.setProductos(prods);
+        return ent;
+    }
     /**
      * Lista de clientes
      * @return lista de clientes
@@ -51,6 +62,7 @@ public class CarritoLogic {
         List<CarritoEntity> Carrito = persistence.findAll();
         return Carrito;
     }
+    
     
     /**
      * Cliente con ID dado
@@ -95,7 +107,7 @@ public class CarritoLogic {
      * Elimina el cliente con el id dado
      * @param id del cliente que se desea eliminar
      */
-    public void deleteCarrito(Long id) throws BusinessLogicException {
+    public void deleteCarrito(Long id) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Carrito con id={0}", id);
         
         //Crear la orden de compra asociada al carrito
@@ -105,7 +117,6 @@ public class CarritoLogic {
         orden.setCostoTotal(entity.getTotalCarrito());
         ClienteEntity cliente = clientelogic.getCliente(entity.getIdCliente());
         cliente.setId(entity.getIdCliente());
-        System.out.println(cliente.getId());
         orden.setCliente(cliente);
         cliente.getOrdenes().add(orden);
         //Fecha actual

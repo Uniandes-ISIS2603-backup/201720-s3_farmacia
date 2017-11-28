@@ -25,7 +25,7 @@ public class CarritoEntity extends BaseEntity implements Serializable{
     private Long idCliente;
     
     @PodamExclude
-    @OneToMany(mappedBy = "carrito",fetch = FetchType.LAZY,orphanRemoval = false,cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "carrito",fetch = FetchType.LAZY,orphanRemoval = false ,cascade = CascadeType.MERGE)
     private List<ProductoEntity> productos = new ArrayList<>();
 
     

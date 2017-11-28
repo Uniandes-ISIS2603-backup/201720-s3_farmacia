@@ -26,7 +26,7 @@
 
                 currentRecord = $scope.currentRecord;
 
-                    if (id == null || id == undefined) {
+                    if (id == undefined) {
 
                     return $http.post(context, currentRecord)
                             .then(function () {

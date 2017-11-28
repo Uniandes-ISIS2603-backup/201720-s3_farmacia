@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
+import co.edu.uniandes.csw.farmacia.dtos.CarritoDTO;
 import co.edu.uniandes.csw.farmacia.dtos.CarritoDetailDTO;
 import co.edu.uniandes.csw.farmacia.ejb.CarritoLogic;
 import co.edu.uniandes.csw.farmacia.entities.CarritoEntity;
-import co.edu.uniandes.csw.farmacia.entities.ClienteEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -52,7 +53,14 @@ public class CarritoResource {
          CarritoEntity enti = carritolgic.getCarrito(id);
          if(enti == null) throw new WebApplicationException("El recurso Carrito " + id + " no existe",404);
          carritolgic.deleteCarrito(id);
-     }
+    }
+     
+    @PUT
+    @Path("{id: \\d+}")
+    public CarritoDetailDTO añadirProducto(@PathParam("id") Long id, CarritoDetailDTO carrito){
+        return new CarritoDetailDTO(carritolgic.añadirProducto(id, carrito.toEntity()));
+    }
+     
     
     private List<CarritoDetailDTO> listCCarritoentity2DetailDTO(List<CarritoEntity> entityLis){
          List<CarritoDetailDTO> list = new ArrayList<>();

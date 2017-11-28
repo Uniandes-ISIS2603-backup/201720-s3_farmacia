@@ -74,7 +74,6 @@ public class ProductoLogic {
      */
     public List<ProductoEntity> getProducto() {
         LOGGER.info("Inicia proceso de consultar todas los productos");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<ProductoEntity> productos = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas los productos");
         return productos;
