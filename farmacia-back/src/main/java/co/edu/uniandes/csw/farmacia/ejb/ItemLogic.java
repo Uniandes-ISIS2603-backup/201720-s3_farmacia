@@ -30,8 +30,6 @@ import co.edu.uniandes.csw.farmacia.entities.SuministroEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.ItemPersistence;
 import co.edu.uniandes.csw.farmacia.persistence.ProductoPersistence;
-import co.edu.uniandes.csw.farmacia.persistence.SuministroPersistence;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

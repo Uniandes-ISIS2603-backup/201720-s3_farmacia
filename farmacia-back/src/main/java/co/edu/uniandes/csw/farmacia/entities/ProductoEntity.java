@@ -6,13 +6,9 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -28,7 +24,8 @@ public class ProductoEntity extends BaseEntity implements Serializable{
     private String name;
     private String descripcion;
     private String proveedor;
-    private int costo;
+    private long costo;
+    private long cantidad;
     
     @PodamExclude
     @ManyToOne
@@ -56,6 +53,7 @@ public class ProductoEntity extends BaseEntity implements Serializable{
         this.proveedor = proveedor;
     }
 
+    @Override
     public String getName()
     {
         return name;
@@ -66,6 +64,7 @@ public class ProductoEntity extends BaseEntity implements Serializable{
         return descripcion;
     }
     
+    @Override
     public void setName(String nombrexd)
     {
         this.name = nombrexd;
@@ -76,11 +75,11 @@ public class ProductoEntity extends BaseEntity implements Serializable{
         this.descripcion = infoxd;
     }
 
-    public int getCosto() {
+    public Long getCosto() {
         return costo;
     }
 
-    public void setCosto(int costo) {
+    public void setCosto(Long costo) {
         this.costo = costo;
     }
 
@@ -90,6 +89,14 @@ public class ProductoEntity extends BaseEntity implements Serializable{
 
     public void setCarrito(CarritoEntity carrito) {
         this.carrito = carrito;
+    }
+
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
     }
     
     

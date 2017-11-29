@@ -37,7 +37,7 @@ public class CarritoEntity extends BaseEntity implements Serializable{
       totalCarrito =0L;
         if(!productos.isEmpty()){
             for(int i = 0; i < productos.size();i++){
-                totalCarrito += productos.get(i).getCosto();
+                totalCarrito += (productos.get(i).getCosto()*productos.get(i).getCantidad());
             }
         }else{
             totalCarrito=0L;

@@ -1,0 +1,18 @@
+<div class="col-md-6 well">
+    <form novalidate name="form" id="producto-form" role="form" ng-submit="form.$valid && ctrl.addCarrito(currentRecord.id)">
+        <div ng-messages="form.$error">
+            <div ng-message="required">¿Cúantos productos deseas?</div>
+        </div>
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
+               
+                <label for="costo" class="col-md-2 control-label">Cantidad </label>
+                <input style="width: 100px" id="cantidad" type="number"   ng-model="currentRecord.cantidad" ng-init="currentRecord.cantidad" required>
+                
+            </div>
+            <button type="submit" >Guardar</button>
+            <button  ng-click="ctrl.addToCart(currentRecord.id)">Añadir al carrito</button>
+        </fieldset>
+    </form>
+</div>

@@ -1,8 +1,6 @@
 package co.edu.uniandes.csw.farmacia.dtos;
 
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
-
-
 /*
 MIT License
 
@@ -27,7 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-
 /**
  * ProductoDTO Objeto de transferencia de datos de Productoes. Los DTO
  * contienen las represnetaciones de los JSON que se transfieren entre el
@@ -40,11 +37,12 @@ public class ProductoDTO {
     private Long id;
     private String name;
     private String descripcion;
-    private int costo;
-
+    private long costo;
+    private long cantidad;
     /**
      * Constructor por defecto
      */
+    
     public ProductoDTO() {
     }
 
@@ -59,8 +57,18 @@ public class ProductoDTO {
         this.name = Producto.getName();
         this.descripcion = Producto.getDescripcion();
         this.costo = Producto.getCosto();
+        this.cantidad=Producto.getCantidad();
     }
 
+    
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+    }
+    
     /**
      * @return the id
      */
@@ -96,12 +104,12 @@ public class ProductoDTO {
         this.descripcion = info;
     }
     
-    public int getCosto()
+    public Long getCosto()
     {
         return this.costo;
     }
     
-    public void setCosto(int costo)
+    public void setCosto(Long costo)
     {
         this.costo = costo;
     }
@@ -117,7 +125,8 @@ public class ProductoDTO {
         entity.setName(this.name);
         entity.setDescripcion(this.descripcion);
         entity.setCosto(this.costo);
+        entity.setCantidad(this.cantidad);
         return entity;
     }
-    
+
 }

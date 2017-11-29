@@ -5,12 +5,7 @@
           $scope.carritoR = {};
             $http.get(context).then(function (response) {
                 $scope.carritoR = response.data[0];
-                 console.log($scope.carritoR);
-                
-            });  
-           
-           
-           
-           
+            }); 
+            
     }]);
 })(window.angular);

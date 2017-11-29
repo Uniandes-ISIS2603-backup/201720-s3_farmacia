@@ -6,11 +6,7 @@
 package co.edu.uniandes.csw.farmacia.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
@@ -37,7 +33,7 @@ public class ItemEntity implements Serializable{
     
     private SuministroEntity suministroAsociado;
     
-    private int costo;
+    private Long costo;
     
     
 
@@ -82,11 +78,11 @@ public class ItemEntity implements Serializable{
         this.suministroAsociado = SuministroEntity;
     }
 
-    public int getCosto() {
+    public Long getCosto() {
         return costo;
     }
 
-    public void setCosto(int costo) {
+    public void setCosto(Long costo) {
         this.costo = costo;
     }
 

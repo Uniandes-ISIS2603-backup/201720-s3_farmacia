@@ -20,7 +20,7 @@
                 <p id="{{$index}}-id">{{record.costo}}</p>
             </div>
             <div class="row">
-                <a ng-click="ctrl.addToCart(record.id)" style="color: blue;"><span class="glyphicon glyphicon-shopping-cart"></span> </a>
+                <a ui-sref="anadirProducto({productoId :record.id})" style="color: blue;"><span class="glyphicon glyphicon-shopping-cart"></span> </a>
             </div>
         </div>
         </div>

@@ -19,7 +19,6 @@
                      controller : 'productoCtrl',
                      controllerAs: 'ctrl',
                      templateUrl: basePath + 'Producto.List.html'
-                     
                  }
              }
           }).state('productoCreate',{
@@ -54,6 +53,24 @@
                 controllerAs: 'ctrl',
                 templateUrl: 'src/modules/ItemInventario/item.List.html'
               }
+            }
+          }).state('anadirProducto',{
+            url : '/:productoId',
+            param : {
+              productoId : null
+            },
+            views :{
+              'mainView' : {
+                controller : 'productoCtrl',
+                controllerAs: 'ctrl',
+                templateUrl: basePath + 'Producto.List.html'
+                
+                },'detailView' : {
+                     controller : 'productoCtrl',
+                     controllerAs: 'ctrl',
+                    templateUrl: basePath +  'anadir.producto.html'
+                     
+                 }
             }
           });
       }]);     

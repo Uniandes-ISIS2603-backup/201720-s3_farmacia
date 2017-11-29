@@ -43,7 +43,7 @@ public class ItemDTO {
     private int numItemVendidos;
     private int numItemsProvistos;
     private int numItemsEntregados;
-    private int costo;
+    private long costo;
     private ProductoEntity productoAsociado;
     private SuministroEntity suministroAsociado;
 
@@ -110,7 +110,7 @@ public class ItemDTO {
         this.numItemsEntregados = numItemsEntregados;
     }
 
-    public int getCosto() {
+    public long getCosto() {
         return costo;
     }
 

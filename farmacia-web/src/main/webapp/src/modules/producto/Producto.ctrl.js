@@ -23,9 +23,7 @@
             }
 
             this.createAndUpdate = function (id) {
-
                 currentRecord = $scope.currentRecord;
-
                     if (id == undefined) {
 
                     return $http.post(context, currentRecord)
@@ -37,6 +35,24 @@
                     return $http.put(context + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                                 $state.go('productoList');
+                            });
+                }
+                ;
+            };
+            
+            this.addCarrito = function (id) {
+                currentRecord = $scope.currentRecord;
+                    if (id == undefined) {
+
+                    return $http.post(context, currentRecord)
+                            .then(function () {
+                                $state.go('anadirProducto');
+                            });
+
+                } else {
+                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                            .then(function () {
+                                $state.go('anadirProducto');
                             });
                 }
                 ;
