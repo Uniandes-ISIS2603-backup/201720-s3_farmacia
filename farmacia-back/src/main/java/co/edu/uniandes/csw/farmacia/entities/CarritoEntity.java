@@ -31,11 +31,6 @@ public class CarritoEntity extends BaseEntity implements Serializable{
     private List<ProductoEntity> productos = new ArrayList<>();
 
     
-    @PodamExclude
-    @OneToOne(mappedBy="carrito", fetch = FetchType.LAZY)
-    @XmlInverseReference(mappedBy ="carrito")
-    private PagoEntity pago;
-
     /**
      * Costo total del carrito
      * @return costoTotal
@@ -84,13 +79,5 @@ public class CarritoEntity extends BaseEntity implements Serializable{
         this.idCliente = idCliente;
     }
 
-    public PagoEntity getPago() {
-        return pago;
-    }
-
-    public void setPago(PagoEntity pago) {
-        this.pago = pago;
-    }
-    
     
 }
