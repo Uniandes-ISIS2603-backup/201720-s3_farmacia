@@ -12,7 +12,8 @@
         'productoModule',
         'OrdenRotacionModule',
         'loginModule',
-        'carritoModule'
+        'carritoModule',
+        'pagoModule'
 
 
 

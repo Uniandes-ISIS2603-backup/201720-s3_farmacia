@@ -1,0 +1,12 @@
+<div class="col-md-6 well">
+
+    <form novalidate name="form" id="pago-form" role="form" ng-submit="form.$valid && ctrl.pagar(carritoR.id)">
+         <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
+            
+            <button type="button" ui-sref='carritoList'>Cancelar</button>
+            <button type="button" ui-sref='carritoList'>Pagar</button>
+        </fieldset>
+    </form>
+
+</div>

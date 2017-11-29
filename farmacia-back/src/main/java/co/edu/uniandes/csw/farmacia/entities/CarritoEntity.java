@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -29,6 +31,11 @@ public class CarritoEntity extends BaseEntity implements Serializable{
     private List<ProductoEntity> productos = new ArrayList<>();
 
     
+    @PodamExclude
+    @OneToOne(mappedBy="carrito", fetch = FetchType.LAZY)
+    @XmlInverseReference(mappedBy ="carrito")
+    private PagoEntity pago;
+
     /**
      * Costo total del carrito
      * @return costoTotal
@@ -75,6 +82,14 @@ public class CarritoEntity extends BaseEntity implements Serializable{
 
     public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public PagoEntity getPago() {
+        return pago;
+    }
+
+    public void setPago(PagoEntity pago) {
+        this.pago = pago;
     }
     
     
