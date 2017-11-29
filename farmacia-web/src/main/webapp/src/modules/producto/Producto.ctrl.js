@@ -41,9 +41,6 @@
                 }
                 ;
             };
-            
-
-
             this.deleteProducto = function(record) {
                 return $http.delete(context + "/" + record.id)
                             .then(function () {
@@ -52,13 +49,25 @@
                                     $scope.records.splice(index, 1);
                                 }
                 })
-
-           
+            };
+            this.addToCart=function(id){
+                $http.get('api/carrito/').then(function(response){
+                    if(response==undefined){
+                        var datosCarrote ={
+                            	totalCarrito:0
+                        };
+                        $http.post('api/carrito/',datosCarrote).then(function () {
+                                $state.go('productoList');
+                            });
+                    }else{
+                          return $http.put('api/carrito/'+id).then(function(){
+                            $state.go('productoList');
+                        })
+                    }
+                })
+              
             }
-            
-            
-            }
-        
+        }
     ]);
 }
 )(angular);

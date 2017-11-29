@@ -9,7 +9,8 @@
         'suministroModule',
         'ordenModule',
         'OrdenCModule',
-        'productoModule'
+        'productoModule',
+        'carritoModule'
 
 
 
