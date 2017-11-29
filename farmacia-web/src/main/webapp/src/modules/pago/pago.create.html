@@ -1,6 +1,10 @@
 <div class="col-md-6 well">
 
-    <form novalidate name="form" id="pago-form" role="form" ng-submit="form.$valid && ctrl.pagar(carritoR.id)">
+    <form novalidate name="form" id="pago-form" role="form" ng-submit="form.$valid && carritoCtrl.deleteRecord">
+        
+        <div ng-messages="form.$error">
+            <div ng-message="required">Seguro quiere terminar la orden</div>
+        </div>
          <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
             

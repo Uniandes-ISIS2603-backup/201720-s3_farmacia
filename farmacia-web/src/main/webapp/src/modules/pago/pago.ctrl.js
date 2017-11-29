@@ -9,24 +9,6 @@
                 
             });
             
-            this.pagar = function (id) {
-                currentRecord = $scope.currentRecord;
-                    if (id === null) {
-
-                    return $http.post(context, currentRecord)
-                            .then(function () {
-                                $state.go('carritoList');
-                            });
-
-                } else {
-                    return $http.put(context + "/dar/" + currentRecord.id, currentRecord)
-                            .then(function () {
-                                $state.go('carritoList');
-                            });
-                }
-                ;
-            };
-            
     }]);
 })(window.angular);
 
