@@ -1,0 +1,28 @@
+<div class="col-md-6 well">
+
+    <form novalidate name="form" id="item-form" role="form" ng-submit="form.$valid && ctrl.create(currentRecord.codigo)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Ingrese la informacion de la rotacion</div>
+        </div>
+
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.codigo" />
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.codigo.$invalid && (form.codigo.$dirty || form.$submitted)}">
+               
+                <label for="encargado" class="col-md-2 control-label">Encargado</label>
+                <div class="col-md-12">
+                    <input id="encargado" name="encargado" class="form-control" type="text" ng-model="currentRecord.encargado" ng-init="currentRecord.encargado" required />
+                </div>
+                
+                <label for="justificacion" class="col-md-2 control-label">Justificacion</label>
+                <div class="col-md-12">
+                    <input id="justificacion" name="justificacion" class="form-control" type="text" ng-model="currentRecord.justificacion" ng-init="currentRecord.justificacion" required />
+                </div>
+       
+            </div>
+            <button type="submit" style="width: 150px; height: 40px; background: grey; color: whitesmoke; border-radius: 5px; ">Guardar</button>
+            <button type="button" ui-sref="OrdenRotacionList" style="width: 150px; height: 40px; background: grey; color: whitesmoke; border-radius: 5px; ">Cancelar</button>
+        </fieldset>
+    </form>
+</div>
