@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.farmacia.resources;
 
-import co.edu.uniandes.csw.farmacia.dtos.CarritoDTO;
 import co.edu.uniandes.csw.farmacia.dtos.CarritoDetailDTO;
 import co.edu.uniandes.csw.farmacia.ejb.CarritoLogic;
 import co.edu.uniandes.csw.farmacia.entities.CarritoEntity;
@@ -54,11 +53,12 @@ public class CarritoResource {
          if(enti == null) throw new WebApplicationException("El recurso Carrito " + id + " no existe",404);
          carritolgic.deleteCarrito(id);
     }
+    
      
     @PUT
     @Path("{id: \\d+}")
-    public CarritoDetailDTO añadirProducto(@PathParam("id") Long id, CarritoDetailDTO carrito){
-        return new CarritoDetailDTO(carritolgic.añadirProducto(id, carrito.toEntity()));
+    public CarritoDetailDTO añadirProducto(@PathParam("id") Long id) throws BusinessLogicException{
+        return new CarritoDetailDTO(carritolgic.anadirProducto(id));
     }
      
     

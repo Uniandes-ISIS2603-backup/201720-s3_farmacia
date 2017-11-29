@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.farmacia.entities.OrdenDeCompraEntity;
 import co.edu.uniandes.csw.farmacia.entities.ProductoEntity;
 import co.edu.uniandes.csw.farmacia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.farmacia.persistence.CarritoPersistence;
-import com.sun.tools.extcheck.Main;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,13 +43,22 @@ public class CarritoLogic {
     
     
     
-    public CarritoEntity añadirProducto(Long idProducto, CarritoEntity ent){
-        List<ProductoEntity> prods = ent.getProductos();
-        ProductoEntity prod = productologic.getProducto(idProducto);
-        prods.add(prod);
-        prod.setCarrito(ent);
-        ent.setProductos(prods);
-        return ent;
+    public CarritoEntity anadirProducto(Long idProducto) throws BusinessLogicException{
+      
+       CarritoEntity ent  = persistence.find(1L);
+       ProductoEntity prod = productologic.getProducto(idProducto);
+       if(ent==null){
+           CarritoEntity nuevo  = new CarritoEntity();
+           List<ProductoEntity> nuevos = new ArrayList<>();
+           nuevos.add(prod);
+           prod.setCarrito(nuevo);
+           nuevo.setProductos(nuevos);
+           createCarrito(nuevo);
+       }else{
+       prod.setCarrito(ent);
+       ent.getProductos().add(prod);
+       }
+       return ent;    
     }
     /**
      * Lista de clientes

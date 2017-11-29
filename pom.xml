@@ -7,10 +7,7 @@
     <name>farmacia</name>
     <packaging>pom</packaging>
     <version>0.1.0</version>
-   <modules>
-       <module>farmacia-back</module>
-       <module>farmacia-web</module>
-   </modules>
+   <modules></modules>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
