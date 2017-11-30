@@ -27,6 +27,8 @@ public class OrdenDeCompraLogic {
     @Inject
     private ClienteLogic clientelogic;
     
+    @Inject
+    private FacturaLogic facturaLogic;
     
     
     /**
@@ -41,9 +43,14 @@ public class OrdenDeCompraLogic {
         entFactura.setTotalFactura(ent.getCostoTotal());
         entFactura.setFecha(ent.getFecha());
         
+        
         //Creo la orden de compra segun el cliente
         ClienteEntity cliente = clientelogic.getCliente(ent.getIdCliente());
         ent.setCliente(cliente);
+        
+        entFactura.setClientes(cliente);
+        cliente.getFacturas().add(entFactura);
+        facturaLogic.createFactura(ent.getIdCliente(), entFactura);
         
         return persistence.create(ent); 
     }

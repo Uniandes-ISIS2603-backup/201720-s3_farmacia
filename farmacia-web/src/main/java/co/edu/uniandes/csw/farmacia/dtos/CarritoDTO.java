@@ -38,7 +38,7 @@ public class CarritoDTO {
         if(entity != null && !entity.getProductos().isEmpty()){
             this.totalCarrito = entity.getTotalCarrito();
             this.id = entity.getId();
-            this.idCliente = entity.getIdCliente();
+            this.idCliente =0L;
         }
     }
     
@@ -50,8 +50,7 @@ public class CarritoDTO {
         CarritoEntity en = new CarritoEntity();
         en.setTotalCarrito(this.totalCarrito);
         en.setId(this.id);
-        en.setIdCliente(this.idCliente);
-        
+         en.setIdCliente(0L);
         return en;
     }
 

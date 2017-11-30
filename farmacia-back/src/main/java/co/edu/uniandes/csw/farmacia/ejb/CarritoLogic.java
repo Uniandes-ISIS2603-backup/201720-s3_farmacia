@@ -119,12 +119,15 @@ public class CarritoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Carrito con id={0}", id);
         
         //Crear la orden de compra asociada al carrito
-        CarritoEntity entity = persistence.find(id);
+        CarritoEntity entity = persistence.find(1L);
+        
+        long idCliente = id;
         
         OrdenDeCompraEntity orden = new OrdenDeCompraEntity();
         orden.setCostoTotal(entity.getTotalCarrito());
-        ClienteEntity cliente = clientelogic.getCliente(entity.getIdCliente());
-        cliente.setId(entity.getIdCliente());
+        
+        ClienteEntity cliente = clientelogic.getCliente(idCliente);
+        cliente.setId(idCliente);
         orden.setCliente(cliente);
         cliente.getOrdenes().add(orden);
         //Fecha actual
@@ -133,7 +136,7 @@ public class CarritoLogic {
         //Fecha actual
         orden.setFecha(date.format(now));
         orden.setCliente(cliente);
-        orden.setIdCliente(cliente.getId());
+        orden.setIdCliente(idCliente);
         ordenlogic.createOrdenDeCompra(orden);
         desvincularProductos(entity);
         persistence.delete(id);

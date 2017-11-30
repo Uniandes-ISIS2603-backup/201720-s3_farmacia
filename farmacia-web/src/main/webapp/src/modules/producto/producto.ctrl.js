@@ -81,8 +81,21 @@
                         })
                     }
                 })
-              
             }
+            
+            this.deleteCarrito = function(idCliente) {
+                console.log(idCliente)
+                $http.get('api/carrito/').then(function (response) {
+                $scope.carritoR = response.data[0];
+                
+            })
+                console.log(idCliente)
+                $scope.carritoR.idCliente = idCliente;
+                return $http.delete(context + "/" + 1)
+                        .then(function () {
+                             $state.go('carritoList');
+                });
+            };
         }
     ]);
 }

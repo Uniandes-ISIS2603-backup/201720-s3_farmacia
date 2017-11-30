@@ -12,10 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import uk.co.jemos.podam.common.PodamExclude;
-
 /**
  *
  * @author hs.hernandez
@@ -79,5 +76,11 @@ public class CarritoEntity extends BaseEntity implements Serializable{
         this.idCliente = idCliente;
     }
 
+    @Override
+    public String toString() {
+        return "CarritoEntity{" + "totalCarrito=" + totalCarrito + ", idCliente=" + idCliente + '}';
+    }
+
+    
     
 }

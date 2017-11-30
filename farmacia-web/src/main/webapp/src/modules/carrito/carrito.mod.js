@@ -14,6 +14,18 @@ var mod = ng.module("carritoModule", []);
                         templateUrl: basePath + 'carrito.list.html'
                     }
                 }
+            }).state('carritoPago', {
+                url: '/carrito/:carritoID',
+                param: {
+                    carritoID: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'carritoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'pago.html'
+                    }
+                }
             })
         }]);
 })(window.angular);
